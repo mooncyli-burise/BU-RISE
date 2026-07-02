@@ -11,3 +11,7 @@ class RobotPredictor(nn.Module):
         center = self.center(x)
         orientation = self.orientation(x)
         return center, orientation
+    
+
+#create roi head class that overrides torchvision.models.detection.roi_heads.RoIHeads
+#include most of same torchvision logic (go find) and then add loss
