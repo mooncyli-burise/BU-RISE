@@ -37,8 +37,8 @@ class Dataset(torch.utils.data.Dataset):
         target["boxes"] = tv_tensors.BoundingBoxes(xyxy_boxes, format="XYXY", canvas_size=F.get_size(image))
         # for classification (robot/no robot), remove later
         target["labels"] = torch.tensor([1], dtype=torch.int64)
-        target["headings"] = headings
-        target["center"] = torch.tensor(self.ground_truth[idx]["center"], dtype=torch.float32)
+        target["orientations"] = headings
+        target["centers"] = torch.tensor(self.ground_truth[idx]["center"], dtype=torch.float32)
         target["image_id"] = torch.tensor([image_id])
         
 

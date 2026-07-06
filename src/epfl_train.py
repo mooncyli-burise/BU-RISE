@@ -8,7 +8,7 @@ import os
 
 from engine import train_one_epoch, evaluate
 from epfl_dataset import Dataset
-import model
+import model.model as model
 from util_functions import get_transform
 import utils
 import torch

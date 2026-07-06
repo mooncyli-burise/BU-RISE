@@ -1,10 +1,11 @@
 #modifying model to add diff backbone
+from roi_head import RobotRoIHeads
 import torch
 import torchvision
 import torch.nn as nn
 from torchvision.models.detection import FasterRCNN
 from torchvision.models.detection.rpn import AnchorGenerator
-from robot_pred import RobotPredictor
+#from model.robot_pred import RobotPredictor
 
 #backbone that extracts features
 backbone = torchvision.models.mobilenet_v2(weights="DEFAULT").features
@@ -34,11 +35,11 @@ model = FasterRCNN(
     backbone,
     num_classes=2,  
     rpn_anchor_generator=anchor_generator,
-    box_roi_pool=roi_pooler\
+    box_roi_pool=roi_pooler
 )
 
 in_features = model.roi_heads.box_predictor.cls_score.in_features
-model.roi_heads.pose_head = RobotPredictor(in_features)
+model.roi_heads = RobotRoIHeads(model.roi_heads, in_features)
 
 # print(model.roi_heads)
 # print(model.roi_heads.box_predictor)

@@ -1,8 +1,0 @@
-import numpy as np
-import torch
-import torch.nn as nn
-
-class LossFunction(nn.Module):
-
-
-#make loss function
