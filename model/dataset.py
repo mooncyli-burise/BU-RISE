@@ -1,5 +1,6 @@
 import os
 import torch
+#import torchvision
 import torchvision.ops as ops
 from torchvision.io import read_image
 from torchvision import tv_tensors
@@ -11,6 +12,9 @@ class Dataset(torch.utils.data.Dataset):
         self.ground_truth = ground_truth
         self.transform = transform
         self.image_files = [f for f in os.listdir(root_dir) if f.endswith('.png') or f.endswith('.jpg')]
+        print("Images:", len(self.image_files))
+        print("Ground truth:", len(self.ground_truth[0]), len(self.ground_truth[1]))
+        #print(self.ground_truth[1], "\n")
 
     def __len__(self):
         return len(self.image_files)
@@ -20,8 +24,8 @@ class Dataset(torch.utils.data.Dataset):
         image = read_image(img_path)
 
         # boxes should just be the keypoints and small fixed box size
-        boxes = torch.tv_tensors([[self.ground_truth[idx]["center"][0], 
-                                   self.ground_truth[idx]["center"][1], 
+        boxes = torch.tensors([[self.ground_truth[0][idx]["center"], 
+                                   self.ground_truth[1][idx]["center"], 
                                    16, 
                                    16]], 
                                    dtype=torch.float32)

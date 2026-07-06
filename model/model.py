@@ -1,5 +1,5 @@
 #modifying model to add diff backbone
-from roi_head import RobotRoIHeads
+from model.roi_head import RobotRoIHeads
 import torch
 import torchvision
 import torch.nn as nn

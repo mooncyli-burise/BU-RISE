@@ -4,8 +4,8 @@ import torch.nn.functional as F
 from torch import Tensor
 from typing import Dict, List, Tuple
 from torchvision.models.detection.roi_heads import RoIHeads, fastrcnn_loss
-from robot_pred import RobotPredictor
-from loss_function import CenterLossFunction, OrientationLossFunction
+from model.robot_pred import RobotPredictor
+from model.loss_function import CenterLossFunction, OrientationLossFunction
 
 class RobotRoIHeads(RoIHeads):
     def __init__(self, roi_heads, in_features):

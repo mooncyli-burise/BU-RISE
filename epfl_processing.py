@@ -1,18 +1,3 @@
-from torchvision.transforms import v2 as T
-
-def get_transform(train):
-    transforms = []
-    #50% chance of random horizontal flip if train
-    if train:
-        transforms.append(T.RandomHorizontalFlip(0.5))
-    #converts datatype to floats and scaled to between 0.0 and 1.0
-    transforms.append(T.ToDtype(torch.float, scale=True))
-    #converts from tv_tensor to torch.Tensor
-    transforms.append(T.ToPureTensor())
-    #returns all transformations condensed into single callable sequence
-    return T.Compose(transforms)
-
-
 from PIL import Image
 from PIL.ExifTags import TAGS
 from datetime import datetime
@@ -72,10 +57,47 @@ def calculate_car_orientations(sequence_folder):
         calculated_angle = round(calculated_angle, 1)
         
         results.append({
-            "file_name": img_data["file_name"],
-            "timestamp": img_data["timestamp"].strftime("%H:%M:%S"),
+            #"file_name": img_data["file_name"],
+            #"timestamp": img_data["timestamp"].strftime("%H:%M:%S"),
             "orientation_deg": calculated_angle
         })
         
     return results
 
+# get bounding box coords
+def get_bounding_box(txt_path):
+    """Extracts bounding box coordinates from a text file."""
+    try:
+        with open(txt_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    x_min, y_min, x_max, y_max = map(float, line.split())
+                    return (x_min, y_min, x_max, y_max)
+    except Exception as e:
+        print(f"Error reading bounding box from {os.path.basename(txt_path)}: {e}")
+    return None
+
+#get center of bounding box
+def get_centers(sequence_folder):
+    """Calculates the center coordinates for every image in the folder."""
+    centers = []
+    
+    # 1. Gather all images and extract their bounding box coordinates
+    for file_name in os.listdir(sequence_folder):
+        if file_name.endswith('.txt') and file_name.startswith('bbox'):
+            file_path = os.path.join(sequence_folder, file_name)
+            # Assuming you have a function to get bounding box coordinates
+            bbox = get_bounding_box(file_path)  # Placeholder function
+            
+            if bbox:
+                x_min, y_min, x_max, y_max = bbox
+                center_x = (x_min + x_max) / 2
+                center_y = (y_min + y_max) / 2
+                
+                centers.append({
+                    #"file_name": file_name,
+                    "center": (center_x, center_y)
+                })
+                
+    return centers
