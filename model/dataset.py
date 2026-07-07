@@ -12,9 +12,8 @@ class Dataset(torch.utils.data.Dataset):
         self.ground_truth = ground_truth
         self.transform = transform
         self.image_files = [f for f in os.listdir(root_dir) if f.endswith('.png') or f.endswith('.jpg')]
-        print("Images:", len(self.image_files))
-        print("Ground truth:", len(self.ground_truth[0]), len(self.ground_truth[1]))
-        #print(self.ground_truth[1], "\n")
+        # print("Images:", len(self.image_files))
+        # print("Ground truth:", len(self.ground_truth), len(self.ground_truth))
 
     def __len__(self):
         return len(self.image_files)
@@ -24,15 +23,15 @@ class Dataset(torch.utils.data.Dataset):
         image = read_image(img_path)
 
         # boxes should just be the keypoints and small fixed box size
-        boxes = torch.tensors([[self.ground_truth[0][idx]["center"], 
-                                   self.ground_truth[1][idx]["center"], 
+        boxes = torch.tensor([[self.ground_truth[idx]["center"][0], 
+                                   self.ground_truth[idx]["center"][1], 
                                    16, 
                                    16]], 
                                    dtype=torch.float32)
         xyxy_boxes = ops.box_convert(boxes, in_fmt="cxcywh", out_fmt="xyxy")
         # integer label (1-72 for angles) with tensor for how many objects in frame (1 for one robot for now)
         # remove //72 if using mean-shift algorithm for continuous angle prediction
-        headings = torch.tensor([self.ground_truth[idx]["heading"]%360//5], dtype=torch.int64)
+        orientations = torch.tensor([self.ground_truth[idx]["orientation"]%360//5], dtype=torch.int64)
         image_id = idx
 
         image = tv_tensors.Image(image)
@@ -41,7 +40,7 @@ class Dataset(torch.utils.data.Dataset):
         target["boxes"] = tv_tensors.BoundingBoxes(xyxy_boxes, format="XYXY", canvas_size=F.get_size(image))
         # for classification (robot/no robot), remove later
         target["labels"] = torch.tensor([1], dtype=torch.int64)
-        target["orientations"] = headings
+        target["orientations"] = orientations
         target["centers"] = torch.tensor(self.ground_truth[idx]["center"], dtype=torch.float32)
         target["image_id"] = torch.tensor([image_id])
         

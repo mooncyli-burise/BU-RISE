@@ -59,7 +59,7 @@ def calculate_car_orientations(sequence_folder):
         results.append({
             #"file_name": img_data["file_name"],
             #"timestamp": img_data["timestamp"].strftime("%H:%M:%S"),
-            "orientation_deg": calculated_angle
+            "orientation": calculated_angle
         })
         
     return results
@@ -67,16 +67,17 @@ def calculate_car_orientations(sequence_folder):
 # get bounding box coords
 def get_bounding_box(txt_path):
     """Extracts bounding box coordinates from a text file."""
+    bboxes = []
     try:
         with open(txt_path, 'r') as f:
             for line in f:
                 line = line.strip()
                 if line:
                     x_min, y_min, x_max, y_max = map(float, line.split())
-                    return (x_min, y_min, x_max, y_max)
+                    bboxes.append((x_min, y_min, x_max, y_max))
     except Exception as e:
         print(f"Error reading bounding box from {os.path.basename(txt_path)}: {e}")
-    return None
+    return bboxes if bboxes else None
 
 #get center of bounding box
 def get_centers(sequence_folder):
@@ -90,14 +91,15 @@ def get_centers(sequence_folder):
             # Assuming you have a function to get bounding box coordinates
             bbox = get_bounding_box(file_path)  # Placeholder function
             
-            if bbox:
-                x_min, y_min, x_max, y_max = bbox
-                center_x = (x_min + x_max) / 2
-                center_y = (y_min + y_max) / 2
-                
-                centers.append({
-                    #"file_name": file_name,
-                    "center": (center_x, center_y)
-                })
+            for box in bbox:  # Assuming get_bounding_box returns a list of bounding boxes
+                if box:
+                    x_min, y_min, x_max, y_max = box
+                    center_x = (x_min + x_max) / 2
+                    center_y = (y_min + y_max) / 2
+                    
+                    centers.append({
+                        #"file_name": file_name,
+                        "center": (center_x, center_y)
+                    })
                 
     return centers

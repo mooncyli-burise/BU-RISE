@@ -9,20 +9,28 @@ import os
 from src.engine import train_one_epoch, evaluate
 from model.dataset import Dataset
 from model.model import model
-from util_functions import get_transform
+from model.util_functions import get_transform
+from model.get_val_loss import compute_validation_loss
 from src import utils
 import torch
 from config import DATA_DIR
 import pandas as pd
-from epfl_processing import calculate_car_orientations, get_centers
+from dataset.epfl_processing import calculate_car_orientations, get_centers
+import matplotlib.pyplot as plt
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
 
 #set up ground truth data for training and testing
 ground_truth = []
-ground_truth.append(calculate_car_orientations(os.path.join(DATA_DIR, 'epfl-gims08/tripod-seq')))
-ground_truth.append(get_centers(os.path.join(DATA_DIR, 'epfl-gims08/tripod-seq')))
+orientations = calculate_car_orientations(os.path.join(DATA_DIR, 'epfl-gims08/tripod-seq'))
+centers = get_centers(os.path.join(DATA_DIR, 'epfl-gims08/tripod-seq'))
+
+for i in range(len(centers)):
+    ground_truth.append({
+        "center": centers[i]["center"],
+        "orientation": orientations[i]["orientation"]
+    })
 
 #create instance of dataset class, with transformations for training data
 dataset = Dataset(os.path.join(DATA_DIR, 'epfl-gims08/tripod-seq'), ground_truth, get_transform(train=True))
@@ -79,8 +87,44 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(
 #number of epochs
 num_epochs = 2
 
+best_val_loss = float("inf")
+
+train_losses = []
+val_losses = []
+
 #for each epoch train with training data, adjust lr, evaluate losses
 for epoch in range(num_epochs):
-    train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
+    train_loss = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
     lr_scheduler.step()
+
+    #save checkpoint of model, optimizer, and lr scheduler states
+    torch.save({
+        "epoch": epoch,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scheduler_state_dict": lr_scheduler.state_dict(),
+    }, "checkpoint.pth")
+
+    train_losses.append(train_loss.meters["loss"].global_avg)
+
+    val_loss = compute_validation_loss(model, data_loader_test, device)
+    val_losses.append(val_loss)
+
+    #save best weights of model based on validation loss
+    if val_loss < best_val_loss:
+        best_val_loss = val_loss
+        torch.save(model.state_dict(), "best_robot_detector.pth")
+        print(f"Saved best model (val loss = {val_loss:.4f})")
+
     evaluate(model, data_loader_test, device=device)
+    
+epochs = range(1, num_epochs + 1)
+
+plt.figure(figsize=(6,4))
+plt.plot(epochs, train_losses, label="Training Loss")
+plt.plot(epochs, val_losses, label="Validation Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend()
+plt.grid(True)
+plt.show()

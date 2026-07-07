@@ -1,4 +1,4 @@
-from epfl_processing import get_image_timestamp, calculate_car_orientations, get_centers, get_bounding_box
+from dataset.epfl_processing import get_image_timestamp, calculate_car_orientations, get_centers, get_bounding_box
 
 print(get_bounding_box('/home/roboticslab/BU-RISE/data/epfl-gims08/tripod-seq/bbox_01.txt'))
 centers = get_centers('/home/roboticslab/BU-RISE/data/epfl-gims08/tripod-seq')

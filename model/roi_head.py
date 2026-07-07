@@ -6,6 +6,7 @@ from typing import Dict, List, Tuple
 from torchvision.models.detection.roi_heads import RoIHeads, fastrcnn_loss
 from model.robot_pred import RobotPredictor
 from model.loss_function import CenterLossFunction, OrientationLossFunction
+from config import CENTER_LOSS_WEIGHT, ORIENTATION_LOSS_WEIGHT
 
 class RobotRoIHeads(RoIHeads):
     def __init__(self, roi_heads, in_features):
@@ -139,11 +140,11 @@ class RobotRoIHeads(RoIHeads):
 
             for img_id in range(len(targets)):
                 center_targets.append(
-                    targets[img_id]["center"].unsqueeze(0).expand(len(matched_idxs[img_id]), -1)
+                    targets[img_id]["centers"].unsqueeze(0).expand(len(matched_idxs[img_id]), -1)
                 )
 
                 orientation_targets.append(
-                    targets[img_id]["headings"][matched_idxs[img_id]]
+                    targets[img_id]["orientations"][matched_idxs[img_id]]
                 )
 
             center_targets = torch.cat(center_targets, dim=0)
@@ -152,7 +153,7 @@ class RobotRoIHeads(RoIHeads):
             loss_center = self.center_loss(center_preds, center_targets)
             loss_orientation = self.orientation_loss(orientation_preds, orientation_targets)
             loss_classifier, loss_box_reg = fastrcnn_loss(class_logits, box_regression, labels, regression_targets)
-            losses = {"loss_center": loss_center, "loss_orientation": loss_orientation, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
+            losses = {"loss_center": loss_center*CENTER_LOSS_WEIGHT, "loss_orientation": loss_orientation*ORIENTATION_LOSS_WEIGHT, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
         else:
             boxes, scores, labels, centers, orientations = self.postprocess_detections(class_logits, box_regression, center_preds, orientation_preds, proposals, image_shapes)
             num_images = len(boxes)
