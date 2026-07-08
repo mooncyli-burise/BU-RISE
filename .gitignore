@@ -1,4 +1,4 @@
-*.pth
-*.pt
-*.ckpt
-checkpoints/
+# *.pth
+# *.pt
+# *.ckpt
+# checkpoints/

@@ -4,9 +4,9 @@ import time
 
 import torch
 import torchvision.models.detection.mask_rcnn
-from src import utils
-from src.coco_eval import CocoEvaluator
-from src.coco_utils import get_coco_api_from_dataset
+from library_model_functions import utils
+from library_model_functions.coco_eval import CocoEvaluator
+from library_model_functions.coco_utils import get_coco_api_from_dataset
 
 
 def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, scaler=None):
