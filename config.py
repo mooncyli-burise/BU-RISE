@@ -1,4 +1,4 @@
-DATA_DIR = "/home/roboticslab/BU-RISE/data/"
+DATA_DIR = "/home/roboticslab/BU-RISE/"
 CENTER_LOSS_WEIGHT = 1.0
 ORIENTATION_LOSS_WEIGHT = 1.0
 CAMERA_PARAMS = (

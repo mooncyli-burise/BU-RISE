@@ -16,7 +16,7 @@ from library_model_functions import utils
 import torch
 from config import DATA_DIR
 import pandas as pd
-from dataset.epfl_processing import calculate_car_orientations, get_centers
+from epfl_dataset_functions.epfl_processing import calculate_car_orientations, get_centers
 import matplotlib.pyplot as plt
 from model.custom_eval import custom_eval
 

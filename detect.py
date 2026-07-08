@@ -32,15 +32,17 @@ while True:
     output = outputs[0]
 
     boxes = output["boxes"].cpu().numpy()
+    centers = output["centers"].cpu().numpy()
     scores = output["scores"].cpu().numpy()
-    angles = output["orientation"].cpu().numpy()
+    angles = output["orientations"].cpu().numpy()
 
-    for box, score, angle in zip(boxes, scores, angles):
+    for box, center, score, angle in zip(boxes, centers, scores, angles):
 
         if score < 0.5:
             continue
 
         x1, y1, x2, y2 = box.astype(int)
+        cx, cy = center.astype(float)
 
         cv2.rectangle(frame,
                     (x1, y1),
@@ -55,6 +57,16 @@ while True:
                     0.6,
                     (0,255,0),
                     2)
+        
+        cv2.circle(frame, (cx, cy), radius=2, color=(0, 0, 255), thickness=-1)
+        cv2.putText(frame,
+                    f"({cx}, {cy}",
+                    (cx, cy-10),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6,
+                    (0,255,0),
+                    2)
+
         
     cv2.imshow("Robot Detection", frame)
 
