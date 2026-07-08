@@ -164,7 +164,8 @@ class RobotRoIHeads(RoIHeads):
                         "labels": labels[i],
                         "scores": scores[i],
                         "centers": centers[i],
-                        "orientations": torch.argmax(orientations[i], dim=1)*5,  # Convert index back to degrees
+                        "orientation_logits": orientations[i],
+                        "orientations": torch.argmax(orientations[i], dim=1),  # Convert index back to degrees
                     }
                 )
 

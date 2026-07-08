@@ -43,7 +43,10 @@ class Dataset(torch.utils.data.Dataset):
         target["orientations"] = orientations
         target["centers"] = torch.tensor(self.ground_truth[idx]["center"], dtype=torch.float32)
         target["image_id"] = torch.tensor([image_id])
-        
+
+        # # TODO: remove these two if i make a custom validation loop
+        # target["area"] = (xyxy_boxes[:, 2] - xyxy_boxes[:, 0]) * (xyxy_boxes[:, 3] - xyxy_boxes[:, 1])
+        # target["iscrowd"] = torch.zeros((1,), dtype=torch.int64)
 
         if self.transform:
             image = self.transform(image)

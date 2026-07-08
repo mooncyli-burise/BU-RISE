@@ -6,20 +6,23 @@ import os
 # os.system("wget https://raw.githubusercontent.com/pytorch/vision/main/references/detection/coco_eval.py")
 # os.system("wget https://raw.githubusercontent.com/pytorch/vision/main/references/detection/transforms.py")
 
-from src.engine import train_one_epoch, evaluate
+from library_model_functions.engine import train_one_epoch, evaluate
 from model.dataset import Dataset
-from model.model import model
+#from model.model import model
+from model.model import create_model
 from model.util_functions import get_transform
 from model.get_val_loss import compute_validation_loss
-from src import utils
+from library_model_functions import utils
 import torch
 from config import DATA_DIR
 import pandas as pd
 from dataset.epfl_processing import calculate_car_orientations, get_centers
 import matplotlib.pyplot as plt
+from model.custom_eval import custom_eval
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
+train_model = create_model()
 
 #set up ground truth data for training and testing
 ground_truth = []
@@ -61,14 +64,14 @@ data_loader_test = torch.utils.data.DataLoader(
 )
 
 #move model to right device
-model.to(device)
+train_model.to(device)
 
 #initialize optimizer
 #this is how the model learns by adjusting parameters and weights
 #learning rate is step size for learning,
 #momentum determines magnitude and direction of weight updates
 #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
-params = [p for p in model.parameters() if p.requires_grad]
+params = [p for p in train_model.parameters() if p.requires_grad]
 optimizer = torch.optim.SGD(
     params,
     lr=0.005,
@@ -85,40 +88,58 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(
 )
 
 #number of epochs
-num_epochs = 2
+num_epochs = 20
+start_epoch = 0
 
 best_val_loss = float("inf")
 
 train_losses = []
 val_losses = []
 
+#train from checkpoint
+checkpoint = torch.load("checkpoint.pth", map_location=device)
+
+train_model.load_state_dict(checkpoint["model_state_dict"])
+optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+train_losses = checkpoint.get("train_losses", [])
+val_losses = checkpoint.get("val_losses", [])
+
+start_epoch = checkpoint["epoch"] + 1
+
+train_model.to(device)
+
 #for each epoch train with training data, adjust lr, evaluate losses
-for epoch in range(num_epochs):
-    train_loss = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
+for epoch in range(start_epoch, num_epochs):
+    train_loss = train_one_epoch(train_model, optimizer, data_loader, device, epoch, print_freq=10)
     lr_scheduler.step()
 
     #save checkpoint of model, optimizer, and lr scheduler states
     torch.save({
         "epoch": epoch,
-        "model_state_dict": model.state_dict(),
+        "model_state_dict": train_model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
         "scheduler_state_dict": lr_scheduler.state_dict(),
+        "best_val_loss": best_val_loss,
+        "train_losses": train_losses,
+        "val_losses": val_losses,
     }, "checkpoint.pth")
 
     train_losses.append(train_loss.meters["loss"].global_avg)
 
-    val_loss = compute_validation_loss(model, data_loader_test, device)
+    val_loss = compute_validation_loss(train_model, data_loader_test, device)
     val_losses.append(val_loss)
 
     #save best weights of model based on validation loss
     if val_loss < best_val_loss:
         best_val_loss = val_loss
-        torch.save(model.state_dict(), "best_robot_detector.pth")
+        torch.save(train_model.state_dict(), "best_robot_detector.pth")
         print(f"Saved best model (val loss = {val_loss:.4f})")
 
-    evaluate(model, data_loader_test, device=device)
+    custom_eval(train_model, data_loader_test, device=device)
     
-epochs = range(1, num_epochs + 1)
+epochs = range(1, len(train_losses) + 1)
 
 plt.figure(figsize=(6,4))
 plt.plot(epochs, train_losses, label="Training Loss")
