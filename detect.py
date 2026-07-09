@@ -1,7 +1,7 @@
 import torch
 import cv2
 from model.model import create_model
-from util.objects import device
+from util.objects import device, cap
 
 #load trained model
 eval_model = create_model()
@@ -14,7 +14,6 @@ images = []
 import cv2
 
 #init cam
-cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     print("Failed to open camera")
     exit()
@@ -31,7 +30,7 @@ while True:
     image = image.to(device)
     images = [image]
 
-    eval_model.roi_heads.score_thresh = 0.0
+    eval_model.roi_heads.score_thresh = 0.05
 
     #run inference
     with torch.no_grad():

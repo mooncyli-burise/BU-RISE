@@ -63,9 +63,8 @@ def show_image_tags(tags, image):
                     fontScale=0.8,
                     color=(0, 0, 255))
         
-        center = tag.pose_t[:2]
         rotation_matrix = tag.pose_R
-        orientation = math.atan2(rotation_matrix[0,2], rotation_matrix[2,2]) * 180 / math.pi
+        orientation = math.atan2(rotation_matrix[1,0], rotation_matrix[0,0]) * 180 / math.pi
         cx, cy = tag.center.astype(int)
         
         cv2.putText(color_img,
@@ -104,7 +103,7 @@ def show_video_tags(tags, image):
         
         center = tag.pose_t[:2]
         rotation_matrix = tag.pose_R
-        orientation = math.atan2(rotation_matrix[0,2], rotation_matrix[2,2]) * 180 / math.pi
+        orientation = math.atan2(rotation_matrix[1,0], rotation_matrix[0,0]) * 180 / math.pi
         cx, cy = tag.center.astype(int)
         
         cv2.putText(color_img,

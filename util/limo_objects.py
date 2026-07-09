@@ -6,17 +6,20 @@ import os
 from config import DATA_DIR, TEST_SIZE
 from april_tags.get_data import get_apriltag_images
 from april_tags.create_ground_truth import create_ground_truth
+import json
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
 
 #set up ground truth data for training and testing
-ground_truth = create_ground_truth(get_apriltag_images)
+ground_truth = []
+with open("synthetic_limo_dataset/ground_truth.json", "r") as file:
+    ground_truth = json.load(file)
 
 #create instance of dataset class, with transformations for training data
-dataset = Dataset(os.path.join(DATA_DIR, 'april_tag_test_data'), ground_truth, get_transform(train=True))
+dataset = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_dataset/images'), ground_truth, get_transform(train=True))
 #create instance of dataset class, with transformations for test data
-dataset_test = Dataset(os.path.join(DATA_DIR, 'april_tag_test_data'), ground_truth, get_transform(train=False))
+dataset_test = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_dataset/images'), ground_truth, get_transform(train=False))
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()

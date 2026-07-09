@@ -3,8 +3,17 @@ from model.dataset import Dataset
 from model.transform_functions import get_transform
 from library_model_functions import utils
 import os
-from config import DATA_DIR, TEST_SIZE
+from config import DATA_DIR, TEST_SIZE, WIDTH, HEIGHT
 from epfl_dataset_functions.epfl_processing import calculate_car_orientations, get_centers
+
+import cv2
+
+# Open the webcam
+cap = cv2.VideoCapture(0)
+
+# Set the resolution
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')

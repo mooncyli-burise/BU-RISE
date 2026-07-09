@@ -5,6 +5,8 @@ import random
 import json
 from util.normalize_pixel_coords import normalize_coords
 
+#move outside of folder to run
+
 transformed_images = []
 ground_truth = []
 
