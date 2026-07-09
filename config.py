@@ -9,3 +9,5 @@ CAMERA_PARAMS = (
 )
 TAG_SIZE = 0.5 #tag size in meters
 TEST_SIZE = 50
+HEIGHT = 180 #px
+WIDTH = 320 #px
