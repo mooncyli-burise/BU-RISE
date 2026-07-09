@@ -4,24 +4,32 @@ from april_tags.get_data import get_apriltag_video, get_apriltag_images
 from april_tags.create_ground_truth import create_ground_truth
 
 def test_video_detection():
-    images = []
+    #init cam
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("Failed to open camera")
+        exit()
 
     while True:
-        #init cam
-        cap = cv2.VideoCapture(0)
         ret, frame = cap.read()
 
-        #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
+        # frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        image = torch.from_numpy(frame_rgb)
-        image = image.permute(2,0,1)
-        image = image.float() / 255.0
-        # images = [image]
+        # image = torch.from_numpy(frame_rgb)
+        # image = image.permute(2,0,1)
+        # image = image.float() / 255.0
+        # # images = [image]
 
-        tags = get_apriltag_video(image)
-        print(tags[0].pose_t, "\n")
-        print(tags[0].pose_R, "\n")
+        tags = get_apriltag_video(frame)
+        if tags:
+            print("Translation:")
+            print(tags[0].pose_t)
+
+            print("Rotation:")
+            print(tags[0].pose_R)
+        else:
+            print("No tags detected")
 
         #cv2.imshow("Testing", frame)
 

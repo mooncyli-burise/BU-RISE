@@ -1,19 +1,29 @@
 import matplotlib.pyplot as plt
 import torch
-from train import train_model, device, dataset
+import cv2
+from model.model import create_model
+from util.objects import device, dataset
 
 idx = 0  # choose any sample
+model = create_model()
+model.load_state_dict(torch.load("best_robot_detector.pth",
+                                 map_location=device))
+model.to(device)
+model.eval()
+model.roi_heads.score_thresh = 0.0
 
+# while True:
 # Get sample
 image, target = dataset[idx]
 
-# Run inference
-train_model.eval()
 with torch.no_grad():
-    output = train_model([image.to(device)])[0]
+    output = model([image.to(device)])[0]
+
+best = output["scores"].argmax()
 
 # Convert image for plotting
 img = image.permute(1, 2, 0).cpu().numpy()
+#img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
 # Print ground truth
 print("Ground Truth")
@@ -21,11 +31,12 @@ print("------------")
 print("Boxes:", target["boxes"])
 print("Labels:", target["labels"])
 
-if "center" in target:
-    print("Center:", target["center"])
+if "centers" in target:
+    print("Centers:", target["centers"])
 
-if "orientation" in target:
-    print("Orientation:", target["orientation"])
+if "orientations" in target:
+    print("Orientations (bins):", target["orientations"])
+    print("Orientations (angle):", target["orientations"][best].item()*5)
 
 print()
 
@@ -33,16 +44,56 @@ print()
 print("Prediction")
 print("----------")
 print("Scores:", output["scores"])
-print("Boxes:", output["boxes"])
+print("Boxes:", output["boxes"][best])
 
-if "center" in output:
-    print("Center:", output["center"])
+if "centers" in output:
+    print("Centers:", output["centers"][best])
 
-if "orientation" in output:
-    print("Orientation:", output["orientation"])
+if "orientations" in output:
+    print("Orientations (bins):", output["orientations"][best])
+    print("Orientations (angle):", output["orientations"][best].item()*5)
+
+
+x1, y1, x2, y2 = output["boxes"][best].int().tolist()
+cx, cy = output["centers"][best].int().tolist()
+
+cv2.rectangle(img,
+            (x1, y1),
+            (x2, y2),
+            (0,255,0),
+            2)
+angle = output["orientations"][best].item()
+cv2.putText(img,
+            f"{angle*5} deg",
+            (x1, y1-10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (0,255,0),
+            2)
+
+cv2.circle(img, (cx, cy), radius=2, color=(0, 0, 255), thickness=-1)
+cv2.putText(img,
+            f"({cx}, {cy}",
+            (cx, cy-10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (0,255,0),
+            2)
+
 
 # Display image
+#cv2.imshow("Robot Detection", img_bgr)
+
 plt.figure(figsize=(8, 8))
 plt.imshow(img)
 plt.axis("off")
 plt.show()
+
+    # key = input("c = next image, q = quit: ")
+
+    # if key == "c":
+    #     idx += 1
+    #     if idx >= len(dataset):
+    #         idx = 0
+    # elif key == "q":
+    #     break

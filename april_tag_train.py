@@ -4,7 +4,7 @@ from model.model import create_model
 import torch
 import matplotlib.pyplot as plt
 from model.custom_eval import custom_eval
-from util.objects import device, data_loader, data_loader_test
+from util.april_tag_objects import device, data_loader, data_loader_test
 
 train_model = create_model()
 
@@ -42,7 +42,7 @@ train_losses = []
 val_losses = []
 
 #train from checkpoint
-checkpoint = torch.load("checkpoint.pth", map_location=device)
+checkpoint = torch.load("april_tag_checkpoint.pth", map_location=device)
 
 train_model.load_state_dict(checkpoint["model_state_dict"])
 optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -69,7 +69,7 @@ for epoch in range(start_epoch, num_epochs):
         "best_val_loss": best_val_loss,
         "train_losses": train_losses,
         "val_losses": val_losses,
-    }, "checkpoint.pth")
+    }, "april_tag_checkpoint.pth")
 
     train_losses.append(train_loss.meters["loss"].global_avg)
 
@@ -79,14 +79,14 @@ for epoch in range(start_epoch, num_epochs):
     #save best weights of model based on validation loss
     if val_loss < best_val_loss:
         best_val_loss = val_loss
-        torch.save(train_model.state_dict(), "best_robot_detector.pth")
+        torch.save(train_model.state_dict(), "best_robot_detector_april_tag.pth")
         print(f"Saved best model (val loss = {val_loss:.4f})")
 
     custom_eval(train_model, data_loader_test, device=device)
 
 best_model = create_model()
 best_model.load_state_dict(
-    torch.load("best_robot_detector.pth", map_location=device)
+    torch.load("best_robot_detector_april_tag.pth", map_location=device)
 )
 best_model.to(device)
 
