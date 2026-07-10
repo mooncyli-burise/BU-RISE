@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 from model.model import create_model
-from util.limo_objects import device, dataset
+from lineart_limo.limo_objects import device, dataset
 
 idx = 0  # choose any sample
 model = create_model()

@@ -2,7 +2,7 @@ import torch
 import cv2
 from april_tags.get_data import get_apriltag_video, get_apriltag_images
 from april_tags.create_ground_truth import create_ground_truth
-from util.objects import cap
+from epfl.objects import cap
 
 def test_video_detection():
     #init cam

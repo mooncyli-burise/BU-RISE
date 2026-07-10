@@ -4,7 +4,7 @@ from model.model import create_model
 import torch
 import matplotlib.pyplot as plt
 from model.custom_eval import custom_eval
-from util.limo_objects import device, data_loader, data_loader_test
+from lineart_limo.limo_objects import device, data_loader, data_loader_test
 
 train_model = create_model()
 

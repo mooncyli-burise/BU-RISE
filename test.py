@@ -1,33 +1,39 @@
-from april_tags.test_detection import test_image_detection, test_video_detection
+import torch
 
-#test_image_detection("/home/roboticslab/BU-RISE/april_tag_test_data")
-test_video_detection()
+from util.simple_model_objects import data_loader, device
+from simple_model.model import GridNet
+from simple_model.pose_loss import PoseLossFunction
 
+torch.manual_seed(0)
 
-# from dataset.epfl_processing import get_image_timestamp, calculate_car_orientations, get_centers, get_bounding_box
+model = GridNet().to(device)
+criterion = PoseLossFunction().to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-# print(get_bounding_box('/home/roboticslab/BU-RISE/data/epfl_dataset/tripod-seq/bbox_01.txt'))
-# centers = get_centers('/home/roboticslab/BU-RISE/data/epfl_dataset/tripod-seq')
-# print(centers)
-# print(get_centers('/home/roboticslab/BU-RISE/data/epfl_dataset/tripod-seq'))
+# Take exactly one fixed batch and reuse it every step.
+images, targets = next(iter(data_loader))
+images = images.to(device)
+targets = targets.to(device)
 
+model.train()
 
-# print(get_image_timestamp('/home/roboticslab/BU-RISE/data/epfl_dataset/tripod-seq/tripod_seq_01_001.jpg'))
-# print(calculate_car_orientations('/home/roboticslab/BU-RISE/data/epfl_dataset/tripod-seq'))
+for step in range(1000):
+    logits = model(images)
+    loss = criterion(logits, targets)
 
-# from model.model import model
-# import torch
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
 
-# model.train()
+    if step % 100 == 0:
+        predictions = logits.argmax(dim=1)
+        accuracy = (predictions == targets).float().mean().item()
+        print(f"step {step}: loss={loss.item():.4f}, accuracy={accuracy:.3f}")
 
-# images = [torch.rand(3, 800, 800)]
-# targets = [{
-#     "boxes": torch.tensor([[100.,100.,120.,120.]]),
-#     "labels": torch.tensor([1]),
-#     "center": torch.tensor([110.,110.]),
-#     "headings": torch.tensor([30]),
-# }]
+model.eval()
 
-# losses = model(images, targets)
+with torch.no_grad():
+    predictions = model(images).argmax(dim=1)
+    accuracy = (predictions == targets).float().mean().item()
 
-# print(losses)
+print(f"Final one-batch accuracy: {accuracy:.3f}")

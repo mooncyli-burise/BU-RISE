@@ -1,7 +1,7 @@
 import torch
 import cv2
 from model.model import create_model
-from util.objects import device, cap
+from epfl.objects import device, cap
 
 #load trained model
 eval_model = create_model()
