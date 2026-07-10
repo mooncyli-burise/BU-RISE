@@ -1,7 +1,7 @@
 import torch
 import time
 from library_model_functions import utils
-from config import TEST_SIZE
+from config import TEST_SIZE, HEIGHT, WIDTH
 
 def custom_eval(model, data_loader, device):
     model.roi_heads.score_thresh = 0.0
@@ -44,7 +44,11 @@ def custom_eval(model, data_loader, device):
 
             correct += (pred_orientation == gt_orientation).item()
 
-            center_error = torch.norm(pred_center - gt_center)
+            error = torch.tensor([
+                (pred_center[0] - gt_center[0]) * WIDTH,
+                (pred_center[1] - gt_center[1]) * HEIGHT,
+            ], device=pred_center.device)
+            center_error = torch.norm(error)
             all_center_error.append(center_error.item())
 
             orientation_error = abs(pred_orientation - gt_orientation)
@@ -57,13 +61,14 @@ def custom_eval(model, data_loader, device):
             metric_logger.synchronize_between_processes()
             print("Averaged stats:", metric_logger)
 
-            #print(prediction["orientation_logits"])
-
             print("Pred center:", pred_center)
             print("GT center:", gt_center)
 
             print("Pred orientation bin:", pred_orientation.item())
             print("GT orientation bin:", gt_orientation)
+
+            # print(prediction["orientation_logits"])
+            # print(prediction["orientation_logits"].argmax(dim=1))
 
             print("Center error:", center_error.item())
             print("Orientation bin error:", orientation_error.item())

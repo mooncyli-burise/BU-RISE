@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 from model.model import create_model
-from util.objects import device, dataset
+from util.limo_objects import device, dataset
 
 idx = 0  # choose any sample
 model = create_model()
-model.load_state_dict(torch.load("best_robot_detector.pth",
+model.load_state_dict(torch.load("limo_best_robot_detector.pth",
                                  map_location=device))
 model.to(device)
 model.eval()

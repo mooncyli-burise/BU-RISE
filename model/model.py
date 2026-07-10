@@ -16,7 +16,7 @@ def create_model():
 
     #specifies the base side lengths and aspect ratios to use for anchor generator (5x3=15 total different sizes)
     anchor_generator = AnchorGenerator(
-        sizes=((32,64,128,256,512),),
+        sizes=((8, 16, 24, 32),),
                 aspect_ratios=((0.5,1.0,2.0),)
     )
 

@@ -4,7 +4,7 @@
 The goal of this project is to design vision-based remote controllers for wheeled robots. The overall setup consists of a monocular camera observing a robot. The system should first detect the robot in the image, as well as its orientation (assuming a planar surface for simplicity), and then provide the commands to the robot to follow a given path. The pose detector and the controller should be fast enough for real-time control. 
 
 # Current Status
-Current Progress:
+Current Progress: Implemented model with custom heads and losses, debugging training proecss, implemented apriltags as ground truth, implemented webcam functions
 
 # Repository Structure
 BU-RISE/
@@ -40,10 +40,6 @@ https://www.epfl.ch/labs/cvlab/data/data-pose-index-php/
 
 Apriltag test_files from lib-dt-apriltags
 https://github.com/duckietown/lib-dt-apriltags/tree/977b18ae778b3c631ab9979f14f74fe5463c08da/test/test_files
-
-# Training
-
-# Inference
 
 # References
 https://arxiv.org/pdf/1702.01499

@@ -5,6 +5,7 @@ import torchvision.ops as ops
 from torchvision.io import read_image
 from torchvision import tv_tensors
 from torchvision.transforms.v2 import functional as F
+from util.normalize_pixel_coords import normalize_coords
 
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, root_dir: str, ground_truth: list[dict], transform=None):
@@ -22,11 +23,14 @@ class Dataset(torch.utils.data.Dataset):
         img_path = os.path.join(self.root_dir, self.image_files[idx])
         image = read_image(img_path)
 
+        # bbox_size = normalize_coords(64,64)
+        bbox_size = (64,64)
+
         # boxes should just be the keypoints and small fixed box size
         boxes = torch.tensor([[self.ground_truth[idx]["center"][0], 
                                    self.ground_truth[idx]["center"][1], 
-                                   16, 
-                                   16]], 
+                                   bbox_size[0], 
+                                   bbox_size[1]]], 
                                    dtype=torch.float32)
         xyxy_boxes = ops.box_convert(boxes, in_fmt="cxcywh", out_fmt="xyxy")
         # integer label (1-72 for angles) with tensor for how many objects in frame (1 for one robot for now)
