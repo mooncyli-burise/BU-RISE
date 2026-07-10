@@ -119,9 +119,9 @@ class RobotRoIHeads(RoIHeads):
 
         if self.training:
             proposals, matched_idxs, labels, regression_targets = self.select_training_samples(proposals, targets)
-            for i in range(len(matched_idxs)):
-                print("matched:", matched_idxs[i].unique(return_counts=True))
-                print("positives:", (labels[i] > 0).sum())
+            # for i in range(len(matched_idxs)):
+            #     print("matched:", matched_idxs[i].unique(return_counts=True))
+            #     print("positives:", (labels[i] > 0).sum())
         else:
             labels = None
             regression_targets = None
@@ -161,13 +161,13 @@ class RobotRoIHeads(RoIHeads):
             cat_labels = torch.cat(labels, dim=0)
             pos_inds = torch.where(cat_labels > 0)[0]
 
-            print((cat_labels > 0).sum())
-            print("Positives:",
-                [(l > 0).sum().item() for l in labels])
+            # print((cat_labels > 0).sum())
+            # print("Positives:",
+            #     [(l > 0).sum().item() for l in labels])
 
-            print(pos_inds)
-            print(orientation_targets)
-            print(torch.argmax(orientation_preds[pos_inds], dim=1))
+            # print(pos_inds)
+            # print(orientation_targets)
+            # print(torch.argmax(orientation_preds[pos_inds], dim=1))
 
             # print(labels.unique(return_counts=True))
 

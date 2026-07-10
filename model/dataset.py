@@ -6,13 +6,19 @@ from torchvision.io import read_image
 from torchvision import tv_tensors
 from torchvision.transforms.v2 import functional as F
 from util.normalize_pixel_coords import normalize_coords
+import re
 
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, root_dir: str, ground_truth: list[dict], transform=None):
         self.root_dir = root_dir
         self.ground_truth = ground_truth
         self.transform = transform
-        self.image_files = [f for f in os.listdir(root_dir) if f.endswith('.png') or f.endswith('.jpg')]
+        self.image_files = sorted(
+            (f for f in os.listdir(root_dir) if f.endswith((".png", ".jpg"))),
+            key=lambda filename: int(
+                re.search(r"(\d+)(?=\.[^.]+$)", filename).group(1)
+            ),
+        )
         # print("Images:", len(self.image_files))
         # print("Ground truth:", len(self.ground_truth), len(self.ground_truth))
 
@@ -24,7 +30,7 @@ class Dataset(torch.utils.data.Dataset):
         image = read_image(img_path)
 
         # bbox_size = normalize_coords(64,64)
-        bbox_size = (64,64)
+        bbox_size = (128,128)
 
         # boxes should just be the keypoints and small fixed box size
         boxes = torch.tensor([[self.ground_truth[idx]["center"][0], 

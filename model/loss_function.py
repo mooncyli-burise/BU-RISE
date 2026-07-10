@@ -27,6 +27,6 @@ class OrientationLossFunction(nn.Module):
         losses = []
         for i in range(len(targets)):
             #select column of similarity matrix corresponding to target heading
-            cost = self.A[:, targets[i]%360//5]
+            cost = self.A[:, targets[i]]
             losses.append(torch.dot(probs[i], cost))
         return torch.stack(losses).mean()
