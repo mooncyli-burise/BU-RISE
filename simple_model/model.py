@@ -10,12 +10,16 @@ class GridNet(nn.Module):
             weights="DEFAULT"
         ).features
 
+        self.requires_grad_(True)
+
         self.pool = nn.AdaptiveAvgPool2d((4, 4))
         self.fc = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(1280 * 4 * 4, 256),
+            nn.Linear(1280 * 4 * 4, 512),
             nn.ReLU(),
-            nn.Dropout(0.2),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            #nn.Dropout(0.2),
             nn.Linear(256, 64),
         )
 

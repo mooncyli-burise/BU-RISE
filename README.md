@@ -9,22 +9,20 @@ Current Progress: Implemented model with custom heads and losses, debugging trai
 # Repository Structure
 BU-RISE/
 |
-|--april_tag_test_data/         # apriltag dataset to test apriltag detectors
-|--april_tags/                  # functions for detecting data from apriltags and creating ground truth list
-|--epfl_dataset/                # 
-|--epfl_dataset_functions/      # 
+|--april_tags                   #
+|--epfl                         # 
 |--graphs/                      # 
 |--library_model_functions/     # 
 |--model/                       # 
+|--simple_model/                #
+|--simple_testing/              #
+|--unit_tests/                  #
 |--util/                        # 
+|--main.py                      #
 |--.gitattributes               # 
 |--requirements.txt             # 
 |--README.md                    # 
-|--best_robot_detector.pth      # 
-|--checkpoint.pth               # 
 |--config.py                    # 
-|--detect.py                    # 
-|--train.py                     # 
 
 
 # Installation

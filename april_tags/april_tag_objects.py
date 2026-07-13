@@ -11,7 +11,7 @@ from april_tags.create_ground_truth import create_ground_truth
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
 
 #set up ground truth data for training and testing
-ground_truth = create_ground_truth(get_apriltag_images)
+ground_truth = create_ground_truth(get_apriltag_images("/home/roboticslab/BU-RISE/april_tags/april_tag_test_data"))
 
 #create instance of dataset class, with transformations for training data
 dataset = Dataset(os.path.join(DATA_DIR, 'april_tag_test_data'), ground_truth, get_transform(train=True))
