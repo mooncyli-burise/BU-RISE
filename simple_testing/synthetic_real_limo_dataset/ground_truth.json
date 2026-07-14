@@ -1,3842 +1,3586 @@
 [
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 1,
+        "orientation": 180.0
+    },
+    {
+        "pose": 1,
+        "orientation": 225.0
+    },
+    {
+        "pose": 1,
+        "orientation": 270.0
+    },
+    {
+        "pose": 1,
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 0,
-        "orientation": 270
-    },
-    {
-        "pose": 1,
-        "orientation": 0
-    },
-    {
-        "pose": 1,
-        "orientation": 90
-    },
-    {
-        "pose": 1,
-        "orientation": 180
-    },
-    {
-        "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 0,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 0,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 0,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 0,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 1,
-        "orientation": 270
-    },
-    {
-        "pose": 2,
-        "orientation": 0
-    },
-    {
-        "pose": 2,
-        "orientation": 90
-    },
-    {
-        "pose": 2,
-        "orientation": 180
-    },
-    {
-        "pose": 2,
-        "orientation": 270
-    },
-    {
-        "pose": 3,
-        "orientation": 0
-    },
-    {
-        "pose": 3,
-        "orientation": 90
-    },
-    {
-        "pose": 3,
-        "orientation": 180
-    },
-    {
-        "pose": 3,
-        "orientation": 270
-    },
-    {
-        "pose": 4,
-        "orientation": 0
-    },
-    {
-        "pose": 4,
-        "orientation": 90
-    },
-    {
-        "pose": 4,
-        "orientation": 180
-    },
-    {
-        "pose": 4,
-        "orientation": 270
-    },
-    {
-        "pose": 5,
-        "orientation": 0
-    },
-    {
-        "pose": 5,
-        "orientation": 90
-    },
-    {
-        "pose": 5,
-        "orientation": 180
-    },
-    {
-        "pose": 5,
-        "orientation": 270
-    },
-    {
-        "pose": 6,
-        "orientation": 0
-    },
-    {
-        "pose": 6,
-        "orientation": 90
-    },
-    {
-        "pose": 6,
-        "orientation": 180
-    },
-    {
-        "pose": 6,
-        "orientation": 270
-    },
-    {
-        "pose": 7,
-        "orientation": 0
-    },
-    {
-        "pose": 7,
-        "orientation": 90
-    },
-    {
-        "pose": 7,
-        "orientation": 180
-    },
-    {
-        "pose": 7,
-        "orientation": 270
-    },
-    {
-        "pose": 8,
-        "orientation": 0
-    },
-    {
-        "pose": 8,
-        "orientation": 90
-    },
-    {
-        "pose": 8,
-        "orientation": 180
-    },
-    {
-        "pose": 8,
-        "orientation": 270
-    },
-    {
-        "pose": 9,
-        "orientation": 0
-    },
-    {
-        "pose": 9,
-        "orientation": 90
-    },
-    {
-        "pose": 9,
-        "orientation": 180
-    },
-    {
-        "pose": 9,
-        "orientation": 270
-    },
-    {
-        "pose": 10,
-        "orientation": 0
-    },
-    {
-        "pose": 10,
-        "orientation": 90
-    },
-    {
-        "pose": 10,
-        "orientation": 180
-    },
-    {
-        "pose": 10,
-        "orientation": 270
-    },
-    {
-        "pose": 11,
-        "orientation": 0
-    },
-    {
-        "pose": 11,
-        "orientation": 90
-    },
-    {
-        "pose": 11,
-        "orientation": 180
-    },
-    {
-        "pose": 11,
-        "orientation": 270
-    },
-    {
-        "pose": 12,
-        "orientation": 0
-    },
-    {
-        "pose": 12,
-        "orientation": 90
-    },
-    {
-        "pose": 12,
-        "orientation": 180
-    },
-    {
-        "pose": 12,
-        "orientation": 270
-    },
-    {
-        "pose": 13,
-        "orientation": 0
-    },
-    {
-        "pose": 13,
-        "orientation": 90
-    },
-    {
-        "pose": 13,
-        "orientation": 180
-    },
-    {
-        "pose": 13,
-        "orientation": 270
-    },
-    {
-        "pose": 14,
-        "orientation": 0
-    },
-    {
-        "pose": 14,
-        "orientation": 90
-    },
-    {
-        "pose": 14,
-        "orientation": 180
-    },
-    {
-        "pose": 14,
-        "orientation": 270
-    },
-    {
-        "pose": 15,
-        "orientation": 0
-    },
-    {
-        "pose": 15,
-        "orientation": 90
-    },
-    {
-        "pose": 15,
-        "orientation": 180
-    },
-    {
-        "pose": 15,
-        "orientation": 270
-    },
-    {
-        "pose": 0,
-        "orientation": 0
-    },
-    {
-        "pose": 0,
-        "orientation": 90
-    },
-    {
-        "pose": 0,
-        "orientation": 180
-    },
-    {
-        "pose": 0,
-        "orientation": 270
+        "orientation": 135.0
     },
     {
         "pose": 1,
-        "orientation": 0
+        "orientation": 180.0
     },
     {
         "pose": 1,
-        "orientation": 90
+        "orientation": 225.0
     },
     {
         "pose": 1,
-        "orientation": 180
+        "orientation": 270.0
     },
     {
         "pose": 1,
-        "orientation": 270
+        "orientation": 315.0
     },
     {
         "pose": 2,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 2,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 2,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 2,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 2,
+        "orientation": 180.0
+    },
+    {
+        "pose": 2,
+        "orientation": 225.0
+    },
+    {
+        "pose": 2,
+        "orientation": 270.0
+    },
+    {
+        "pose": 2,
+        "orientation": 315.0
     },
     {
         "pose": 3,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 3,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 3,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 3,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 3,
+        "orientation": 180.0
+    },
+    {
+        "pose": 3,
+        "orientation": 225.0
+    },
+    {
+        "pose": 3,
+        "orientation": 270.0
+    },
+    {
+        "pose": 3,
+        "orientation": 315.0
     },
     {
         "pose": 4,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 4,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 4,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 4,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 4,
+        "orientation": 180.0
+    },
+    {
+        "pose": 4,
+        "orientation": 225.0
+    },
+    {
+        "pose": 4,
+        "orientation": 270.0
+    },
+    {
+        "pose": 4,
+        "orientation": 315.0
     },
     {
         "pose": 5,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 5,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 5,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 5,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 5,
+        "orientation": 180.0
+    },
+    {
+        "pose": 5,
+        "orientation": 225.0
+    },
+    {
+        "pose": 5,
+        "orientation": 270.0
+    },
+    {
+        "pose": 5,
+        "orientation": 315.0
     },
     {
         "pose": 6,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 6,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 6,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 6,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 6,
+        "orientation": 180.0
+    },
+    {
+        "pose": 6,
+        "orientation": 225.0
+    },
+    {
+        "pose": 6,
+        "orientation": 270.0
+    },
+    {
+        "pose": 6,
+        "orientation": 315.0
     },
     {
         "pose": 7,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 7,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 7,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 7,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 7,
+        "orientation": 180.0
+    },
+    {
+        "pose": 7,
+        "orientation": 225.0
+    },
+    {
+        "pose": 7,
+        "orientation": 270.0
+    },
+    {
+        "pose": 7,
+        "orientation": 315.0
     },
     {
         "pose": 8,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 8,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 8,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 8,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 8,
+        "orientation": 180.0
+    },
+    {
+        "pose": 8,
+        "orientation": 225.0
+    },
+    {
+        "pose": 8,
+        "orientation": 270.0
+    },
+    {
+        "pose": 8,
+        "orientation": 315.0
     },
     {
         "pose": 9,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 9,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 9,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 9,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 9,
+        "orientation": 180.0
+    },
+    {
+        "pose": 9,
+        "orientation": 225.0
+    },
+    {
+        "pose": 9,
+        "orientation": 270.0
+    },
+    {
+        "pose": 9,
+        "orientation": 315.0
     },
     {
         "pose": 10,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 10,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 10,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 10,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 10,
+        "orientation": 180.0
+    },
+    {
+        "pose": 10,
+        "orientation": 225.0
+    },
+    {
+        "pose": 10,
+        "orientation": 270.0
+    },
+    {
+        "pose": 10,
+        "orientation": 315.0
     },
     {
         "pose": 11,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 11,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 11,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 11,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 11,
+        "orientation": 180.0
+    },
+    {
+        "pose": 11,
+        "orientation": 225.0
+    },
+    {
+        "pose": 11,
+        "orientation": 270.0
+    },
+    {
+        "pose": 11,
+        "orientation": 315.0
     },
     {
         "pose": 12,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 12,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 12,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 12,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 12,
+        "orientation": 180.0
+    },
+    {
+        "pose": 12,
+        "orientation": 225.0
+    },
+    {
+        "pose": 12,
+        "orientation": 270.0
+    },
+    {
+        "pose": 12,
+        "orientation": 315.0
     },
     {
         "pose": 13,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 13,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 13,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 13,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 13,
+        "orientation": 180.0
+    },
+    {
+        "pose": 13,
+        "orientation": 225.0
+    },
+    {
+        "pose": 13,
+        "orientation": 270.0
+    },
+    {
+        "pose": 13,
+        "orientation": 315.0
     },
     {
         "pose": 14,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 14,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 14,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 14,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 14,
+        "orientation": 180.0
+    },
+    {
+        "pose": 14,
+        "orientation": 225.0
+    },
+    {
+        "pose": 14,
+        "orientation": 270.0
+    },
+    {
+        "pose": 14,
+        "orientation": 315.0
     },
     {
         "pose": 15,
-        "orientation": 0
+        "orientation": 0.0
     },
     {
         "pose": 15,
-        "orientation": 90
+        "orientation": 45.0
     },
     {
         "pose": 15,
-        "orientation": 180
+        "orientation": 90.0
     },
     {
         "pose": 15,
-        "orientation": 270
+        "orientation": 135.0
+    },
+    {
+        "pose": 15,
+        "orientation": 180.0
+    },
+    {
+        "pose": 15,
+        "orientation": 225.0
+    },
+    {
+        "pose": 15,
+        "orientation": 270.0
+    },
+    {
+        "pose": 15,
+        "orientation": 315.0
     }
 ]

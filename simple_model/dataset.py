@@ -2,6 +2,7 @@ import os
 import torch
 import cv2
 import re
+from config import ANGLE_CLASSES
 
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, root_dir: str, ground_truth: list[dict], transform=None):
@@ -28,17 +29,17 @@ class Dataset(torch.utils.data.Dataset):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
         image = torch.from_numpy(image).permute(2, 0, 1)
-        image = (image - torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)) / \
-            torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
+        # image = (image - torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)) / \
+        #     torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
 
         # A single class represents a pair of values:
         #   class = pose_cell * 4 + orientation_bin
         # pose_cell is 0..15 and orientation_bin is 0, 1, 2, or 3 for
         # 0°, 90°, 180°, and 270° respectively.
         pose_cell = int(self.ground_truth[idx]["pose"])
-        orientation_bin = int(self.ground_truth[idx]["orientation"]) // 90
+        orientation_bin = int(self.ground_truth[idx]["orientation"]) // (360/ANGLE_CLASSES)
         target = torch.tensor(
-            pose_cell * 4 + orientation_bin,
+            pose_cell * ANGLE_CLASSES + orientation_bin,
             dtype=torch.long,
         )
 

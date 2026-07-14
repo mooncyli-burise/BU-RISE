@@ -1,19 +1,21 @@
 import torch
 import torch.nn as nn
+from config import X_CLASSES, Y_CLASSES, ANGLE_CLASSES, TOTAL_CLASSES
 
 class PoseLossFunction(nn.Module):
     def __init__(self):
         super().__init__()
+
         # 64 classes = 16 grid cells * 4 right-angle orientation bins.
-        A = torch.zeros(64, 64)
+        A = torch.zeros(TOTAL_CLASSES, TOTAL_CLASSES)
 
-        for i in range(64):
-            for j in range(64):
-                pose_i, orientation_i = divmod(i, 4)
-                pose_j, orientation_j = divmod(j, 4)
+        for i in range(TOTAL_CLASSES):
+            for j in range(TOTAL_CLASSES):
+                pose_i, orientation_i = divmod(i, ANGLE_CLASSES)
+                pose_j, orientation_j = divmod(j, ANGLE_CLASSES)
 
-                xi, yi = pose_i % 4, pose_i // 4
-                xj, yj = pose_j % 4, pose_j // 4
+                xi, yi = pose_i % X_CLASSES, pose_i // X_CLASSES
+                xj, yj = pose_j % X_CLASSES, pose_j // X_CLASSES
 
                 position_cost = abs(xi - xj) + abs(yi - yj)
                 orientation_cost = min(
@@ -22,6 +24,7 @@ class PoseLossFunction(nn.Module):
                 )
                 A[i, j] = position_cost + orientation_cost
         self.register_buffer("A", A)
+        # print(A)
 
     def forward(self, predictions, targets):
         # predictions: [batch, 64], targets: [batch] with values 0..63

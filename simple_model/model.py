@@ -1,6 +1,7 @@
 import torchvision
 import torch
 import torch.nn as nn
+from config import TOTAL_CLASSES
 
 class GridNet(nn.Module):
     def __init__(self):
@@ -18,7 +19,7 @@ class GridNet(nn.Module):
             nn.Linear(1280 * 4 * 4, 256),
             nn.ReLU(),
             nn.Dropout(0.2),
-            nn.Linear(256, 64),
+            nn.Linear(256, TOTAL_CLASSES),
         )
 
     def forward(self, x):

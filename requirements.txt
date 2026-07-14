@@ -1,4 +1,4 @@
-numpy==2.2.6
+numpy==1.26.4
 matplotlib==3.10.9
 opencv-python==4.13.0.92
 torch==2.12.1

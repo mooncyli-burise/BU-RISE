@@ -4,7 +4,8 @@ from simple_testing.simple_model_objects import device, data_loader, data_loader
 from simple_model.model import GridNet
 from simple_model.pose_loss import PoseLossFunction
 import torch.nn as nn
-from config import POSE_WEIGHT
+from config import POSE_WEIGHT, X_CLASSES, Y_CLASSES, ANGLE_CLASSES
+import numpy as np
 
 def train_simple():
     train_model = GridNet().to(device)
@@ -38,6 +39,8 @@ def train_simple():
 
     train_losses = []
     val_losses = []
+    ce_losses = []
+    custom_losses = []
 
     # #train from checkpoint
     # checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
@@ -55,6 +58,7 @@ def train_simple():
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
+        # training loop
         train_model.train()
         total_train_loss = 0.0
 
@@ -68,7 +72,11 @@ def train_simple():
             optimizer.zero_grad()
 
             logits = train_model(images)
-            loss = POSE_WEIGHT * pose_criterion(logits, targets) + class_criterion(logits, targets)
+            ce_loss = class_criterion(logits, targets)
+            custom_loss = pose_criterion(logits, targets)
+            ce_losses.append(ce_loss.item())
+            custom_losses.append(custom_loss.item())
+            loss = POSE_WEIGHT * custom_loss + ce_loss
 
             loss.backward()
             optimizer.step()
@@ -95,6 +103,7 @@ def train_simple():
             "val_losses": val_losses,
         }, "simple_testing/simple_checkpoint.pth")
 
+        # evaluation loop
         train_model.eval()
 
         correct = 0
@@ -113,22 +122,23 @@ def train_simple():
                 # These are tensors containing one pose/orientation value per
                 # validation example, so they can be compared and counted across
                 # the entire batch.
-                predicted_poses = preds // 4
-                actual_poses = targets // 4
-                predicted_orientation_bins = preds % 4
-                actual_orientation_bins = targets % 4
+                predicted_poses = preds // ANGLE_CLASSES
+                actual_poses = targets // ANGLE_CLASSES
+                predicted_orientation_bins = preds % ANGLE_CLASSES
+                actual_orientation_bins = targets % ANGLE_CLASSES
 
                 pose_correct += (predicted_poses == actual_poses).sum().item()
                 orientation_correct += (
                     predicted_orientation_bins == actual_orientation_bins
                 ).sum().item()
 
+                # print each predictiobn
                 for prediction, target in zip(preds, targets):
-                    predicted_pose = prediction.item() // 4
-                    predicted_orientation = (prediction.item() % 4) * 90
+                    predicted_pose = prediction.item() // ANGLE_CLASSES
+                    predicted_orientation = (prediction.item() % ANGLE_CLASSES) * (360/ANGLE_CLASSES)
 
-                    actual_pose = target.item() // 4
-                    actual_orientation = (target.item() % 4) * 90
+                    actual_pose = target.item() // ANGLE_CLASSES
+                    actual_orientation = (target.item() % ANGLE_CLASSES) * (360/ANGLE_CLASSES)
 
                     print(
                         f"predicted pose: {predicted_pose}, "
@@ -154,6 +164,7 @@ def train_simple():
         val_loss = total_val_loss / len(data_loader_test)
         val_losses.append(val_loss)
 
+        # print all the data
         print(
             f"\nEpoch {epoch + 1}/{num_epochs}: "
             f"train loss {train_loss:.4f}, "
@@ -161,7 +172,13 @@ def train_simple():
             f"val loss {val_loss:.4f}, "
             f"val accuracy {accuracy:.3f}, "
             f"Pose accuracy: {pose_accuracy:.3f}, "
-            f"Orientation accuracy: {orientation_accuracy:.3f}, "
+            f"Orientation accuracy: {orientation_accuracy:.3f}\n"
+        )
+
+        print(
+            f"Epoch {epoch+1}: "
+            f"CE Loss = {np.mean(ce_losses[-len(data_loader):]):.4f}, "
+            f"Custom Loss = {np.mean(custom_losses[-len(data_loader):]):.4f}"
         )
 
         #save best weights of model based on validation loss
