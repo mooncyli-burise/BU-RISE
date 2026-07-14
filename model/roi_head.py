@@ -181,6 +181,7 @@ class RobotRoIHeads(RoIHeads):
                 center_targets
             )
             loss_classifier, loss_box_reg = fastrcnn_loss(class_logits, box_regression, labels, regression_targets)
+            #TODO: add cross entropy loss to orientation loss, if i need to also add to center loss just add it to the list
             losses = {"loss_center": loss_center*CENTER_LOSS_WEIGHT, "loss_orientation": loss_orientation*ORIENTATION_LOSS_WEIGHT, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
         else:
             boxes, scores, labels, centers, orientations = self.postprocess_detections(class_logits, box_regression, center_preds, orientation_preds, proposals, image_shapes)

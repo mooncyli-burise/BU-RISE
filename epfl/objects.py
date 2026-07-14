@@ -1,7 +1,7 @@
 import torch
 from model.dataset import Dataset
 from model.transform_functions import get_transform
-from library_model_functions import utils
+from model.library_model_functions import utils
 import os
 from config import DATA_DIR, TEST_SIZE, WIDTH, HEIGHT
 from epfl.epfl_dataset_functions.epfl_processing import calculate_car_orientations, get_centers

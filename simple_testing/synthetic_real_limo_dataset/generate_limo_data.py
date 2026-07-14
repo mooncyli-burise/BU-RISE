@@ -28,7 +28,7 @@ def generate_synthetic_data(x_classes, y_classes, angle_classes):
     width = height
     image_id = 0
 
-    for i in range(1000//(x_classes*y_classes*angle_classes)):
+    for i in range(1000//(x_classes*y_classes*angle_classes)+1):
         for y in range(-y_classes//2+1, y_classes//2+1):
             ty = y*height/y_classes-height/(y_classes*2)
             for x in range(-x_classes//2+1, x_classes//2+1):

@@ -32,7 +32,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 20
+    num_epochs = 100
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -168,17 +168,16 @@ def train_simple():
         print(
             f"\nEpoch {epoch + 1}/{num_epochs}: "
             f"train loss {train_loss:.4f}, "
-            f"train accuracy {train_accuracy:.3f}, "
+            f"train accuracy {train_accuracy:.3f} \n"
             f"val loss {val_loss:.4f}, "
             f"val accuracy {accuracy:.3f}, "
             f"Pose accuracy: {pose_accuracy:.3f}, "
-            f"Orientation accuracy: {orientation_accuracy:.3f}\n"
+            f"Orientation accuracy: {orientation_accuracy:.3f}"
         )
 
         print(
-            f"Epoch {epoch+1}: "
             f"CE Loss = {np.mean(ce_losses[-len(data_loader):]):.4f}, "
-            f"Custom Loss = {np.mean(custom_losses[-len(data_loader):]):.4f}"
+            f"Custom Loss = {np.mean(custom_losses[-len(data_loader):]):.4f}\n"
         )
 
         #save best weights of model based on validation loss
@@ -193,6 +192,15 @@ def train_simple():
     plt.plot(epochs, train_losses, label="Training Loss")
     plt.plot(epochs, val_losses, label="Validation Loss")
     plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.grid(True)
+
+    #plot individual losses
+    plt.figure(figsize=(6,4))
+    plt.plot(ce_losses, label="Cross Entropy")
+    plt.plot(custom_losses, label="Custom Loss")
+    plt.xlabel("Training Batch")
     plt.ylabel("Loss")
     plt.legend()
     plt.grid(True)

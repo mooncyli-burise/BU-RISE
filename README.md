@@ -26,11 +26,10 @@ BU-RISE/ \
 |--april_tags                   # functions to interpret apriltag data into ground truth annotations \
 |--epfl                         # training model with epfl dataset \
 |--graphs/                      # graphs from training \
-|--library_model_functions/     # imported functions for model \
-|--lineart_limo                 # training model with synthetic lineart limo dataset \
 |--model/                       # model architecture for position and orientation prediction with faster rcnn \
 |--simple_model/                # simple testing model with only backbone \
 |--simple_testing/              # testing simple model with 16 position classes and 4 orientation classes \
+|--synthetic_limo_testing/      # test detector model with random synthetic limo dataset \
 |--unit_tests/                  # unit tests for each head of model \
 |--util/                        # utility functions \
 |--main.py                      # runs all code \

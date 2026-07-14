@@ -14,8 +14,9 @@ CAMERA_PARAMS = (
 TAG_SIZE = 0.15 #tag size in meters
 TEST_SIZE = 50
 
-POSE_WEIGHT = 1.0
-X_CLASSES = 4
-Y_CLASSES = 4
-ANGLE_CLASSES = 8
+POSE_WEIGHT = 1.5
+X_CLASSES = 8
+Y_CLASSES = 8
+ANGLE_CLASSES = 72
+#TODO: oh shoot i need to retest everything because i havent been regeneratign the data each time oops...
 TOTAL_CLASSES = X_CLASSES*Y_CLASSES*ANGLE_CLASSES

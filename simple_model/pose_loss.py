@@ -20,7 +20,7 @@ class PoseLossFunction(nn.Module):
                 position_cost = abs(xi - xj) + abs(yi - yj)
                 orientation_cost = min(
                     abs(orientation_i - orientation_j),
-                    4 - abs(orientation_i - orientation_j),
+                    ANGLE_CLASSES - abs(orientation_i - orientation_j),
                 )
                 A[i, j] = position_cost + orientation_cost
         self.register_buffer("A", A)

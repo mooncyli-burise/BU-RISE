@@ -1,6 +1,6 @@
 import torch
 import time
-from library_model_functions import utils
+from model.library_model_functions import utils
 from config import TEST_SIZE, HEIGHT, WIDTH
 
 def custom_eval(model, data_loader, device):

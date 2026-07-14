@@ -1,4 +1,4 @@
-from library_model_functions.engine import train_one_epoch
+from model.library_model_functions.engine import train_one_epoch
 from model.get_val_loss import compute_validation_loss
 from model.model import create_model
 import torch
