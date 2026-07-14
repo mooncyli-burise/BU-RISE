@@ -3,11 +3,14 @@ import matplotlib.pyplot as plt
 from simple_testing.simple_model_objects import device, data_loader, data_loader_test
 from simple_model.model import GridNet
 from simple_model.pose_loss import PoseLossFunction
+import torch.nn as nn
+from config import POSE_WEIGHT
 
 def train_simple():
     train_model = GridNet().to(device)
 
     pose_criterion = PoseLossFunction().to(device)
+    class_criterion = nn.CrossEntropyLoss()
 
     #initialize optimizer
     #this is how the model learns by adjusting parameters and weights
@@ -16,20 +19,19 @@ def train_simple():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         train_model.parameters(),
-        lr=1e-3 #4 before
+        lr=1e-4
     )
 
-    #TODO: uncomment when actually training
-    # #adjusts learning rate,
-    # #decays learning rate by gamma every step_size epochs
-    # lr_scheduler = torch.optim.lr_scheduler.StepLR(
-    #     optimizer,
-    #     step_size=10,
-    #     gamma=0.5
-    # )
+    #adjusts learning rate,
+    #decays learning rate by gamma every step_size epochs
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(
+        optimizer,
+        step_size=10,
+        gamma=0.5
+    )
 
     #number of epochs
-    num_epochs = 500 #prev 20
+    num_epochs = 20
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -56,6 +58,9 @@ def train_simple():
         train_model.train()
         total_train_loss = 0.0
 
+        train_correct = 0
+        train_total = 0
+
         for images, targets in data_loader:
             images = images.to(device)
             targets = targets.to(device)
@@ -63,22 +68,28 @@ def train_simple():
             optimizer.zero_grad()
 
             logits = train_model(images)
-            loss = pose_criterion(logits, targets)
+            loss = POSE_WEIGHT * pose_criterion(logits, targets) + class_criterion(logits, targets)
 
             loss.backward()
             optimizer.step()
+
+            preds = logits.argmax(dim=1)
+            train_correct += (preds == targets).sum().item()
+            train_total += targets.size(0)
+
             total_train_loss += loss.item()
 
-        #lr_scheduler.step()
+        lr_scheduler.step()
         train_loss = total_train_loss / len(data_loader)
         train_losses.append(train_loss)
+        train_accuracy = train_correct / train_total
 
         #save checkpoint of model, optimizer, and lr scheduler states
         torch.save({
             "epoch": epoch,
             "model_state_dict": train_model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
-            #"scheduler_state_dict": lr_scheduler.state_dict(),
+            "scheduler_state_dict": lr_scheduler.state_dict(),
             "best_val_loss": best_val_loss,
             "train_losses": train_losses,
             "val_losses": val_losses,
@@ -139,19 +150,18 @@ def train_simple():
         with torch.no_grad():
             for images, targets in data_loader_test:
                 logits = train_model(images.to(device))
-                total_val_loss += pose_criterion(logits, targets.to(device)).item()
+                total_val_loss += POSE_WEIGHT * pose_criterion(logits, targets.to(device)).item() + class_criterion(logits, targets.to(device)).item()
         val_loss = total_val_loss / len(data_loader_test)
         val_losses.append(val_loss)
 
-        variance = torch.var(torch.tensor(val_losses[-10:]))
-
         print(
             f"\nEpoch {epoch + 1}/{num_epochs}: "
-            f"train loss {train_loss:.4f}, val loss {val_loss:.4f}, "
+            f"train loss {train_loss:.4f}, "
+            f"train accuracy {train_accuracy:.3f}, "
+            f"val loss {val_loss:.4f}, "
             f"val accuracy {accuracy:.3f}, "
             f"Pose accuracy: {pose_accuracy:.3f}, "
             f"Orientation accuracy: {orientation_accuracy:.3f}, "
-            f"Validation Volatility: {variance}\n"
         )
 
         #save best weights of model based on validation loss

@@ -11,3 +11,4 @@ CAMERA_PARAMS = (
 )
 TAG_SIZE = 0.15 #tag size in meters
 TEST_SIZE = 50
+POSE_WEIGHT = 1.0
