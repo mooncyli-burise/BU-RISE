@@ -32,7 +32,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 100
+    num_epochs = 20
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -91,17 +91,6 @@ def train_simple():
         train_loss = total_train_loss / len(data_loader)
         train_losses.append(train_loss)
         train_accuracy = train_correct / train_total
-
-        #save checkpoint of model, optimizer, and lr scheduler states
-        torch.save({
-            "epoch": epoch,
-            "model_state_dict": train_model.state_dict(),
-            "optimizer_state_dict": optimizer.state_dict(),
-            "scheduler_state_dict": lr_scheduler.state_dict(),
-            "best_val_loss": best_val_loss,
-            "train_losses": train_losses,
-            "val_losses": val_losses,
-        }, "simple_testing/simple_checkpoint.pth")
 
         # evaluation loop
         train_model.eval()
@@ -185,6 +174,17 @@ def train_simple():
             best_val_loss = val_loss
             torch.save(train_model.state_dict(), "simple_testing/simple_best_robot_detector.pth")
             print(f"Saved best model (val loss = {val_loss:.4f})")
+
+        #save checkpoint of model, optimizer, and lr scheduler states
+        torch.save({
+            "epoch": epoch,
+            "model_state_dict": train_model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "scheduler_state_dict": lr_scheduler.state_dict(),
+            "best_val_loss": best_val_loss,
+            "train_losses": train_losses,
+            "val_losses": val_losses,
+        }, "simple_testing/simple_checkpoint.pth")
 
     epochs = range(1, len(train_losses) + 1)
 
