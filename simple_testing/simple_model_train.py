@@ -32,7 +32,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 100
+    num_epochs = 50
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -42,19 +42,19 @@ def train_simple():
     ce_losses = []
     custom_losses = []
 
-    # #train from checkpoint
-    # checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
+    #train from checkpoint
+    checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
 
-    # train_model.load_state_dict(checkpoint["model_state_dict"])
-    # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    # lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
-    # best_val_loss = checkpoint.get("best_val_loss", float("inf"))
-    # train_losses = checkpoint.get("train_losses", [])
-    # val_losses = checkpoint.get("val_losses", [])
+    train_model.load_state_dict(checkpoint["model_state_dict"])
+    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+    lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+    best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+    train_losses = checkpoint.get("train_losses", [])
+    val_losses = checkpoint.get("val_losses", [])
 
-    # start_epoch = checkpoint["epoch"] + 1
+    start_epoch = checkpoint["epoch"] + 1
 
-    # train_model.to(device)
+    train_model.to(device)
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
