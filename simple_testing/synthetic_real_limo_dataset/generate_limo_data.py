@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import json
+from config import DIMENSIONS
 
 def generate_synthetic_data(x_classes, y_classes, angle_classes):
     ground_truth = []
@@ -61,8 +62,8 @@ def generate_synthetic_data(x_classes, y_classes, angle_classes):
                         })
                         
                         # Save and show result
-                        cv2.imwrite(f'simple_testing/synthetic_real_limo_dataset/images/transformed_limo_{image_id}.jpg', translated_image)
+                        cv2.imwrite(f'simple_testing/synthetic_real_limo_dataset/images_'+DIMENSIONS+f'/transformed_limo_{image_id}.jpg', translated_image)
                         image_id += 1
 
-    with open("simple_testing/synthetic_real_limo_dataset/ground_truth.json", "w") as file:
+    with open('simple_testing/synthetic_real_limo_dataset/ground_truth_'+DIMENSIONS+'.json', "w") as file:
         json.dump(ground_truth, file, indent=4)
