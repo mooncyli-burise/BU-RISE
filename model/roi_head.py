@@ -7,6 +7,7 @@ from torchvision.models.detection.roi_heads import RoIHeads, fastrcnn_loss
 from model.robot_pred import RobotPredictor
 from model.loss_function import CenterLossFunction, OrientationLossFunction
 from config import CENTER_LOSS_WEIGHT, ORIENTATION_LOSS_WEIGHT
+import torch.nn as nn
 
 class RobotRoIHeads(RoIHeads):
     def __init__(self, roi_heads, in_features):
@@ -26,6 +27,7 @@ class RobotRoIHeads(RoIHeads):
         self.robot_head = RobotPredictor(in_features)
         self.center_loss = CenterLossFunction()
         self.orientation_loss = OrientationLossFunction()
+        self.ce_loss = nn.CrossEntropyLoss()
 
     def postprocess_detections(
         self,
@@ -181,6 +183,10 @@ class RobotRoIHeads(RoIHeads):
                 center_targets
             )
             loss_classifier, loss_box_reg = fastrcnn_loss(class_logits, box_regression, labels, regression_targets)
+            loss_ce = self.ce_loss(
+                orientation_preds[pos_inds],
+                orientation_targets
+            )
             #TODO: add cross entropy loss to orientation loss, if i need to also add to center loss just add it to the list
             losses = {"loss_center": loss_center*CENTER_LOSS_WEIGHT, "loss_orientation": loss_orientation*ORIENTATION_LOSS_WEIGHT, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
         else:

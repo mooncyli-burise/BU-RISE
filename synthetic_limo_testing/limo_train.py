@@ -1,12 +1,64 @@
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from model.library_model_functions.engine import train_one_epoch
 from model.get_val_loss import compute_validation_loss
 from model.model import create_model
 import torch
 import matplotlib.pyplot as plt
 from model.custom_eval import custom_eval
-from lineart_limo.limo_objects import device, data_loader, data_loader_test
+from synthetic_limo_testing.limo_objects import device, data_loader, data_loader_test
+from config import HEIGHT, WIDTH
 
-def train_line_limo():
+
+def compute_detection_metrics(model, data_loader, device, pose_threshold=5.0):
+    model.eval()
+    total = 0
+    pose_correct = 0
+    orientation_correct = 0
+    combined_correct = 0
+
+    with torch.no_grad():
+        for images, targets in data_loader:
+            images = list(img.to(device) for img in images)
+            outputs = model(images)
+
+            for output, target in zip(outputs, targets):
+                if len(output.get("scores", [])) == 0:
+                    total += 1
+                    continue
+
+                best = output["scores"].argmax()
+                pred_center = output["centers"][best]
+                pred_orientation = output["orientations"][best].item()
+
+                gt_center = target["centers"].to(pred_center.device)
+                gt_orientation = target["orientations"].item()
+
+                center_error = torch.norm(torch.tensor([
+                    (pred_center[0] - gt_center[0]) * WIDTH,
+                    (pred_center[1] - gt_center[1]) * HEIGHT,
+                ], device=pred_center.device))
+
+                pose_is_correct = center_error <= pose_threshold
+                orientation_is_correct = pred_orientation == gt_orientation
+                combined_is_correct = pose_is_correct and orientation_is_correct
+
+                total += 1
+                pose_correct += int(pose_is_correct)
+                orientation_correct += int(orientation_is_correct)
+                combined_correct += int(combined_is_correct)
+
+    return {
+        "accuracy": combined_correct / total if total else 0.0,
+        "pose_accuracy": pose_correct / total if total else 0.0,
+        "orientation_accuracy": orientation_correct / total if total else 0.0,
+    }
+
+
+def train_limo():
     train_model = create_model()
 
     #move model to right device
@@ -32,9 +84,10 @@ def train_line_limo():
         step_size=3,
         gamma=0.1
     )
+    
 
     #number of epochs
-    num_epochs = 20
+    num_epochs = 2
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -43,7 +96,7 @@ def train_line_limo():
     val_losses = []
 
     # #train from checkpoint
-    # checkpoint = torch.load("limo_checkpoint.pth", map_location=device)
+    # checkpoint = torch.load("synthetic_limo_testing/limo_checkpoint.pth", map_location=device)
 
     # train_model.load_state_dict(checkpoint["model_state_dict"])
     # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -61,6 +114,26 @@ def train_line_limo():
         train_loss = train_one_epoch(train_model, optimizer, data_loader, device, epoch, print_freq=10)
         lr_scheduler.step()
 
+        train_loss_value = float(train_loss.meters["loss"].global_avg)
+        train_losses.append(train_loss_value)
+
+        train_metrics = compute_detection_metrics(train_model, data_loader, device)
+        val_loss = compute_validation_loss(train_model, data_loader_test, device)
+        val_losses.append(val_loss)
+        val_metrics = compute_detection_metrics(train_model, data_loader_test, device)
+
+        custom_eval(train_model, data_loader_test, device=device)
+
+        print(
+            f"\nEpoch {epoch + 1}/{num_epochs}: "
+            f"train loss {train_loss_value:.4f}, "
+            f"train accuracy {train_metrics['accuracy']:.3f} | "
+            f"val loss {val_loss:.4f}, "
+            f"val accuracy {val_metrics['accuracy']:.3f}, "
+            f"pose accuracy {val_metrics['pose_accuracy']:.3f}, "
+            f"orientation accuracy {val_metrics['orientation_accuracy']:.3f}"
+        )
+
         #save checkpoint of model, optimizer, and lr scheduler states
         torch.save({
             "epoch": epoch,
@@ -70,24 +143,18 @@ def train_line_limo():
             "best_val_loss": best_val_loss,
             "train_losses": train_losses,
             "val_losses": val_losses,
-        }, "limo_checkpoint.pth")
-
-        train_losses.append(train_loss.meters["loss"].global_avg)
-
-        val_loss = compute_validation_loss(train_model, data_loader_test, device)
-        val_losses.append(val_loss)
+        }, "synthetic_limo_testing/limo_checkpoint.pth")
 
         #save best weights of model based on validation loss
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(train_model.state_dict(), "limo_best_robot_detector.pth")
+            torch.save(train_model.state_dict(), "synthetic_limo_testing/limo_best_robot_detector.pth")
             print(f"Saved best model (val loss = {val_loss:.4f})")
 
-        custom_eval(train_model, data_loader_test, device=device)
 
     best_model = create_model()
     best_model.load_state_dict(
-        torch.load("limo_best_robot_detector.pth", map_location=device)
+        torch.load("synthetic_limo_testing/limo_best_robot_detector.pth", map_location=device)
     )
     best_model.to(device)
 

@@ -49,6 +49,11 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
             scaler.update()
         else:
             losses.backward()
+            for name, param in model.roi_heads.robot_head.named_parameters():
+                if param.grad is None:
+                    print(name, "NO GRAD")
+                else:
+                    print(name, param.grad.norm().item())
             optimizer.step()
 
         if lr_scheduler is not None:

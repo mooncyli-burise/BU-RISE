@@ -13,19 +13,18 @@ device = torch.accelerator.current_accelerator() if torch.accelerator.is_availab
 
 #set up ground truth data for training and testing
 ground_truth = []
-with open("synthetic_limo_dataset/ground_truth.json", "r") as file:
+with open("synthetic_limo_testing/synthetic_limo_dataset/ground_truth.json", "r") as file:
     ground_truth = json.load(file)
 
 #create instance of dataset class, with transformations for training data
-dataset = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_dataset/images'), ground_truth, get_transform(train=True))
+dataset = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_testing/synthetic_limo_dataset/images'), ground_truth, get_transform(train=True))
 #create instance of dataset class, with transformations for test data
-dataset_test = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_dataset/images'), ground_truth, get_transform(train=False))
+dataset_test = Dataset(os.path.join(DATA_DIR, 'synthetic_limo_testing/synthetic_limo_dataset/images'), ground_truth, get_transform(train=False))
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()
 #assign subset from start of list to 50 indexes from the end for training
-dataset = torch.utils.data.Subset(dataset, range(10))
-#dataset = torch.utils.data.Subset(dataset, indices[:-TEST_SIZE])
+dataset = torch.utils.data.Subset(dataset, indices[:100]) #TODO: change back to -TEST_SIZE
 #assign subset of last 50 of list for test
 dataset_test = torch.utils.data.Subset(dataset_test, indices[-TEST_SIZE:])
 
