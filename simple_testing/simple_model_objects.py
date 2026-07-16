@@ -10,17 +10,17 @@ device = torch.accelerator.current_accelerator() if torch.accelerator.is_availab
 
 #set up ground truth data for training and testing
 ground_truth = []
-with open(os.path.join("simple_testing/synthetic_real_limo_dataset/ground_truth_", DIMENSIONS, ".json"), "r") as file:
+with open("simple_testing/synthetic_real_limo_dataset/ground_truth_"+DIMENSIONS+".json", "r") as file:
     ground_truth = json.load(file)
 
 # GridNet uses fixed-size images and scalar class targets, so the default
 # DataLoader collation produces image batches [B, C, H, W] and targets [B].
-dataset = Dataset(os.path.join(DATA_DIR, 'simple_testing/synthetic_real_limo_dataset/images_', DIMENSIONS), ground_truth, get_transforms())
-dataset_test = Dataset(os.path.join(DATA_DIR, 'simple_testing/synthetic_real_limo_dataset/images_', DIMENSIONS), ground_truth, get_transforms())
+dataset = Dataset(os.path.join(DATA_DIR, 'simple_testing/synthetic_real_limo_dataset/images_'+DIMENSIONS), ground_truth, get_transforms())
+dataset_test = Dataset(os.path.join(DATA_DIR, 'simple_testing/synthetic_real_limo_dataset/images_'+DIMENSIONS), ground_truth, get_transforms())
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()
-dataset = torch.utils.data.Subset(dataset, indices[:-TEST_SIZE])
+dataset = torch.utils.data.Subset(dataset, indices[:1000]) #TODO: change back to -TEST_SIZE
 #assign subset of last 50 of list for test
 dataset_test = torch.utils.data.Subset(dataset_test, indices[-TEST_SIZE:])
 
