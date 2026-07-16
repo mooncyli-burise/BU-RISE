@@ -34,5 +34,5 @@ class PoseLossFunction(nn.Module):
         for i in range(len(targets)):
             #select column of similarity matrix corresponding to target heading
             cost = self.A[:, targets[i]]
-            losses.append(torch.dot(probs[i], cost))
+            losses.append(torch.pow(torch.dot(probs[i], cost),2))
         return torch.stack(losses).mean()

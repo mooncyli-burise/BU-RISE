@@ -8,7 +8,7 @@ def generate_synthetic_dataset():
     transformed_images = []
     ground_truth = []
 
-    file_path = '/home/roboticslab/BU-RISE/lineart_limo/synthetic_limo_dataset/real_limo.png'
+    file_path = '/home/roboticslab/BU-RISE/synthetic_limo_testing/synthetic_limo_dataset/real_limo.png'
 
     image = cv2.imread(file_path)
 
@@ -17,6 +17,17 @@ def generate_synthetic_dataset():
 
     # Get image dimensions
     height, width = image.shape[:2]
+
+    final_width = int(height/3*4)
+
+    pad_hori = (final_width-width) // 2
+
+    width = final_width
+
+    image = cv2.copyMakeBorder(
+        image, 0, 0, pad_hori, pad_hori, 
+        borderType=cv2.BORDER_CONSTANT, value=[0, 0, 0]
+    )
 
     # # set 0 degrees as up
     # center = (width // 2, height // 2)
@@ -47,7 +58,7 @@ def generate_synthetic_dataset():
                 
         # --- Step 2: Translation ---
         # Define translation offsets
-        tx, ty = random.randint(-120,120), random.randint(-65,65)  # Right and down
+        tx, ty = random.randint(-(width//2-100),(width//2-100)), random.randint(-(height//2-150),(height//2-150))  # Right and down
         
         # Create translation matrix
         translation_matrix = np.float32([
@@ -64,7 +75,7 @@ def generate_synthetic_dataset():
         })
         
         # Save and show result
-        cv2.imwrite(f'synthetic_limo_dataset/images/transformed_limo_{i}.jpg', translated_image)
+        cv2.imwrite(f'synthetic_limo_testing/synthetic_limo_dataset/images/transformed_limo_{i}.jpg', translated_image)
 
-    with open("synthetic_limo_dataset/ground_truth.json", "w") as file:
-        json.dump(ground_truth, file)
+    with open("synthetic_limo_testing/synthetic_limo_dataset/ground_truth.json", "w") as file:
+        json.dump(ground_truth, file, indent = 4)
