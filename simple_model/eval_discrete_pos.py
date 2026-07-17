@@ -10,6 +10,9 @@ def eval(model, data_loader_test, device):
     pose_correct = 0
     orientation_correct = 0
 
+    all_center_error = []
+    all_orientation_error = []
+
     with torch.no_grad():
         for images, targets in data_loader_test:
             images = images.to(device)
@@ -39,6 +42,9 @@ def eval(model, data_loader_test, device):
                 actual_pose = target.item() // ANGLE_CLASSES
                 actual_orientation = (target.item() % ANGLE_CLASSES) * (360/ANGLE_CLASSES)
 
+                all_center_error.append(predicted_pose-actual_pose)
+                all_orientation_error.append(predicted_orientation-actual_orientation)
+
                 print(
                     f"predicted pose: {predicted_pose}, "
                     f"predicted orientation: {predicted_orientation}°, "
@@ -53,4 +59,4 @@ def eval(model, data_loader_test, device):
     pose_accuracy = pose_correct / total if total else 0.0
     orientation_accuracy = orientation_correct / total if total else 0.0
 
-    return accuracy, pose_accuracy, orientation_accuracy
+    return accuracy, pose_accuracy, orientation_accuracy, all_center_error, all_orientation_error

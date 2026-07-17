@@ -1,13 +1,13 @@
 import torch
 import matplotlib.pyplot as plt
-from simple_testing.simple_model_objects import device, data_loader, data_loader_test
+from simple_testing.simple_model_objects_modified import device, data_loader, data_loader_test
 from simple_model.model import GridNet
 from simple_model.pose_loss import PoseLossFunction
 import torch.nn as nn
 from config import POSE_WEIGHT, X_CLASSES, Y_CLASSES, ANGLE_CLASSES
 import numpy as np
 from simple_model.training import train_one_epoch
-from simple_model.eval_discrete_pos import eval
+from simple_model.eval import eval
 
 def train_simple():
     model = GridNet().to(device)
@@ -34,7 +34,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 150
+    num_epochs = 2
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -67,6 +67,7 @@ def train_simple():
         train_losses.append(train_loss)
 
         accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
+        print(len(center_error))
         all_center_error += center_error
         all_orientation_error += orientation_error
     
@@ -113,6 +114,7 @@ def train_simple():
             "val_losses": val_losses,
         }, "simple_testing/simple_checkpoint.pth")
 
+    print("all center error:", len(all_center_error))
     epochs = range(1, len(train_losses) + 1)
 
     # Create a 1-row, 3-column grid layout
