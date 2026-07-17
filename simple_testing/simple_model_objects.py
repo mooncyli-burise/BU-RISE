@@ -20,7 +20,7 @@ dataset_test = Dataset(os.path.join(DATA_DIR, 'simple_testing/synthetic_real_lim
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()
-dataset = torch.utils.data.Subset(dataset, indices[:1000]) #TODO: change back to -TEST_SIZE
+dataset = torch.utils.data.Subset(dataset, indices[:-TEST_SIZE]) 
 #assign subset of last 50 of list for test
 dataset_test = torch.utils.data.Subset(dataset_test, indices[-TEST_SIZE:])
 

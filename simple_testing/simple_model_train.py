@@ -20,7 +20,7 @@ def train_simple():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         train_model.parameters(),
-        lr=1e-4
+        lr=1e-3
     )
 
     #adjusts learning rate,
@@ -32,7 +32,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 50
+    num_epochs = 150
     start_epoch = 0
 
     best_val_loss = float("inf")
