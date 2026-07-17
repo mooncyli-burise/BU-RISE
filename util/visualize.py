@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 from model.model import create_model
-from lineart_limo.limo_objects import device, dataset
+from synthetic_limo_testing.limo_objects import device, dataset
 
 def visualize(model_path):
     idx = 0  # choose any sample

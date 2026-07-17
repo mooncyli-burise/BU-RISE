@@ -163,32 +163,38 @@ class RobotRoIHeads(RoIHeads):
             cat_labels = torch.cat(labels, dim=0)
             pos_inds = torch.where(cat_labels > 0)[0]
 
-            # print((cat_labels > 0).sum())
-            # print("Positives:",
-            #     [(l > 0).sum().item() for l in labels])
-
-            # print(pos_inds)
-            # print(orientation_targets)
-            # print(torch.argmax(orientation_preds[pos_inds], dim=1))
-
-            # print(labels.unique(return_counts=True))
-
-            loss_orientation = self.orientation_loss(
-                orientation_preds[pos_inds],
-                orientation_targets
-            )
-
-            loss_center = self.center_loss(
-                center_preds[pos_inds],
-                center_targets
-            )
             loss_classifier, loss_box_reg = fastrcnn_loss(class_logits, box_regression, labels, regression_targets)
-            loss_ce = self.ce_loss(
-                orientation_preds[pos_inds],
-                orientation_targets
-            )
-            #TODO: add cross entropy loss to orientation loss, if i need to also add to center loss just add it to the list
-            losses = {"loss_center": loss_center*CENTER_LOSS_WEIGHT, "loss_orientation": loss_orientation*ORIENTATION_LOSS_WEIGHT, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
+
+            if len(pos_inds) == 0:
+                loss_center = torch.zeros((), device=class_logits.device)
+                loss_orientation = torch.zeros((), device=class_logits.device)
+                loss_ce = torch.zeros((), device=class_logits.device)
+            else:
+                # print((cat_labels > 0).sum())
+                # print("Positives:",
+                #     [(l > 0).sum().item() for l in labels])
+
+                # print(pos_inds)
+                # print(orientation_targets)
+                # print(torch.argmax(orientation_preds[pos_inds], dim=1))
+
+                # print(labels.unique(return_counts=True))
+
+                loss_orientation = self.orientation_loss(
+                    orientation_preds[pos_inds],
+                    orientation_targets
+                )
+
+                loss_center = self.center_loss(
+                    center_preds[pos_inds],
+                    center_targets
+                )
+                loss_ce = self.ce_loss(
+                    orientation_preds[pos_inds],
+                    orientation_targets
+                )
+
+            losses = {"loss_center": loss_center*CENTER_LOSS_WEIGHT, "loss_orientation": loss_orientation*ORIENTATION_LOSS_WEIGHT+loss_ce, "loss_classifier": loss_classifier, "loss_box_reg": loss_box_reg}
         else:
             boxes, scores, labels, centers, orientations = self.postprocess_detections(class_logits, box_regression, center_preds, orientation_preds, proposals, image_shapes)
             num_images = len(boxes)

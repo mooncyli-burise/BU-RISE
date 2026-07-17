@@ -12,7 +12,10 @@ def custom_eval(model, data_loader, device):
     all_center_error = []
     all_orientation_error = []
     correct = 0
-    total = TEST_SIZE
+    total = 0
+    pose_correct = 0
+    orientation_correct = 0
+    combined_correct = 0
 
     with torch.no_grad():
         for images, targets in metric_logger.log_every(data_loader, 10, header):
@@ -42,8 +45,6 @@ def custom_eval(model, data_loader, device):
             gt_center = target["centers"]
             gt_orientation = target["orientations"].item()
 
-            correct += (pred_orientation == gt_orientation).item()
-
             error = torch.tensor([
                 (pred_center[0] - gt_center[0]) * WIDTH,
                 (pred_center[1] - gt_center[1]) * HEIGHT,
@@ -55,17 +56,27 @@ def custom_eval(model, data_loader, device):
             orientation_error = min(orientation_error, 72 - orientation_error)
             all_orientation_error.append(orientation_error.item())
 
+            center_is_correct = center_error <= 10
+            orientation_is_correct = pred_orientation == gt_orientation
+            combined_is_correct = center_is_correct and orientation_is_correct
+
+            total += 1
+            pose_correct += int(center_is_correct)
+            orientation_correct += int(orientation_is_correct)
+            combined_correct += int(combined_is_correct)
+
             evaluator_time = time.time() - evaluator_time
             metric_logger.update(model_time=model_time, evaluator_time=evaluator_time)
 
             metric_logger.synchronize_between_processes()
-            print("Averaged stats:", metric_logger)
+            # print("Averaged stats:", metric_logger)
 
-            print("Pred center:", pred_center)
-            print("GT center:", gt_center)
-
-            print("Pred orientation bin:", pred_orientation.item())
-            print("GT orientation bin:", gt_orientation)
+            print(
+                f"predicted pose: {pred_center}, "
+                f"predicted angle: {pred_orientation.item()*5}°, "
+                f"actual pose: {gt_center}, "
+                f"actual angle: {gt_orientation*5}°"
+            )
 
             # print(prediction["orientation_logits"])
             # print(prediction["orientation_logits"].argmax(dim=1))
@@ -73,19 +84,29 @@ def custom_eval(model, data_loader, device):
             print("Center error:", center_error.item())
             print("Orientation bin error:", orientation_error.item())
 
-        if(len(all_center_error) != 0 and len(all_orientation_error) != 0):
-            accuracy = correct / total
+        if len(all_center_error) != 0 and len(all_orientation_error) != 0:
             mean_center_error = sum(all_center_error) / len(all_center_error)
             mean_orientation_error = sum(all_orientation_error) / len(all_orientation_error)
         else:
-            accuracy = "N/A"
-            mean_center_error = "N/A"
-            mean_orientation_error = "N/A"
+            mean_center_error = None
+            mean_orientation_error = None
 
-        print("Validation Results\n")
-        print("------------------")
-        print("Orientation accuracy:", accuracy, "%")
-        print("Mean center error: ", mean_center_error, "px")
-        print("Mean orientation error: ", mean_orientation_error * 5, "degrees")
+        # print("Validation Results\n")
+        # print("------------------")
+        # print("Orientation accuracy:", accuracy, "%")
+        if mean_center_error is None:
+            print("\nMean center error: N/A px")
+        else:
+            print(f"\nMean center error: {mean_center_error:.3f} px")
 
-    return 
+        if mean_orientation_error is None:
+            print("Mean orientation error: N/A degrees")
+        else:
+            print(f"Mean orientation error: {mean_orientation_error * 5:.3f} degrees")
+
+
+    return all_center_error, all_orientation_error, {
+        "accuracy": combined_correct / total if total else 0.0,
+        "pose_accuracy": pose_correct / total if total else 0.0,
+        "orientation_accuracy": orientation_correct / total if total else 0.0,
+    }

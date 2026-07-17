@@ -8,12 +8,18 @@ from model.library_model_functions import utils
 from model.library_model_functions.coco_eval import CocoEvaluator
 from model.library_model_functions.coco_utils import get_coco_api_from_dataset
 
+from config import HEIGHT, WIDTH
 
 def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, scaler=None):
     model.train()
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter("lr", utils.SmoothedValue(window_size=1, fmt="{value:.6f}"))
     header = f"Epoch: [{epoch}]"
+
+    total = 0
+    pose_correct = 0
+    orientation_correct = 0
+    combined_correct = 0
 
     lr_scheduler = None
     if epoch == 0:
@@ -27,7 +33,8 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
     for images, targets in metric_logger.log_every(data_loader, print_freq, header):
         images = list(image.to(device) for image in images)
         targets = [{k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in t.items()} for t in targets]
-        with torch.cuda.amp.autocast(enabled=scaler is not None):
+        autocast_device = "cuda" if device.type == "cuda" else "cpu"
+        with torch.amp.autocast(autocast_device, enabled=scaler is not None):
             loss_dict = model(images, targets)
             losses = sum(loss for loss in loss_dict.values())
 
@@ -37,6 +44,40 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
 
         loss_value = losses_reduced.item()
 
+        with torch.no_grad():
+            was_training = model.training
+            if was_training:
+                model.eval()
+            outputs = model(images)
+            if was_training:
+                model.train()
+
+        for output, target in zip(outputs, targets):
+            if len(output.get("scores", [])) == 0:
+                total += 1
+                continue
+
+            best = output["scores"].argmax()
+            pred_center = output["centers"][best]
+            pred_orientation = output["orientations"][best].item()
+
+            gt_center = target["centers"].to(pred_center.device)
+            gt_orientation = target["orientations"].item()
+
+            center_error = torch.norm(torch.tensor([
+                (pred_center[0] - gt_center[0]) * WIDTH,
+                (pred_center[1] - gt_center[1]) * HEIGHT,
+            ], device=pred_center.device))
+
+            pose_is_correct = center_error <= 10
+            orientation_is_correct = pred_orientation == gt_orientation
+            combined_is_correct = pose_is_correct and orientation_is_correct
+
+            total += 1
+            pose_correct += int(pose_is_correct)
+            orientation_correct += int(orientation_is_correct)
+            combined_correct += int(combined_is_correct)
+
         if not math.isfinite(loss_value):
             print(f"Loss is {loss_value}, stopping training")
             print(loss_dict_reduced)
@@ -45,24 +86,26 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
         optimizer.zero_grad()
         if scaler is not None:
             scaler.scale(losses).backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
             scaler.step(optimizer)
             scaler.update()
         else:
             losses.backward()
-            for name, param in model.roi_heads.robot_head.named_parameters():
-                if param.grad is None:
-                    print(name, "NO GRAD")
-                else:
-                    print(name, param.grad.norm().item())
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
             optimizer.step()
 
         if lr_scheduler is not None:
             lr_scheduler.step()
 
+
         metric_logger.update(loss=losses_reduced, **loss_dict_reduced)
         metric_logger.update(lr=optimizer.param_groups[0]["lr"])
 
-    return metric_logger
+    return metric_logger, {
+        "accuracy": combined_correct / total if total else 0.0,
+        "pose_accuracy": pose_correct / total if total else 0.0,
+        "orientation_accuracy": orientation_correct / total if total else 0.0,
+    }
 
 
 def _get_iou_types(model):

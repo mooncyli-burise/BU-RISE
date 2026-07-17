@@ -64,6 +64,22 @@ def train_limo():
     #move model to right device
     train_model.to(device)
 
+    # for p in train_model.backbone.parameters():
+    #     p.requires_grad = False
+
+    # for p in train_model.rpn.parameters():
+    #     p.requires_grad = False
+
+    # for p in train_model.roi_heads.box_head.parameters():
+    #     p.requires_grad = False
+
+    # for p in train_model.roi_heads.box_predictor.parameters():
+    #     p.requires_grad = False
+
+    # # Only train the orientation head
+    # for p in train_model.roi_heads.robot_head.orientation.parameters():
+    #     p.requires_grad = True
+
     #initialize optimizer
     #this is how the model learns by adjusting parameters and weights
     #learning rate is step size for learning,
@@ -95,6 +111,9 @@ def train_limo():
     train_losses = []
     val_losses = []
 
+    all_center_error = []
+    all_orientation_error = []
+
     # #train from checkpoint
     # checkpoint = torch.load("synthetic_limo_testing/limo_checkpoint.pth", map_location=device)
 
@@ -111,27 +130,27 @@ def train_limo():
 
     #for each epoch train with training data, adjust lr, evaluate losses
     for epoch in range(start_epoch, num_epochs):
-        train_loss = train_one_epoch(train_model, optimizer, data_loader, device, epoch, print_freq=10)
+        train_loss, train_accuracy = train_one_epoch(train_model, optimizer, data_loader, device, epoch, print_freq=10)
         lr_scheduler.step()
+
+        center_error, orientation_error, val_accuracy = custom_eval(train_model, data_loader_test, device=device)
+        all_center_error += center_error
+        all_orientation_error += orientation_error
 
         train_loss_value = float(train_loss.meters["loss"].global_avg)
         train_losses.append(train_loss_value)
 
-        train_metrics = compute_detection_metrics(train_model, data_loader, device)
         val_loss = compute_validation_loss(train_model, data_loader_test, device)
         val_losses.append(val_loss)
-        val_metrics = compute_detection_metrics(train_model, data_loader_test, device)
-
-        custom_eval(train_model, data_loader_test, device=device)
 
         print(
-            f"\nEpoch {epoch + 1}/{num_epochs}: "
+            f"\nEpoch {epoch+1}/{num_epochs}: "
             f"train loss {train_loss_value:.4f}, "
-            f"train accuracy {train_metrics['accuracy']:.3f} | "
-            f"val loss {val_loss:.4f}, "
-            f"val accuracy {val_metrics['accuracy']:.3f}, "
-            f"pose accuracy {val_metrics['pose_accuracy']:.3f}, "
-            f"orientation accuracy {val_metrics['orientation_accuracy']:.3f}"
+            f"train accuracy {train_accuracy['accuracy']:.3f} | "
+            f"\nval loss {val_loss:.4f}, "
+            f"val accuracy {val_accuracy['accuracy']:.3f}, "
+            f"\npose accuracy {val_accuracy['pose_accuracy']:.3f}, "
+            f"orientation accuracy {val_accuracy['orientation_accuracy']:.3f}\n"
         )
 
         #save checkpoint of model, optimizer, and lr scheduler states
@@ -162,11 +181,36 @@ def train_limo():
 
     epochs = range(1, len(train_losses) + 1)
 
-    plt.figure(figsize=(6,4))
-    plt.plot(epochs, train_losses, label="Training Loss")
-    plt.plot(epochs, val_losses, label="Validation Loss")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.legend()
-    plt.grid(True)
+    # Create a 1-row, 3-column grid layout
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+
+    # 1. Training vs Validation Losses (First Subplot)
+    axes[0].plot(epochs, train_losses, label="Training Loss")
+    axes[0].plot(epochs, val_losses, label="Validation Loss")
+    axes[0].set_xlabel("Epoch")
+    axes[0].set_ylabel("Loss")
+    axes[0].set_title("Training vs Val Losses")
+    axes[0].legend()
+    axes[0].grid(True)
+
+    # 2. Center Error Histogram (Second Subplot)
+    if all_center_error:
+        axes[1].hist(all_center_error, bins=20, edgecolor='black', color='skyblue')
+    else:
+        axes[1].text(0.5, 0.5, "No center errors collected", ha="center", va="center")
+    axes[1].set_xlabel("Center Error")
+    axes[1].set_ylabel("Frequency Count")
+    axes[1].set_title("Center Error Distribution")
+
+    # 3. Orientation Error Histogram (Third Subplot)
+    if all_orientation_error:
+        axes[2].hist(all_orientation_error, bins=72, edgecolor='black', color='lightcoral')
+    else:
+        axes[2].text(0.5, 0.5, "No orientation errors collected", ha="center", va="center")
+    axes[2].set_xlabel("Orientation Error")
+    axes[2].set_ylabel("Frequency Count")
+    axes[2].set_title("Orientation Error Distribution")
+
+    # Clean up spacing and display the single window
+    plt.tight_layout()
     plt.show()
