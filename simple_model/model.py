@@ -8,7 +8,7 @@ class GridNet(nn.Module):
         super().__init__()
 
         self.backbone = torchvision.models.mobilenet_v2(
-            weights=None #TODO: change back to "DEFAULT" if it makes it worse
+            weights="DEFAULT" #do more testing 
         ).features
 
         self.pool = nn.AdaptiveAvgPool2d((4, 4))

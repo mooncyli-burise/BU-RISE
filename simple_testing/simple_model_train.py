@@ -21,6 +21,8 @@ def train_simple():
     #momentum determines magnitude and direction of weight updates
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
+        train_model.parameters(),
+        lr=1e-3
         model.parameters(),
         lr=1e-4
     )
