@@ -1,6 +1,6 @@
-DATA_DIR = "/home/roboticslab/BU-RISE/"
+DATA_DIR = "/home/mooncyli/BU-RISE/"
 
-CENTER_LOSS_WEIGHT = 1.0
+CENTER_LOSS_WEIGHT = 1.5
 ORIENTATION_LOSS_WEIGHT = 2.0
 
 HEIGHT = 120 #px

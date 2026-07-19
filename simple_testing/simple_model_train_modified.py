@@ -1,18 +1,19 @@
 import torch
 import matplotlib.pyplot as plt
 from simple_testing.simple_model_objects_modified import device, data_loader, data_loader_test
-from simple_model.model import GridNet
-from simple_model.pose_loss import PoseLossFunction
+from simple_model_modified.model import GridNet
+from model.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
-from config import POSE_WEIGHT, X_CLASSES, Y_CLASSES, ANGLE_CLASSES
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT
 import numpy as np
-from simple_model.training import train_one_epoch
-from simple_model.eval import eval
+from simple_model_modified.training import train_one_epoch
+from simple_model_modified.eval import eval
 
 def train_simple():
     model = GridNet().to(device)
 
-    pose_criterion = PoseLossFunction().to(device)
+    center_criterion = CenterLossFunction().to(device)
+    orientation_criterion = OrientationLossFunction().to(device)
     class_criterion = nn.CrossEntropyLoss()
 
     #initialize optimizer
@@ -34,7 +35,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 2
+    num_epochs = 100
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -42,7 +43,8 @@ def train_simple():
     train_losses = []
     val_losses = []
     ce_losses = []
-    custom_losses = []
+    center_losses = []
+    orientation_losses = []
     all_center_error = []
     all_orientation_error = []
 
@@ -62,24 +64,34 @@ def train_simple():
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
-        train_loss, train_accuracy = train_one_epoch(model, optimizer, data_loader, device, class_criterion, pose_criterion)
+        train_loss, train_accuracy = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
         lr_scheduler.step()
         train_losses.append(train_loss)
 
         accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
-        print(len(center_error))
         all_center_error += center_error
         all_orientation_error += orientation_error
     
-        # Validation uses the same loss as training; GridNet is not a Faster R-CNN
-        # model, so the Faster R-CNN validation helper cannot be used here.
+        # calculate avg validation loss and avg loss for each detection head (class, center, orientation)
         total_val_loss = 0.0
+        total_ce_loss = 0.0
+        total_center_loss = 0.0
+        total_orientation_loss = 0.0
         with torch.no_grad():
             for images, targets in data_loader_test:
                 logits = model(images.to(device))
-                total_val_loss += POSE_WEIGHT * pose_criterion(logits, targets.to(device)).item() + class_criterion(logits, targets.to(device)).item()
+                total_ce_loss += class_criterion(logits["class"], targets["class"])
+                total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
+                total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
+                total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss
         val_loss = total_val_loss / len(data_loader_test)
         val_losses.append(val_loss)
+        ce_loss = total_ce_loss / len(data_loader_test)
+        ce_losses.append(ce_loss)
+        center_loss = total_center_loss / len(data_loader_test)
+        center_losses.append(center_loss)
+        orientation_loss = total_orientation_loss / len(data_loader_test)
+        orientation_losses.append(orientation_loss)
 
         # print all the data
         print(
@@ -94,7 +106,8 @@ def train_simple():
 
         print(
             f"CE Loss = {np.mean(ce_losses[-len(data_loader):]):.4f}, "
-            f"Custom Loss = {np.mean(custom_losses[-len(data_loader):]):.4f}\n"
+            f"Center Loss = {np.mean(center_losses[-len(data_loader):]):.4f}, "
+            f"Orientation Loss = {np.mean(orientation_losses[-len(data_loader):]):.4f}\n"
         )
 
         #save best weights of model based on validation loss
@@ -114,7 +127,6 @@ def train_simple():
             "val_losses": val_losses,
         }, "simple_testing/simple_checkpoint.pth")
 
-    print("all center error:", len(all_center_error))
     epochs = range(1, len(train_losses) + 1)
 
     # Create a 1-row, 3-column grid layout

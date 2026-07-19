@@ -103,7 +103,7 @@ def train_limo():
     
 
     #number of epochs
-    num_epochs = 2
+    num_epochs = 100
     start_epoch = 0
 
     best_val_loss = float("inf")

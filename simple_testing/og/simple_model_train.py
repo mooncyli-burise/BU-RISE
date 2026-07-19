@@ -1,6 +1,6 @@
 import torch
 import matplotlib.pyplot as plt
-from simple_testing.simple_model_objects import device, data_loader, data_loader_test
+from simple_testing.og.simple_model_objects import device, data_loader, data_loader_test
 from simple_model.model import GridNet
 from simple_model.pose_loss import PoseLossFunction
 import torch.nn as nn

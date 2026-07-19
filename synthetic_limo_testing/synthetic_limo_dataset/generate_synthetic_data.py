@@ -3,12 +3,13 @@ import numpy as np
 import random
 import json
 from util.normalize_pixel_coords import normalize_coords
+from config import WIDTH, HEIGHT
 
 def generate_synthetic_dataset():
     transformed_images = []
     ground_truth = []
 
-    file_path = '/home/roboticslab/BU-RISE/synthetic_limo_testing/synthetic_limo_dataset/real_limo.png'
+    file_path = '/home/mooncyli/BU-RISE/synthetic_limo_testing/synthetic_limo_dataset/real_limo.png'
 
     image = cv2.imread(file_path)
 
@@ -55,10 +56,14 @@ def generate_synthetic_dataset():
         
         # Apply rotation
         rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+
+        # resize to 160x120
+        downscaled = cv2.resize(rotated_image, (WIDTH, HEIGHT), interpolation=cv2.INTER_AREA)
+
                 
         # --- Step 2: Translation ---
         # Define translation offsets
-        tx, ty = random.randint(-(width//2-100),(width//2-100)), random.randint(-(height//2-150),(height//2-150))  # Right and down
+        tx, ty = random.randint(-(WIDTH//2-WIDTH*0.25/2),(WIDTH//2-WIDTH*0.25/2)), random.randint(-(HEIGHT//2-HEIGHT*0.25/2),(HEIGHT//2-HEIGHT*0.25/2))  # Right and down
         
         # Create translation matrix
         translation_matrix = np.float32([
@@ -67,7 +72,7 @@ def generate_synthetic_dataset():
         ])
                 
         # Apply translation on rotated image
-        translated_image = cv2.warpAffine(rotated_image, translation_matrix, (width, height))
+        translated_image = cv2.warpAffine(downscaled, translation_matrix, (WIDTH, HEIGHT))
         
         ground_truth.append({
             "center": normalize_coords(tx, ty),

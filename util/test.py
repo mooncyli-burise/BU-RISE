@@ -1,6 +1,6 @@
 import torch
 
-from simple_testing.simple_model_objects import data_loader, device
+from simple_testing.og.simple_model_objects import data_loader, device
 from simple_model.model import GridNet
 from simple_model.pose_loss import PoseLossFunction
 

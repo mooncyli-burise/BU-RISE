@@ -1,5 +1,5 @@
 import torch
-from simple_model.dataset import Dataset
+from simple_model_modified.dataset import Dataset
 import os
 from config import DATA_DIR, TEST_SIZE, DIMENSIONS
 import json
