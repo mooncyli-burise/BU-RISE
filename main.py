@@ -1,4 +1,4 @@
-# from simple_testing.simple_model_train_modified import train_simple
+from simple_testing.simple_model_train_modified import train_simple
 # from simple_testing.synthetic_real_limo_dataset.generate_limo_data import generate_synthetic_data
 # from config import X_CLASSES, Y_CLASSES, ANGLE_CLASSES
 # from synthetic_limo_testing.synthetic_limo_dataset.generate_synthetic_data import generate_synthetic_dataset

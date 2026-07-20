@@ -1,10 +1,12 @@
+import numpy as np
 DATA_DIR = "/home/mooncyli/BU-RISE/"
 
 CENTER_LOSS_WEIGHT = 10
 ORIENTATION_LOSS_WEIGHT = 2.0
 CE_LOSS_WEIGHT = 1.0
 
-CENTER_CORRECT_RANGE = 10 #in px
+CENTER_CORRECT_RANGE = 5 #in px
+TEST_SIZE = 50
 
 HEIGHT = 120 #px
 WIDTH = 160 #px
@@ -14,8 +16,11 @@ CAMERA_PARAMS = (
     WIDTH/2, # cx
     HEIGHT/2 # cy
 )
+K = [[CAMERA_PARAMS[0], 0, CAMERA_PARAMS[2]],
+     [0, CAMERA_PARAMS[1], CAMERA_PARAMS[3]], 
+     [0, 0, 1]]
+K_inverse = np.linalg.inv(K)
 TAG_SIZE = 0.15 #tag size in meters
-TEST_SIZE = 50
 
 POSE_WEIGHT = 2.0
 X_CLASSES = 8
