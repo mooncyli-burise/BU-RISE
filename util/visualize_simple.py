@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import torch
 import cv2
-#TODO: imports not updated
+import numpy as np
 from simple_model_modified.model import GridNet
 from simple_testing.simple_model_objects_modified import device, dataset
+from config import WIDTH, HEIGHT
 
 def visualize(model_path):
     idx = 0  # choose any sample
@@ -18,18 +19,28 @@ def visualize(model_path):
     image, target = dataset[idx]
 
     with torch.no_grad():
-        logits = model([image.to(device)])[0]
+        images = image.unsqueeze(0).to(device)  # (1, 3, H, W)
+        logits = model(images)
 
-        pred_center = logits["center"]
+        scale = torch.tensor([WIDTH, HEIGHT], device=device)
+
+        pred_center = logits["center"][0]
+        pred_center *= scale
+        pred_orientation = logits["orientation"][0].argmax()
+
         gt_center = target["center"]
-
-        pred_orientation = logits["orientation"].argmax(dim=1)
+        gt_center *= scale
         gt_orientation = target["orientation"]
 
 
     # Convert image for plotting
-    img = image.permute(1, 2, 0).cpu().numpy()
-    #img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    mean = torch.tensor([0.485, 0.456, 0.406]).view(1, 1, 3)
+    std = torch.tensor([0.229, 0.224, 0.225]).view(1, 1, 3)
+
+    img = image.permute(1, 2, 0).cpu()
+    img = img * std + mean          # undo normalization
+    img = img.clamp(0, 1)
+    img = (img.numpy() * 255).astype(np.uint8)
 
     # Print ground truth
     print("Ground Truth")
@@ -51,24 +62,37 @@ def visualize(model_path):
     if "center" in logits:
         print("Centers:", pred_center)
 
-    if "orientations" in logits:
+    if "orientation" in logits:
         print("Orientations (bins):", pred_orientation)
         print("Orientations (angle):", pred_orientation*5)
 
-    cx, cy = pred_center.to_listt()
+    cx, cy = pred_center.cpu().tolist()
 
-    cv2.putText(img,
-                f"{pred_orientation*5} deg",
-                (cx, cy-10),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.6,
-                (0,255,0),
-                2)
+    # cv2.putText(img,
+    #             f"{pred_orientation*5} deg",
+    #             (int(cx), int(cy-10)),
+    #             cv2.FONT_HERSHEY_SIMPLEX,
+    #             0.6,
+    #             (0,255,0),
+    #             2)
 
-    cv2.circle(img, (cx, cy), radius=2, color=(0, 0, 255), thickness=-1)
+    # show predicted center point (red)
+    cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 0, 255), thickness=-1)
     cv2.putText(img,
                 f"({cx}, {cy}",
-                (cx, cy-10),
+                (int(cx), int(cy-10)),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (0,0,255),
+                2)
+
+    # show actual center point (green)
+    cx, cy = gt_center.cpu().tolist()
+
+    cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 255, 0), thickness=-1)
+    cv2.putText(img,
+                f"({cx}, {cy}",
+                (int(cx), int(cy-10)),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.6,
                 (0,255,0),
@@ -78,16 +102,7 @@ def visualize(model_path):
     # Display image
     #cv2.imshow("Robot Detection", img_bgr)
 
-    plt.figure(figsize=(8, 8))
-    plt.imshow(img)
+    plt.figure()
+    plt.imshow(img, aspect="equal")
     plt.axis("off")
     plt.show()
-
-        # key = input("c = next image, q = quit: ")
-
-        # if key == "c":
-        #     idx += 1
-        #     if idx >= len(dataset):
-        #         idx = 0
-        # elif key == "q":
-        #     break
