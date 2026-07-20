@@ -4,7 +4,7 @@ from simple_testing.simple_model_objects_modified import device, data_loader, da
 from simple_model_modified.model import GridNet
 from model.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
-from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT
 import numpy as np
 from simple_model_modified.training import train_one_epoch
 from simple_model_modified.eval import eval
@@ -80,7 +80,8 @@ def train_simple():
         with torch.no_grad():
             for images, targets in data_loader_test:
                 logits = model(images.to(device))
-                total_ce_loss += class_criterion(logits["class"], targets["class"])
+                # TODO: testing putting orientation stuff through ce loss instead of class
+                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
                 total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
                 total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
                 total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss

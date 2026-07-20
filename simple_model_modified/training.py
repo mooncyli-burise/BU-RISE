@@ -1,5 +1,5 @@
 import torch
-from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, WIDTH, HEIGHT
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, WIDTH, HEIGHT, CENTER_CORRECT_RANGE, CE_LOSS_WEIGHT
 
 def train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion):
     # training loop
@@ -22,7 +22,8 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
 
         logits = model(images)
 
-        loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"]) + ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"]) + class_criterion(logits["class"], targets["class"])
+        # TODO: testing putting orientation stuff through ce loss instead of class
+        loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"]) + ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"]) + CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
 
         loss.backward()
         optimizer.step()
@@ -40,7 +41,8 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
             dim=1
         )
 
-        center_is_correct = center_error <= 10
+        # change range for center correct here
+        center_is_correct = center_error <= CENTER_CORRECT_RANGE
         orientation_is_correct = pred_orientation == gt_orientation
         combined_is_correct = center_is_correct & orientation_is_correct
 

@@ -17,6 +17,7 @@ class OrientationLossFunction(nn.Module):
         for i in range(72):
             for j in range(72):
                 A[i, j] = min(abs(i - j), 72 - abs(i - j))
+        A = A / torch.max(A)
         self.register_buffer("A", A)
 
     def forward(self, predictions, targets):

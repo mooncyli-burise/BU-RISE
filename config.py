@@ -1,7 +1,10 @@
 DATA_DIR = "/home/mooncyli/BU-RISE/"
 
-CENTER_LOSS_WEIGHT = 1.5
+CENTER_LOSS_WEIGHT = 10
 ORIENTATION_LOSS_WEIGHT = 2.0
+CE_LOSS_WEIGHT = 1.0
+
+CENTER_CORRECT_RANGE = 10 #in px
 
 HEIGHT = 120 #px
 WIDTH = 160 #px
@@ -18,6 +21,5 @@ POSE_WEIGHT = 2.0
 X_CLASSES = 8
 Y_CLASSES = 8
 ANGLE_CLASSES = 72
-#TODO: oh shoot i need to retest everything because i havent been regeneratign the data each time oops...
 TOTAL_CLASSES = X_CLASSES*Y_CLASSES*ANGLE_CLASSES
 DIMENSIONS = '8x8x72'

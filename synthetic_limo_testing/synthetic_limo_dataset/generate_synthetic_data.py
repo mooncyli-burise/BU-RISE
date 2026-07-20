@@ -75,7 +75,7 @@ def generate_synthetic_dataset():
         translated_image = cv2.warpAffine(downscaled, translation_matrix, (WIDTH, HEIGHT))
         
         ground_truth.append({
-            "center": normalize_coords(tx, ty),
+            "center": normalize_coords(tx, ty, True),
             "orientation": angle
         })
         

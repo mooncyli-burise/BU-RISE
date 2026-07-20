@@ -1,5 +1,5 @@
 import torch
-from config import WIDTH, HEIGHT
+from config import WIDTH, HEIGHT, CENTER_CORRECT_RANGE
 
 def eval(model, data_loader_test, device):
     # evaluation loop
@@ -45,7 +45,8 @@ def eval(model, data_loader_test, device):
                 orientation_error.cpu().tolist()
             )
 
-            center_is_correct = center_error <= 10
+            # change range for center correct here
+            center_is_correct = center_error <= CENTER_CORRECT_RANGE
             orientation_is_correct = pred_orientation == gt_orientation
             combined_is_correct = center_is_correct & orientation_is_correct
 
