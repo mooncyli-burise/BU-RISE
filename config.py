@@ -1,5 +1,5 @@
 import numpy as np
-DATA_DIR = "/home/mooncyli/BU-RISE/"
+DATA_DIR = "/home/roboticslab/BU-RISE/"
 
 CENTER_LOSS_WEIGHT = 10
 ORIENTATION_LOSS_WEIGHT = 2.0
