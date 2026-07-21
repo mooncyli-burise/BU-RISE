@@ -1,13 +1,13 @@
 import torch
 import matplotlib.pyplot as plt
-from simple_testing.simple_model_objects_modified import device, data_loader, data_loader_test
-from simple_model_modified.model import GridNet
-from model.loss_function import CenterLossFunction, OrientationLossFunction
+from backbone_model.simple_model_objects_modified import device, data_loader, data_loader_test
+from backbone_model.simple_model_modified.model import GridNet
+from simple_model_modified.loss_function.py import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
 from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT
 import numpy as np
-from simple_model_modified.training import train_one_epoch
-from simple_model_modified.eval import eval
+from backbone_model.simple_model_modified.training import train_one_epoch
+from backbone_model.simple_model_modified.eval import eval
 
 def train_simple():
     model = GridNet().to(device)

@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 import numpy as np
-from simple_model_modified.model import GridNet
-from simple_testing.simple_model_objects_modified import device, dataset
+from backbone_model.simple_model_modified.model import GridNet
+from backbone_model.simple_model_objects_modified import device, dataset
 from config import WIDTH, HEIGHT
 
 def visualize(model_path):

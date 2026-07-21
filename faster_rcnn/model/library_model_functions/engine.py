@@ -4,9 +4,9 @@ import time
 
 import torch
 import torchvision.models.detection.mask_rcnn
-from model.library_model_functions import utils
-from model.library_model_functions.coco_eval import CocoEvaluator
-from model.library_model_functions.coco_utils import get_coco_api_from_dataset
+from faster_rcnn.model.library_model_functions import utils
+from faster_rcnn.model.library_model_functions.coco_eval import CocoEvaluator
+from faster_rcnn.model.library_model_functions.coco_utils import get_coco_api_from_dataset
 
 from config import HEIGHT, WIDTH
 

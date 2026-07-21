@@ -1,9 +1,9 @@
 import torch
-from simple_model.dataset import Dataset
+from simplified_dataset.simple_model.dataset import Dataset
 import os
 from config import DATA_DIR, TEST_SIZE, DIMENSIONS
 import json
-from simple_model.transforms import get_transforms
+from simplified_dataset.simple_model.transforms import get_transforms
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')

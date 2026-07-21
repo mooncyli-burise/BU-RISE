@@ -1,6 +1,6 @@
 import torch
-from model.loss_function import OrientationLossFunction
-from model.robot_pred import RobotPredictor
+from simple_model_modified.loss_function.py import OrientationLossFunction
+from faster_rcnn.model.robot_pred import RobotPredictor
 
 def test_orientation_loss():
     orientation_loss = OrientationLossFunction()

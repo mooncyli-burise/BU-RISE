@@ -1,9 +1,9 @@
-from model.library_model_functions.engine import train_one_epoch
-from model.get_val_loss import compute_validation_loss
-from model.model import create_model
+from faster_rcnn.model.library_model_functions.engine import train_one_epoch
+from faster_rcnn.model.get_val_loss import compute_validation_loss
+from faster_rcnn.model.model import create_model
 import torch
 import matplotlib.pyplot as plt
-from model.custom_eval import custom_eval
+from faster_rcnn.model.custom_eval import custom_eval
 from april_tags.april_tag_objects import device, data_loader, data_loader_test
 
 def train_april_tag():

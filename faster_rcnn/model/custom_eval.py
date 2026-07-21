@@ -1,6 +1,6 @@
 import torch
 import time
-from model.library_model_functions import utils
+from faster_rcnn.model.library_model_functions import utils
 from config import TEST_SIZE, HEIGHT, WIDTH
 
 def custom_eval(model, data_loader, device):

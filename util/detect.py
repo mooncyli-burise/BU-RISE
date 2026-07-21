@@ -1,6 +1,6 @@
 import torch
 import cv2
-from model.model import create_model
+from faster_rcnn.model.model import create_model
 from epfl.objects import device, cap
 
 def detect_predict():

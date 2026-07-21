@@ -3,7 +3,7 @@ import os
 import torch
 import torch.utils.data
 import torchvision
-from model.library_model_functions import transforms as T
+from faster_rcnn.model.library_model_functions import transforms as T
 from pycocotools import mask as coco_mask
 from pycocotools.coco import COCO
 

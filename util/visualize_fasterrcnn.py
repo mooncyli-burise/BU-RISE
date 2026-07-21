@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 #TODO: imports not updated
-from simple_model_modified.model import create_model
-from synthetic_limo_testing.limo_objects import device, dataset
+from backbone_model.simple_model_modified.model import create_model
+from faster_rcnn.synthetic_limo_testing.limo_objects import device, dataset
 
 def visualize(model_path):
     idx = 0  # choose any sample

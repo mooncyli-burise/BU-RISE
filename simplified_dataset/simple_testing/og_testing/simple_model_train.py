@@ -1,13 +1,13 @@
 import torch
 import matplotlib.pyplot as plt
 from simple_testing.og.simple_model_objects import device, data_loader, data_loader_test
-from simple_model.model import GridNet
-from simple_model.pose_loss import PoseLossFunction
+from simplified_dataset.simple_model.model import GridNet
+from simplified_dataset.simple_model.pose_loss import PoseLossFunction
 import torch.nn as nn
 from config import POSE_WEIGHT, X_CLASSES, Y_CLASSES, ANGLE_CLASSES
 import numpy as np
-from simple_model.training import train_one_epoch
-from simple_model.eval_discrete_pos import eval
+from simplified_dataset.simple_model.training import train_one_epoch
+from simplified_dataset.simple_model.eval_discrete_pos import eval
 
 def train_simple():
     model = GridNet().to(device)

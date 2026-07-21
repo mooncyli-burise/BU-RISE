@@ -3,13 +3,13 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.library_model_functions.engine import train_one_epoch
-from model.get_val_loss import compute_validation_loss
-from model.model import create_model
+from faster_rcnn.model.library_model_functions.engine import train_one_epoch
+from faster_rcnn.model.get_val_loss import compute_validation_loss
+from faster_rcnn.model.model import create_model
 import torch
 import matplotlib.pyplot as plt
-from model.custom_eval import custom_eval
-from synthetic_limo_testing.limo_objects import device, data_loader, data_loader_test
+from faster_rcnn.model.custom_eval import custom_eval
+from faster_rcnn.synthetic_limo_testing.limo_objects import device, data_loader, data_loader_test
 from config import HEIGHT, WIDTH
 
 
