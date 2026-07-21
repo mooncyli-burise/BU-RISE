@@ -52,7 +52,7 @@ def generate_synthetic_dataset():
         scale = 0.25
         
         # Create rotation matrix
-        rotation_matrix = cv2.getRotationMatrix2D(center, angle, scale)
+        rotation_matrix = cv2.getRotationMatrix2D(center, -angle, scale)
         
         # Apply rotation
         rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))

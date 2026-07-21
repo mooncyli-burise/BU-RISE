@@ -35,7 +35,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 100
+    num_epochs = 200
     start_epoch = 0
 
     best_val_loss = float("inf")
