@@ -35,7 +35,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 75 # try 45
+    num_epochs = 51 # try 45
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -45,34 +45,37 @@ def train_simple():
     ce_losses = []
     center_losses = []
     orientation_losses = []
+    class_losses = []
     all_center_error = []
     all_orientation_error = []
     ce_train_losses = []
     center_train_losses = []
     orientation_train_losses = []
+    class_train_losses = []
 
-    # #train from checkpoint
-    # checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
+    #train from checkpoint
+    checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
 
-    # model.load_state_dict(checkpoint["model_state_dict"])
-    # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    # lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
-    # best_val_loss = checkpoint.get("best_val_loss", float("inf"))
-    # train_losses = checkpoint.get("train_losses", [])
-    # val_losses = checkpoint.get("val_losses", [])
+    model.load_state_dict(checkpoint["model_state_dict"])
+    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+    lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+    best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+    train_losses = checkpoint.get("train_losses", [])
+    val_losses = checkpoint.get("val_losses", [])
 
-    # start_epoch = checkpoint["epoch"] + 1
+    start_epoch = checkpoint["epoch"] + 1
 
-    # model.to(device)
+    model.to(device)
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
-        train_loss, train_accuracy, ce_loss, center_loss, orientation_loss = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
+        train_loss, train_accuracy, ce_loss, center_loss, orientation_loss, class_loss = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
         lr_scheduler.step()
         train_losses.append(train_loss)
         ce_train_losses.append(ce_loss)
         center_train_losses.append(center_loss)
         orientation_train_losses.append(orientation_loss)
+        class_train_losses.append(class_loss)
 
         accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
         all_center_error += center_error
@@ -83,14 +86,16 @@ def train_simple():
         total_ce_loss = 0.0
         total_center_loss = 0.0
         total_orientation_loss = 0.0
+        total_class_loss = 0.0
         with torch.no_grad():
             for images, targets in data_loader_test:
                 logits = model(images.to(device))
                 # TODO: testing putting orientation stuff through ce loss instead of class
-                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["class"], targets["class"])
+                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
                 total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
                 total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
-                total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss
+                total_class_loss += class_criterion(logits["class"], targets["class"])
+                total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss + total_class_loss
         val_loss = total_val_loss / len(data_loader_test)
         val_losses.append(val_loss)
         ce_loss = total_ce_loss / len(data_loader_test)
@@ -99,6 +104,8 @@ def train_simple():
         center_losses.append(center_loss)
         orientation_loss = total_orientation_loss / len(data_loader_test)
         orientation_losses.append(orientation_loss)
+        class_loss = total_class_loss / len(data_loader_test)
+        class_losses.append(class_loss)
 
         # print all the data
         print(
@@ -114,7 +121,8 @@ def train_simple():
         print(
             f"CE Loss = {np.mean(ce_losses[-len(data_loader):]):.4f}, "
             f"Center Loss = {np.mean(center_losses[-len(data_loader):]):.4f}, "
-            f"Orientation Loss = {np.mean(orientation_losses[-len(data_loader):]):.4f}\n"
+            f"Orientation Loss = {np.mean(orientation_losses[-len(data_loader):]):.4f}, "
+            f"Class Loss = {np.mean(class_losses[-len(data_loader):]):.4f}\n"
         )
 
         #save best weights of model based on validation loss
@@ -172,12 +180,13 @@ def train_simple():
     # plt.legend()
     # plt.grid(True)
 
-    epochs = range(1, len(ce_losses) + 1)
+    epochs = range(1, len(ce_train_losses) + 1)
 
     plt.figure(figsize=(8,5))
-    plt.plot(epochs, ce_losses, label="Cross Entropy")
-    plt.plot(epochs, center_losses, label="Center Loss")
-    plt.plot(epochs, orientation_losses, label="Orientation Loss")
+    plt.plot(epochs, ce_train_losses, label="Cross Entropy")
+    plt.plot(epochs, center_train_losses, label="Center Loss")
+    plt.plot(epochs, orientation_train_losses, label="Orientation Loss")
+    plt.plot(epochs, class_train_losses, label="Class Loss")
 
     plt.xlabel("Epoch")
     plt.ylabel("Loss")

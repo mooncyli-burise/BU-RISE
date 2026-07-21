@@ -12,7 +12,7 @@ def main():
     # generate_synthetic_dataset()
     train_simple()
     visualize('/home/roboticslab/BU-RISE/backbone_model/simple_best_robot_detector.pth')
-    # detect_predict("backbone_model/BEST_simple_best_robot_detector.pth")
+    # detect_predict("backbone_model/simple_best_robot_detector.pth")
     print("done!")
 
 if __name__ == "__main__":
