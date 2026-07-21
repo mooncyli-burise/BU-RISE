@@ -5,6 +5,9 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
     # training loop
     model.train()
     total_train_loss = 0.0
+    total_center_loss = 0.0
+    total_ce_loss = 0.0
+    total_orientation_loss = 0.0
     total = 0
     pose_correct = 0
     orientation_correct = 0
@@ -22,8 +25,11 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
 
         logits = model(images)
 
-        # TODO: testing putting orientation stuff through ce loss instead of class
-        loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"]) + ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"]) + CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+        # putting orientation stuff through ce loss instead of class
+        center_loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
+        orientation_loss = ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
+        ce_loss = CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+        loss = center_loss + orientation_loss + ce_loss
 
         loss.backward()
         optimizer.step()
@@ -53,8 +59,17 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
         combined_correct += int(combined_is_correct.sum().item())
 
         total_train_loss += loss.item()
+        total_center_loss += center_loss.item()
+        total_orientation_loss += orientation_loss.item()
+        total_ce_loss += ce_loss.item()
 
     train_loss = total_train_loss / len(data_loader)
     train_accuracy = combined_correct / total
 
-    return train_loss, train_accuracy
+    return (
+        train_loss, 
+        train_accuracy,     
+        total_ce_loss / len(data_loader),
+        total_center_loss / len(data_loader),
+        total_orientation_loss / len(data_loader),
+    )

@@ -7,7 +7,7 @@ from util.visualize_simple import visualize
 
 def main():
     # generate_synthetic_dataset()
-    train_simple()
+    # train_simple()
     visualize('/home/mooncyli/BU-RISE/simple_testing/simple_best_robot_detector.pth')
     print("done!")
 

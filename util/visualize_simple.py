@@ -66,6 +66,9 @@ def visualize(model_path):
         print("Orientations (bins):", pred_orientation)
         print("Orientations (angle):", pred_orientation*5)
 
+    print()
+    print("Center Error:", torch.norm(pred_center-gt_center))
+
     cx, cy = pred_center.cpu().tolist()
 
     # cv2.putText(img,

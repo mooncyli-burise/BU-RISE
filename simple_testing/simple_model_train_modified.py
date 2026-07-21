@@ -35,7 +35,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 200
+    num_epochs = 75 # try 45
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -47,6 +47,9 @@ def train_simple():
     orientation_losses = []
     all_center_error = []
     all_orientation_error = []
+    ce_train_losses = []
+    center_train_losses = []
+    orientation_train_losses = []
 
     # #train from checkpoint
     # checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
@@ -64,9 +67,12 @@ def train_simple():
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
-        train_loss, train_accuracy = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
+        train_loss, train_accuracy, ce_loss, center_loss, orientation_loss = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
         lr_scheduler.step()
         train_losses.append(train_loss)
+        ce_train_losses.append(ce_loss)
+        center_train_losses.append(center_loss)
+        orientation_train_losses.append(orientation_loss)
 
         accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
         all_center_error += center_error
@@ -166,4 +172,17 @@ def train_simple():
     # plt.legend()
     # plt.grid(True)
 
+    epochs = range(1, len(ce_losses) + 1)
+
+    plt.figure(figsize=(8,5))
+    plt.plot(epochs, ce_losses, label="Cross Entropy")
+    plt.plot(epochs, center_losses, label="Center Loss")
+    plt.plot(epochs, orientation_losses, label="Orientation Loss")
+
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("Training Loss Components")
+    plt.grid(True)
+    plt.legend()
     plt.show()
+
