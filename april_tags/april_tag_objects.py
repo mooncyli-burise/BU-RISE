@@ -1,42 +1,188 @@
 import torch
-from faster_rcnn.model.dataset import Dataset
-from faster_rcnn.model.transform_functions import get_transform
-from faster_rcnn.model.library_model_functions import utils
-import os
-from config import DATA_DIR, TEST_SIZE
-from april_tags.get_data import get_apriltag_images
-from april_tags.create_ground_truth import create_ground_truth
+import matplotlib.pyplot as plt
+from april_tags.april_tag_objects import device, data_loader, data_loader_test
+from backbone_model.simple_model_modified.model import GridNet
+from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
+import torch.nn as nn
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT
+import numpy as np
+from backbone_model.simple_model_modified.training import train_one_epoch
+from backbone_model.simple_model_modified.eval import eval
 
-#use accelerator (offloading operations to gpu) or cpu if accelerator not available
-device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
+def train_simple():
+    model = GridNet().to(device)
 
-#set up ground truth data for training and testing
-ground_truth = create_ground_truth(get_apriltag_images("/home/roboticslab/BU-RISE/april_tags/april_tag_test_data"))
+    center_criterion = CenterLossFunction().to(device)
+    orientation_criterion = OrientationLossFunction().to(device)
+    class_criterion = nn.CrossEntropyLoss()
 
-#create instance of dataset class, with transformations for training data
-dataset = Dataset(os.path.join(DATA_DIR, 'april_tag_test_data'), ground_truth, get_transform(train=True))
-#create instance of dataset class, with transformations for test data
-dataset_test = Dataset(os.path.join(DATA_DIR, 'april_tag_test_data'), ground_truth, get_transform(train=False))
+    #initialize optimizer
+    #this is how the model learns by adjusting parameters and weights
+    #learning rate is step size for learning,
+    #momentum determines magnitude and direction of weight updates
+    #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
+    optimizer = torch.optim.Adam(
+        model.parameters(),
+        lr=1e-3,
+    )
 
-#make list of same size as dataset and randomize order
-indices = torch.randperm(len(dataset)).tolist()
-#assign subset from start of list to 50 indexes from the end for training
-dataset = torch.utils.data.Subset(dataset, indices[:-TEST_SIZE])
-#assign subset of last 50 of list for test
-dataset_test = torch.utils.data.Subset(dataset_test, indices[-TEST_SIZE:])
+    #adjusts learning rate,
+    #decays learning rate by gamma every step_size epochs
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(
+        optimizer,
+        step_size=10,
+        gamma=0.5
+    )
 
-#load train and test data
-#collate_fn for formatting images of diff sizes to be stacked into same batch
-data_loader = torch.utils.data.DataLoader(
-    dataset,
-    batch_size=2,
-    shuffle=True,
-    collate_fn=utils.collate_fn
-)
+    #number of epochs
+    num_epochs = 75 # try 45
+    start_epoch = 0
 
-data_loader_test = torch.utils.data.DataLoader(
-    dataset_test,
-    batch_size=1,
-    shuffle=False,
-    collate_fn=utils.collate_fn
-)
+    best_val_loss = float("inf")
+
+    train_losses = []
+    val_losses = []
+    ce_losses = []
+    center_losses = []
+    orientation_losses = []
+    all_center_error = []
+    all_orientation_error = []
+    ce_train_losses = []
+    center_train_losses = []
+    orientation_train_losses = []
+
+    # #train from checkpoint
+    # checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
+
+    # model.load_state_dict(checkpoint["model_state_dict"])
+    # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+    # lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+    # best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+    # train_losses = checkpoint.get("train_losses", [])
+    # val_losses = checkpoint.get("val_losses", [])
+
+    # start_epoch = checkpoint["epoch"] + 1
+
+    # model.to(device)
+
+    # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
+    for epoch in range(start_epoch, num_epochs):
+        train_loss, train_accuracy, ce_loss, center_loss, orientation_loss = train_one_epoch(model, optimizer, data_loader, device, class_criterion, center_criterion, orientation_criterion)
+        lr_scheduler.step()
+        train_losses.append(train_loss)
+        ce_train_losses.append(ce_loss)
+        center_train_losses.append(center_loss)
+        orientation_train_losses.append(orientation_loss)
+
+        accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
+        all_center_error += center_error
+        all_orientation_error += orientation_error
+    
+        # calculate avg validation loss and avg loss for each detection head (class, center, orientation)
+        total_val_loss = 0.0
+        total_ce_loss = 0.0
+        total_center_loss = 0.0
+        total_orientation_loss = 0.0
+        with torch.no_grad():
+            for images, targets in data_loader_test:
+                logits = model(images.to(device))
+                # TODO: testing putting orientation stuff through ce loss instead of class
+                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+                total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
+                total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
+                total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss
+        val_loss = total_val_loss / len(data_loader_test)
+        val_losses.append(val_loss)
+        ce_loss = total_ce_loss / len(data_loader_test)
+        ce_losses.append(ce_loss)
+        center_loss = total_center_loss / len(data_loader_test)
+        center_losses.append(center_loss)
+        orientation_loss = total_orientation_loss / len(data_loader_test)
+        orientation_losses.append(orientation_loss)
+
+        # print all the data
+        print(
+            f"\nEpoch {epoch + 1}/{num_epochs}: "
+            f"train loss {train_loss:.4f}, "
+            f"train accuracy {train_accuracy:.3f} \n"
+            f"val loss {val_loss:.4f}, "
+            f"val accuracy {accuracy:.3f}, "
+            f"Pose accuracy: {pose_accuracy:.3f}, "
+            f"Orientation accuracy: {orientation_accuracy:.3f}"
+        )
+
+        print(
+            f"CE Loss = {np.mean(ce_losses[-len(data_loader):]):.4f}, "
+            f"Center Loss = {np.mean(center_losses[-len(data_loader):]):.4f}, "
+            f"Orientation Loss = {np.mean(orientation_losses[-len(data_loader):]):.4f}\n"
+        )
+
+        #save best weights of model based on validation loss
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            torch.save(model.state_dict(), "simple_testing/simple_best_robot_detector.pth")
+            print(f"Saved best model (val loss = {val_loss:.4f})")
+
+        #save checkpoint of model, optimizer, and lr scheduler states
+        torch.save({
+            "epoch": epoch,
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "scheduler_state_dict": lr_scheduler.state_dict(),
+            "best_val_loss": best_val_loss,
+            "train_losses": train_losses,
+            "val_losses": val_losses,
+        }, "simple_testing/simple_checkpoint.pth")
+
+    epochs = range(1, len(train_losses) + 1)
+
+    # Create a 1-row, 3-column grid layout
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+
+    # 1. Training vs Validation Losses (First Subplot)
+    axes[0].plot(epochs, train_losses, label="Training Loss")
+    axes[0].plot(epochs, val_losses, label="Validation Loss")
+    axes[0].set_xlabel("Epoch")
+    axes[0].set_ylabel("Loss")
+    axes[0].set_title("Training vs Val Losses")
+    axes[0].legend()
+    axes[0].grid(True)
+
+    # 2. Center Error Histogram (Second Subplot)
+    axes[1].hist(all_center_error, bins=20, edgecolor='black', color='skyblue')
+    axes[1].set_xlabel("Center Error")
+    axes[1].set_ylabel("Frequency Count")
+    axes[1].set_title("Center Error Distribution")
+
+    # 3. Orientation Error Histogram (Third Subplot)
+    axes[2].hist(all_orientation_error, bins=72, edgecolor='black', color='lightcoral') # Changed color for distinction
+    axes[2].set_xlabel("Orientation Error")
+    axes[2].set_ylabel("Frequency Count")
+    axes[2].set_title("Orientation Error Distribution")
+
+    # Clean up spacing and display the single window
+    plt.tight_layout()
+    plt.show()
+    # #plot individual losses
+    # plt.figure(figsize=(6,4))
+    # plt.plot(ce_losses, label="Cross Entropy")
+    # plt.plot(custom_losses, label="Custom Loss")
+    # plt.xlabel("Training Batch")
+    # plt.ylabel("Loss")
+    # plt.legend()
+    # plt.grid(True)
+
+    epochs = range(1, len(ce_losses) + 1)
+
+    plt.figure(figsize=(8,5))
+    plt.plot(epochs, ce_losses, label="Cross Entropy")
+    plt.plot(epochs, center_losses, label="Center Loss")
+    plt.plot(epochs, orientation_losses, label="Orientation Loss")
+
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("Training Loss Components")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+

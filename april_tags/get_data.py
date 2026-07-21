@@ -19,7 +19,7 @@ def get_apriltag_video(image):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     tags = detector.detect(image, True, CAMERA_PARAMS, TAG_SIZE)
-    print(tags)
+    # print(tags)
 
     show_video_tags(tags, image)
 

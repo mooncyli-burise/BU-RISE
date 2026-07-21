@@ -5,12 +5,14 @@ from backbone_model.synthetic_limo_dataset.generate_synthetic_data import genera
 # from synthetic_limo_testing.limo_train import train_limo
 from util.visualize_simple import visualize
 from april_tags.test_world_transformations import test_world_transformations
+from util.detect import detect_predict
 
 def main():
-    test_world_transformations()
+    # test_world_transformations()
     # generate_synthetic_dataset()
-    # train_simple()
-    # visualize('/home/mooncyli/BU-RISE/simple_testing/simple_best_robot_detector.pth')
+    train_simple()
+    visualize('/home/roboticslab/BU-RISE/backbone_model/simple_best_robot_detector.pth')
+    # detect_predict("backbone_model/BEST_simple_best_robot_detector.pth")
     print("done!")
 
 if __name__ == "__main__":

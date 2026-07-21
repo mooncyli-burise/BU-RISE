@@ -25,10 +25,11 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
 
         logits = model(images)
 
+        #TODO: only calculate center and orientation loss if robot detected
         # putting orientation stuff through ce loss instead of class
         center_loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
         orientation_loss = ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
-        ce_loss = CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+        ce_loss = CE_LOSS_WEIGHT * class_criterion(logits["class"], targets["class"])
         loss = center_loss + orientation_loss + ce_loss
 
         loss.backward()

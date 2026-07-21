@@ -23,6 +23,7 @@ def eval(model, data_loader_test, device):
 
             logits = model(images)
 
+            #TODO: only calculate center and orientation losses when robot detected
             pred_center = logits["center"]
             gt_center = targets["center"]
 

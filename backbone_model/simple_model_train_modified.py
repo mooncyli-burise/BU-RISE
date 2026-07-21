@@ -2,7 +2,7 @@ import torch
 import matplotlib.pyplot as plt
 from backbone_model.simple_model_objects_modified import device, data_loader, data_loader_test
 from backbone_model.simple_model_modified.model import GridNet
-from simple_model_modified.loss_function.py import CenterLossFunction, OrientationLossFunction
+from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
 from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT
 import numpy as np
@@ -52,7 +52,7 @@ def train_simple():
     orientation_train_losses = []
 
     # #train from checkpoint
-    # checkpoint = torch.load("simple_testing/simple_checkpoint.pth", map_location=device)
+    # checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
 
     # model.load_state_dict(checkpoint["model_state_dict"])
     # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -87,7 +87,7 @@ def train_simple():
             for images, targets in data_loader_test:
                 logits = model(images.to(device))
                 # TODO: testing putting orientation stuff through ce loss instead of class
-                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["class"], targets["class"])
                 total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
                 total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
                 total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss
@@ -120,7 +120,7 @@ def train_simple():
         #save best weights of model based on validation loss
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), "simple_testing/simple_best_robot_detector.pth")
+            torch.save(model.state_dict(), "backbone_model/simple_best_robot_detector.pth")
             print(f"Saved best model (val loss = {val_loss:.4f})")
 
         #save checkpoint of model, optimizer, and lr scheduler states
@@ -132,7 +132,7 @@ def train_simple():
             "best_val_loss": best_val_loss,
             "train_losses": train_losses,
             "val_losses": val_losses,
-        }, "simple_testing/simple_checkpoint.pth")
+        }, "backbone_model/simple_checkpoint.pth")
 
     epochs = range(1, len(train_losses) + 1)
 
