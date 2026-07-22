@@ -9,9 +9,9 @@ from util.detect import detect_predict
 
 def main():
     # test_world_transformations()
-    # generate_synthetic_dataset()
-    train_simple()
-    visualize('/home/roboticslab/BU-RISE/backbone_model/simple_best_robot_detector.pth')
+    generate_synthetic_dataset()
+    # train_simple()
+    # visualize('/home/roboticslab/BU-RISE/backbone_model/simple_best_robot_detector.pth')
     # detect_predict("backbone_model/simple_best_robot_detector.pth")
     print("done!")
 
