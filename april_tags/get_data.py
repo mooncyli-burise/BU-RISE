@@ -21,7 +21,7 @@ def get_apriltag_video(image):
     tags = detector.detect(image, True, CAMERA_PARAMS, TAG_SIZE)
     # print(tags)
 
-    show_video_tags(tags, image)
+    # show_video_tags(tags, image)
 
     return tags
 
@@ -40,9 +40,9 @@ def get_apriltag_images(sequence_folder):
     for file in image_files:
         image = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
         tags = detector.detect(image, True, CAMERA_PARAMS, TAG_SIZE)
-        print(tags)
+        # print(tags)
 
-        show_image_tags(tags, image)
+        # show_image_tags(tags, image)
 
         all_tags.append(tags)
  
