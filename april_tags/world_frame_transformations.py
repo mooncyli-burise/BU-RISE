@@ -1,6 +1,7 @@
 import numpy as np
 from april_tags.get_data import get_apriltag_images
 from config import K_inverse
+import matplotlib as plt
 
 def get_rotation_and_translation_matrix():
     all_tags = get_apriltag_images('april_tags/init') # input initialization april tag image here

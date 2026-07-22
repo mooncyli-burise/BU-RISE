@@ -55,13 +55,13 @@ def apply_random_augmentation(image):
     else:
         return image # Keep it clean
 
-def generate_synthetic_dataset():
+def generate_synthetic_dataset(size):
     ground_truth = []
 
     file_path = 'backbone_model/synthetic_limo_dataset/real_limo.png'
 
     # 1. Gather all images and extract their physical creation timestamps
-    for i in range(1000):
+    for i in range(size):
         # random color background (change to (0,0,0) for black)
         h = random.randint(0,179)
         s = random.randint(0,255//2)

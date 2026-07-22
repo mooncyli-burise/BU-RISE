@@ -39,6 +39,7 @@ numOfFrames = 400
 # the LFindex takes in the value of lastFoundIndex as input. Looking at it now I can't remember why I have it.
 # it is this way because I don't want the global lastFoundIndex to get modified in this function, instead, this function returns the updated lastFoundIndex value 
 # this function will be feed into another function for creating animation
+# currentHeading in degrees
 def pure_pursuit_step (path, currentPos, currentHeading, lookAheadDis, LFindex) :
 
   # extract currentX and currentY
@@ -120,7 +121,7 @@ def pure_pursuit_step (path, currentPos, currentHeading, lookAheadDis, LFindex) 
   Kp = 3
 
   # calculate absTargetAngle with the atan2 function
-  absTargetAngle = math.atan2 (goalPt[1]-currentPos[1], goalPt[0]-currentPos[0]) *180/pi
+  absTargetAngle = math.atan2 (goalPt[1]-currentPos[1], goalPt[0]-currentPos[0]) *180/math.pi
   if absTargetAngle < 0: absTargetAngle += 360
 
   # compute turn error by finding the minimum angle
@@ -133,76 +134,76 @@ def pure_pursuit_step (path, currentPos, currentHeading, lookAheadDis, LFindex) 
   
   return goalPt, lastFoundIndex, turnVel
 
-# the code below is for animation
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# for the sake of my sanity
-pi = np.pi
-# animation
-fig = plt.figure()
-trajectory_lines = plt.plot([], '-', color='orange', linewidth = 4)
-trajectory_line = trajectory_lines[0]
-heading_lines = plt.plot([], '-', color='red')
-heading_line = heading_lines[0]
-connection_lines = plt.plot([], '-', color='green')
-connection_line = connection_lines[0]
-poses = plt.plot([], 'o', color='black', markersize=10)
-pose = poses[0]
+# # the code below is for animation
+# # -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# # for the sake of my sanity
+# pi = np.pi
+# # animation
+# fig = plt.figure()
+# trajectory_lines = plt.plot([], '-', color='orange', linewidth = 4)
+# trajectory_line = trajectory_lines[0]
+# heading_lines = plt.plot([], '-', color='red')
+# heading_line = heading_lines[0]
+# connection_lines = plt.plot([], '-', color='green')
+# connection_line = connection_lines[0]
+# poses = plt.plot([], 'o', color='black', markersize=10)
+# pose = poses[0]
 
-# other setup, stationary stuff for example
-# plt.plot([initX], [initY], 'x',color='red',markersize=10)
-# plt.plot([path1[-1][0]], [path1[-1][1]], 'x',color='red',markersize=10)
-pathForGraph = np.array(path1)
-plt.plot(pathForGraph[:, 0], pathForGraph[:, 1], '--', color='grey')
-# plt.plot(pathForGraph[:, 0], pathForGraph[:, 1], 'o', color='purple', markersize=2)
+# # other setup, stationary stuff for example
+# # plt.plot([initX], [initY], 'x',color='red',markersize=10)
+# # plt.plot([path1[-1][0]], [path1[-1][1]], 'x',color='red',markersize=10)
+# pathForGraph = np.array(path1)
+# plt.plot(pathForGraph[:, 0], pathForGraph[:, 1], '--', color='grey')
+# # plt.plot(pathForGraph[:, 0], pathForGraph[:, 1], 'o', color='purple', markersize=2)
 
-plt.axis("scaled")
-plt.xlim (-6, 6)
-plt.ylim (-4, 4)
-dt = 50
-xs = [currentPos[0]]
-ys = [currentPos[1]]
+# plt.axis("scaled")
+# plt.xlim (-6, 6)
+# plt.ylim (-4, 4)
+# dt = 50
+# xs = [currentPos[0]]
+# ys = [currentPos[1]]
 
-def pure_pursuit_animation (frame) :
-  # define globals
-  global currentPos
-  global currentHeading
-  global lastFoundIndex
-  global linearVel
+# def pure_pursuit_animation (frame) :
+#   # define globals
+#   global currentPos
+#   global currentHeading
+#   global lastFoundIndex
+#   global linearVel
 
-  # for the animation to loop
-  if lastFoundIndex >= len(path1)-2 : lastFoundIndex = 0
+#   # for the animation to loop
+#   if lastFoundIndex >= len(path1)-2 : lastFoundIndex = 0
 
-  # call pure_pursuit_step to get info
-  goalPt, lastFoundIndex, turnVel = pure_pursuit_step (path1, currentPos, currentHeading, lookAheadDis, lastFoundIndex)
+#   # call pure_pursuit_step to get info
+#   goalPt, lastFoundIndex, turnVel = pure_pursuit_step (path1, currentPos, currentHeading, lookAheadDis, lastFoundIndex)
 
-  # model: 200rpm drive with 18" width
-  #               rpm   /s  circ   feet
-  maxLinVelfeet = 200 / 60 * pi*4 / 12
-  #               rpm   /s  center angle   deg
-  maxTurnVelDeg = 200 / 60 * pi*4 / 9 *180/pi
+#   # model: 200rpm drive with 18" width
+#   #               rpm   /s  circ   feet
+#   maxLinVelfeet = 200 / 60 * pi*4 / 12
+#   #               rpm   /s  center angle   deg
+#   maxTurnVelDeg = 200 / 60 * pi*4 / 9 *180/pi
 
-  # update x and y, but x and y stays constant here
-  stepDis = linearVel/100 * maxLinVelfeet * dt/1000
-  currentPos[0] += stepDis * np.cos(currentHeading*pi/180)
-  currentPos[1] += stepDis * np.sin(currentHeading*pi/180)
+#   # update x and y, but x and y stays constant here
+#   stepDis = linearVel/100 * maxLinVelfeet * dt/1000
+#   currentPos[0] += stepDis * np.cos(currentHeading*pi/180)
+#   currentPos[1] += stepDis * np.sin(currentHeading*pi/180)
 
-  heading_line.set_data ([currentPos[0], currentPos[0] + 0.5*np.cos(currentHeading/180*pi)], [currentPos[1], currentPos[1] + 0.5*np.sin(currentHeading/180*pi)])
-  connection_line.set_data ([currentPos[0], goalPt[0]], [currentPos[1], goalPt[1]])
+#   heading_line.set_data ([currentPos[0], currentPos[0] + 0.5*np.cos(currentHeading/180*pi)], [currentPos[1], currentPos[1] + 0.5*np.sin(currentHeading/180*pi)])
+#   connection_line.set_data ([currentPos[0], goalPt[0]], [currentPos[1], goalPt[1]])
 
-  currentHeading += turnVel/100 * maxTurnVelDeg * dt/1000
-  if using_rotation == False :
-    currentHeading = currentHeading%360
-    if currentHeading < 0: currentHeading += 360
+#   currentHeading += turnVel/100 * maxTurnVelDeg * dt/1000
+#   if using_rotation == False :
+#     currentHeading = currentHeading%360
+#     if currentHeading < 0: currentHeading += 360
 
-  # rest of the animation code
-  xs.append(currentPos[0])
-  ys.append(currentPos[1])
+#   # rest of the animation code
+#   xs.append(currentPos[0])
+#   ys.append(currentPos[1])
 
-  pose.set_data ((currentPos[0], currentPos[1]))
-  trajectory_line.set_data (xs, ys)
+#   pose.set_data ((currentPos[0], currentPos[1]))
+#   trajectory_line.set_data (xs, ys)
 
-anim = animation.FuncAnimation (fig, pure_pursuit_animation, frames = numOfFrames, interval = 50)
-video = anim.to_html5_video()
-html = display.HTML (video)
-display.display(html)
-plt.close()
+# anim = animation.FuncAnimation (fig, pure_pursuit_animation, frames = numOfFrames, interval = 50)
+# video = anim.to_html5_video()
+# html = display.HTML (video)
+# display.display(html)
+# plt.close()

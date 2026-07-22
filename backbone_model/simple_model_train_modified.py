@@ -4,7 +4,7 @@ from backbone_model.simple_model_objects_modified import device, data_loader, da
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
-from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, CENTER_CORRECT_RANGE
 import numpy as np
 from backbone_model.simple_model_modified.training import train_one_epoch
 from backbone_model.simple_model_modified.eval import eval
@@ -23,7 +23,7 @@ def train_simple():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=1e-3,
+        lr=1e-4,
     )
 
     #adjusts learning rate,
@@ -35,7 +35,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 51 # try 45
+    num_epochs = 50 # try 45
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -53,19 +53,19 @@ def train_simple():
     orientation_train_losses = []
     class_train_losses = []
 
-    #train from checkpoint
-    checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
+    # #train from checkpoint
+    # checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
 
-    model.load_state_dict(checkpoint["model_state_dict"])
-    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
-    best_val_loss = checkpoint.get("best_val_loss", float("inf"))
-    train_losses = checkpoint.get("train_losses", [])
-    val_losses = checkpoint.get("val_losses", [])
+    # model.load_state_dict(checkpoint["model_state_dict"])
+    # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+    # lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+    # best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+    # train_losses = checkpoint.get("train_losses", [])
+    # val_losses = checkpoint.get("val_losses", [])
 
-    start_epoch = checkpoint["epoch"] + 1
+    # start_epoch = checkpoint["epoch"] + 1
 
-    model.to(device)
+    # model.to(device)
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
@@ -167,6 +167,18 @@ def train_simple():
     axes[2].set_xlabel("Orientation Error")
     axes[2].set_ylabel("Frequency Count")
     axes[2].set_title("Orientation Error Distribution")
+
+
+    # Add text to the right side of the graph
+    axes[2].text(
+        1.05,                  # X coordinate: slightly to the right of the plot border
+        0.5,                   # Y coordinate: centered vertically
+        f"Center Weight: {CENTER_LOSS_WEIGHT}\nOrientation Weight: {ORIENTATION_LOSS_WEIGHT}\nCE Weight: {CE_LOSS_WEIGHT}\nCenter Correct Range: {CENTER_CORRECT_RANGE}",    # The text string
+        transform=axes[2].transAxes, # Use axes coordinates (0 to 1 scale)
+        va="center",           # Center the text vertically on the Y coordinate
+        ha="left"              # Align text to the left of the X coordinate
+    )
+
 
     # Clean up spacing and display the single window
     plt.tight_layout()
