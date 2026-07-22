@@ -48,10 +48,14 @@ def print_transformation(R, T, pose, new_pose):
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
 
-    pose = pose.flatten()
     new_pose = new_pose.flatten()
-    ax.scatter(*pose, color="m", s=50)
-    ax.text(*pose, "camera point", color="m")
+
+    ax.plot(
+        [camera_origin[0], new_pose[0]],
+        [camera_origin[1], new_pose[1]],
+        [camera_origin[2], new_pose[2]],
+        label="ray"
+    )
 
     ax.scatter(*new_pose, color="k", s=50)
     ax.text(*new_pose, "world point", color="k")
@@ -63,23 +67,27 @@ def print_transformation(R, T, pose, new_pose):
     ax.set_box_aspect((1, 1, 1))
     plt.show()
 
-def get_world_coords(x, y, z=0):
-    pose = np.array([[x],
-                     [y],
-                     [z]])
+def get_world_coords(pose):
+    # pose = np.array([[x],
+    #                  [y],
+    #                  [z]])
     R, T = get_rotation_and_translation_matrix()
     R_inverse = np.linalg.inv(R)
     print("R inverse:", R_inverse)
     T_z_only = np.array([[0],
                          [0],
                          [T[2][0]]])
-    new_pose = np.dot(R_inverse, pose-T_z_only)
+    print("cam height:",T[2][0])
+    rotated_ray = np.dot(R_inverse, pose)
+    multiplied_ray = rotated_ray * (-1*T[2][0]/rotated_ray[2][0])
+    new_pose = T_z_only + multiplied_ray
     print_transformation(R_inverse, T_z_only, pose, new_pose)
     return new_pose
     # return new_pose[0][0], new_pose[0][1], new_pose[0][2] # return x, y, and z separately
 
+#TODO: make function that plots the 2d world position of robot/apriltag
 
-def convert_to_cam(x, y, z=0):
+def convert_to_cam(x, y, z=1):
     pose = np.array([[x],
                      [y],
                      [z]])
