@@ -73,18 +73,18 @@ def get_world_coords(pose):
     #                  [z]])
     R, T = get_rotation_and_translation_matrix()
     R_inverse = np.linalg.inv(R)
-    print("R:", R)
-    print("R inverse:", R_inverse)
+    # print("R:", R)
+    # print("R inverse:", R_inverse)
     T_z_only = np.array([[0],
                          [0],
                          [T[2][0]]])
-    print("cam height:",T[2][0])
+    # print("cam height:",T[2][0])
     rotated_ray = np.dot(R_inverse, pose)
     multiplied_ray = rotated_ray * (-1*T[2][0]/rotated_ray[2][0])
     new_pose = T_z_only + multiplied_ray
-    print("Camera Z axis:")
-    print(R_inverse[:,2])
-    print_transformation(R_inverse, T_z_only, pose, new_pose)
+    # print("Camera Z axis:")
+    # print(R_inverse[:,2])
+    # print_transformation(R_inverse, T_z_only, pose, new_pose)
     return new_pose
     # return new_pose[0][0], new_pose[0][1], new_pose[0][2] # return x, y, and z separately
 

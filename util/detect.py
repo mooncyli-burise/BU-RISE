@@ -7,6 +7,7 @@ from backbone_model.simple_model_modified.model import GridNet
 
 from april_tags.get_data import get_apriltag_video
 from april_tags.create_ground_truth import create_ground_truth_vid
+from april_tags.world_frame_transformations import convert_to_cam, get_world_coords
 
 from config import WIDTH, HEIGHT
 
@@ -123,6 +124,11 @@ def detect_predict(model_path):
         # show actual center point (green)
         cx, cy = gt_center.cpu().tolist()
 
+        cam_pose = convert_to_cam(cx, cy)
+        world_pose = get_world_coords(cam_pose)
+
+        print("\ngt world pose:", world_pose)
+
         # draw line in direction of angle
         angle = gt_orientation.item()  # degrees
         theta = math.radians(angle)
@@ -141,7 +147,7 @@ def detect_predict(model_path):
         # draw green gt center
         cv2.circle(frame, (int(cx), int(cy)), radius=3, color=(0, 255, 0), thickness=-1)
         cv2.putText(frame,
-                    f"({cx}, {cy}",
+                    f"({world_pose[0]}, {world_pose[1]}",
                     (int(cx), int(cy-10)),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.6,

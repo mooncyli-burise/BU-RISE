@@ -6,7 +6,9 @@ import json
 from simplified_dataset.simple_model.transforms import get_transforms
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
-device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
+# device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')
+
+device = torch.device('cpu')
 
 #set up ground truth data for training and testing
 ground_truth = []
@@ -15,8 +17,8 @@ with open("backbone_model/synthetic_limo_dataset/ground_truth.json", "r") as fil
 
 # GridNet uses fixed-size images and scalar class targets, so the default
 # DataLoader collation produces image batches [B, C, H, W] and targets [B].
-dataset = Dataset(os.path.join(DATA_DIR, 'backbone_model/synthetic_limo_dataset/images'), ground_truth, get_transforms())
-dataset_test = Dataset(os.path.join(DATA_DIR, 'backbone_model/synthetic_limo_dataset/images'), ground_truth, get_transforms())
+dataset = Dataset('backbone_model/synthetic_limo_dataset/images', ground_truth, get_transforms())
+dataset_test = Dataset('backbone_model/synthetic_limo_dataset/images', ground_truth, get_transforms())
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()
