@@ -127,38 +127,34 @@ def detect_predict(model_path):
                     (0,0,255),
                     2)
 
-        # # show actual center point (green)
-        # cx, cy = gt_center.cpu().tolist()
+        if(len(gt)>0):
+            # show actual center point (green)
+            cx, cy = gt_center.cpu().tolist()
 
-        # cam_pose = convert_to_cam(cx, cy)
-        # world_pose = get_world_coords(cam_pose)
+            # draw line in direction of angle
+            angle = gt_orientation.item()  # degrees
+            theta = math.radians(angle)
 
-        # print("\ngt world pose:", world_pose)
+            end_x = int(cx + length * math.sin(theta))
+            end_y = int(cy - length * math.cos(theta))  # subtract because image y-axis points down
 
-        # # draw line in direction of angle
-        # angle = gt_orientation.item()  # degrees
-        # theta = math.radians(angle)
+            cv2.line(
+                frame,
+                (int(cx), int(cy)),
+                (end_x, end_y),
+                (0, 255, 0),   # green
+                2
+            )
 
-        # end_x = int(cx + length * math.sin(theta))
-        # end_y = int(cy - length * math.cos(theta))  # subtract because image y-axis points down
-
-        # cv2.line(
-        #     frame,
-        #     (int(cx), int(cy)),
-        #     (end_x, end_y),
-        #     (0, 255, 0),   # green
-        #     2
-        # )
-
-        # # draw green gt center
-        # cv2.circle(frame, (int(cx), int(cy)), radius=3, color=(0, 255, 0), thickness=-1)
-        # cv2.putText(frame,
-        #             f"({world_pose[0]}, {world_pose[1]}",
-        #             (int(cx), int(cy-10)),
-        #             cv2.FONT_HERSHEY_SIMPLEX,
-        #             0.6,
-        #             (0,255,0),
-        #             2)
+            # draw green gt center
+            cv2.circle(frame, (int(cx), int(cy)), radius=3, color=(0, 255, 0), thickness=-1)
+            cv2.putText(frame,
+                        f"({cx}, {cy}",
+                        (int(cx), int(cy-10)),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6,
+                        (0,255,0),
+                        2)
         
         cv2.imshow("Robot Detection", frame)
 

@@ -30,12 +30,12 @@ def main():
     # cap.release()
     # cv2.destroyAllWindows()
     
-    test_world_transformations()
+    # test_world_transformations()
     # test_multiple_tags()
     # generate_synthetic_dataset(5000)
     # train_simple()
     # visualize('backbone_model/best_model_5000imgs.pth')
-    # detect_predict('backbone_model/best_model_5000imgs.pth')
+    detect_predict('backbone_model/best_model_5000imgs.pth')
 
     print("done!")
 
