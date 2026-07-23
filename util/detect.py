@@ -7,7 +7,7 @@ from backbone_model.simple_model_modified.model import GridNet
 
 from april_tags.get_data import get_apriltag_video
 from april_tags.create_ground_truth import create_ground_truth_vid
-from april_tags.world_frame_transformations import convert_to_cam, get_world_coords
+from april_tags.world_frame_transformations import get_world_coords
 
 from config import WIDTH, HEIGHT
 

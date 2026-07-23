@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-from pupil_apriltags import Detector
+from dt_apriltags import Detector
 from config import CAMERA_PARAMS, TAG_SIZE
 import math
 
