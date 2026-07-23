@@ -53,7 +53,9 @@ def detect_predict(model_path):
         pred_center = logits["center"] * scale
 
         pred_orientation = logits["orientation"].argmax(dim=1) * 5
-       
+
+        center_error = 0    
+        orientation_error = 0   
 
         if(len(gt)>0):
             gt_center = gt[0]["center"]
@@ -61,6 +63,11 @@ def detect_predict(model_path):
 
             gt_orientation = gt[0]["orientation"]
             gt_orientation = torch.tensor(gt_orientation, device=device)
+
+            orientation_error = torch.abs(pred_orientation - gt_orientation)
+            orientation_error = torch.minimum(orientation_error, 360 - orientation_error)
+
+            center_error = torch.norm(pred_center-gt_center)
 
             # Print ground truth
             print("\nGround Truth")
@@ -82,12 +89,11 @@ def detect_predict(model_path):
         if "orientation" in logits:
             print("Orientations (angle):", pred_orientation)
 
-        error = torch.abs(pred_orientation - gt_orientation)
-        error = torch.minimum(error, 360 - error)
+        
 
         print()
-        print("Center Error:", torch.norm(pred_center-gt_center))
-        print("Orientation Error:", error)
+        print("Center Error:", center_error)
+        print("Orientation Error:", orientation_error)
 
         print(logits["class"])
 
@@ -121,38 +127,38 @@ def detect_predict(model_path):
                     (0,0,255),
                     2)
 
-        # show actual center point (green)
-        cx, cy = gt_center.cpu().tolist()
+        # # show actual center point (green)
+        # cx, cy = gt_center.cpu().tolist()
 
-        cam_pose = convert_to_cam(cx, cy)
-        world_pose = get_world_coords(cam_pose)
+        # cam_pose = convert_to_cam(cx, cy)
+        # world_pose = get_world_coords(cam_pose)
 
-        print("\ngt world pose:", world_pose)
+        # print("\ngt world pose:", world_pose)
 
-        # draw line in direction of angle
-        angle = gt_orientation.item()  # degrees
-        theta = math.radians(angle)
+        # # draw line in direction of angle
+        # angle = gt_orientation.item()  # degrees
+        # theta = math.radians(angle)
 
-        end_x = int(cx + length * math.sin(theta))
-        end_y = int(cy - length * math.cos(theta))  # subtract because image y-axis points down
+        # end_x = int(cx + length * math.sin(theta))
+        # end_y = int(cy - length * math.cos(theta))  # subtract because image y-axis points down
 
-        cv2.line(
-            frame,
-            (int(cx), int(cy)),
-            (end_x, end_y),
-            (0, 255, 0),   # green
-            2
-        )
+        # cv2.line(
+        #     frame,
+        #     (int(cx), int(cy)),
+        #     (end_x, end_y),
+        #     (0, 255, 0),   # green
+        #     2
+        # )
 
-        # draw green gt center
-        cv2.circle(frame, (int(cx), int(cy)), radius=3, color=(0, 255, 0), thickness=-1)
-        cv2.putText(frame,
-                    f"({world_pose[0]}, {world_pose[1]}",
-                    (int(cx), int(cy-10)),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    0.6,
-                    (0,255,0),
-                    2)
+        # # draw green gt center
+        # cv2.circle(frame, (int(cx), int(cy)), radius=3, color=(0, 255, 0), thickness=-1)
+        # cv2.putText(frame,
+        #             f"({world_pose[0]}, {world_pose[1]}",
+        #             (int(cx), int(cy-10)),
+        #             cv2.FONT_HERSHEY_SIMPLEX,
+        #             0.6,
+        #             (0,255,0),
+        #             2)
         
         cv2.imshow("Robot Detection", frame)
 
