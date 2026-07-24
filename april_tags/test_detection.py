@@ -2,9 +2,10 @@ import torch
 import cv2
 from april_tags.get_data import get_apriltag_video, get_apriltag_images
 from april_tags.create_ground_truth import create_ground_truth
-from epfl.objects import cap
 
 def test_video_detection():
+    cap = cv2.VideoCapture(0)
+
     #init cam
     if not cap.isOpened():
         print("Failed to open camera")
@@ -13,13 +14,13 @@ def test_video_detection():
     while True:
         ret, frame = cap.read()
 
-        # #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
-        # frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        # image = torch.from_numpy(frame_rgb)
-        # image = image.permute(2,0,1)
-        # image = image.float() / 255.0
-        # # images = [image]
+        image = torch.from_numpy(frame_rgb)
+        image = image.permute(2,0,1)
+        image = image.float() / 255.0
+        # images = [image]
 
         tags = get_apriltag_video(frame)
         if tags:
@@ -31,7 +32,7 @@ def test_video_detection():
         else:
             print("No tags detected")
 
-        #cv2.imshow("Testing", frame)
+        cv2.imshow("Testing", frame)
 
         if cv2.waitKey(1) == ord('q'):
             break

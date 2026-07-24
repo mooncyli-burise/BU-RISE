@@ -1,6 +1,6 @@
 import torch
 import matplotlib.pyplot as plt
-from backbone_model.simple_model_objects_modified import device, data_loader, data_loader_test
+from backbone_model.real_world_objects import device, data_loader, data_loader_test
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
@@ -10,10 +10,14 @@ from backbone_model.simple_model_modified.training import train_one_epoch
 from backbone_model.simple_model_modified.eval import eval
 from backbone_model.simple_model_modified.val_accuracy import calculate_val_accuracy
 
-def train_simple():
+def train_real_world():
     model = GridNet().to(device)
 
-    model.load_state_dict('backbone_model/best_model_5000imgs.pth')
+    state_dict = torch.load(
+        "backbone_model/best_model_5000imgs.pth",
+        map_location=device,   # or "cpu"
+    )
+    model.load_state_dict(state_dict)
     model.to(device)
 
     center_criterion = CenterLossFunction().to(device)
@@ -81,7 +85,7 @@ def train_simple():
         orientation_train_losses.append(orientation_loss)
         class_train_losses.append(class_loss)
 
-        accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
+        accuracy, pose_accuracy, orientation_accuracy, class_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
         all_center_error += center_error
         all_orientation_error += orientation_error
     
@@ -102,7 +106,8 @@ def train_simple():
             f"val loss {val_loss:.4f}, "
             f"val accuracy {accuracy:.3f}, "
             f"Pose accuracy: {pose_accuracy:.3f}, "
-            f"Orientation accuracy: {orientation_accuracy:.3f}"
+            f"Orientation accuracy: {orientation_accuracy:.3f}, "
+            f"Class accuracy: {class_accuracy:.3f}"
         )
 
         print(

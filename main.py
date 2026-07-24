@@ -4,17 +4,20 @@ from util.visualize_simple import visualize
 from april_tags.test_world_transformations import test_world_transformations, test_multiple_tags
 from util.detect import detect_predict
 from backbone_model.real_world_dataset.generate_synthetic_data import generate_synthetic_dataset
-
-import cv2
-from april_tags.world_frame_transformations import get_homography, show_homography_view
+from backbone_model.real_world_train import train_real_world
+from april_tags.test_detection import test_video_detection
 
 def main():    
     # test_world_transformations()
     # test_multiple_tags()
+    # test_video_detection()
+
     # generate_synthetic_dataset(5000)
     # train_simple()
     # visualize('backbone_model/best_model_5000imgs.pth')
     # detect_predict('backbone_model/best_model_5000imgs.pth')
+
+    train_real_world()
 
     print("done!")
 

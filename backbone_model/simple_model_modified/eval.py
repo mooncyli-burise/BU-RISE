@@ -7,8 +7,10 @@ def eval(model, data_loader_test, device):
 
     combined_correct = 0
     total = 0
+    total_images = 0
     pose_correct = 0
     orientation_correct = 0
+    class_correct = 0
 
     all_center_error = []
     all_orientation_error = []
@@ -24,6 +26,11 @@ def eval(model, data_loader_test, device):
             }
 
             logits = model(images)
+            pred_class = logits["class"].argmax(dim=1)
+            gt_class = targets["class"]
+
+            class_is_correct = pred_class == gt_class
+            class_correct += int(class_is_correct.sum().item())
 
             robot_mask = targets["class"] == 1
     
@@ -55,6 +62,7 @@ def eval(model, data_loader_test, device):
                 combined_is_correct = center_is_correct & orientation_is_correct
 
                 total += robot_mask.sum().item()
+                total_images += images.size(0)
                 pose_correct += int(center_is_correct.sum().item())
                 orientation_correct += int(orientation_is_correct.sum().item())
                 combined_correct += int(combined_is_correct.sum().item())
@@ -65,7 +73,9 @@ def eval(model, data_loader_test, device):
                         f"predicted center: {pred_center[i].cpu().numpy()}, "
                         f"predicted orientation: {pred_orientation[i].item() * 5}°, "
                         f"actual center: {gt_center[i].cpu().numpy()}, "
-                        f"actual orientation: {gt_orientation[i].item() * 5}°"
+                        f"actual orientation: {gt_orientation[i].item() * 5}°, "
+                        f"predicted class: {pred_class[i].item()}, "
+                        f"actual class: {gt_class[i].item()}"
                     )
 
     if len(all_center_error) != 0 and len(all_orientation_error) != 0:
@@ -85,9 +95,9 @@ def eval(model, data_loader_test, device):
     else:
         print(f"Mean orientation error: {mean_orientation_error * 5:.3f} degrees")
 
-
     accuracy = combined_correct / total if total else 0.0
     pose_accuracy = pose_correct / total if total else 0.0
     orientation_accuracy = orientation_correct / total if total else 0.0
+    class_accuracy = class_correct / total_images if total_images else 0.0
 
-    return accuracy, pose_accuracy, orientation_accuracy, all_center_error, all_orientation_error
+    return accuracy, pose_accuracy, orientation_accuracy, class_accuracy, all_center_error, all_orientation_error
