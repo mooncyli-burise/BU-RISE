@@ -4,38 +4,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def test_world_transformations():
-    tags = get_apriltag_images('april_tags/test')
+    all_tags = get_apriltag_images('april_tags/test')
+        
+    for image_tags in all_tags:
+        for tag in image_tags:
+            x, y = tag.center.astype(int)
 
-    for tag in tags:
-        if len(tag)==0:
-            continue
-        x, y = tag[0].center.astype(int)
+            world = get_world_coords(x, y)
 
-        world = get_world_coords(x, y)
+            plt.scatter(world[0], world[1])
 
-        plt.scatter(world[0], world[1])
-
-    # fig = plt.figure(figsize=(8, 8))
-    # ax = fig.add_subplot(111, projection="3d")
-
-    # plot_world_frame(ax)
-    # plot_camera_frame(ax)
-
-    # pose = get_world_coords(x,y)
-    # plot_coords(ax, pose)
-
-    # ax.set_xlabel("X")
-    # ax.set_ylabel("Y")
-    # ax.set_zlabel("Z")
-    
-    # print("untransformed coords: ", f"({x}, {y})")
-    # print("pose: ", pose)
-
-    # scale = 10
-    # ax.set_xlim(-scale, scale)
-    # ax.set_ylim(-scale, scale)
-    # ax.set_zlim(-scale, scale)
-    # ax.set_box_aspect((1, 1, 1))
+    plt.grid()
 
     plt.xlim(-2,2)
     plt.ylim(-2,2)

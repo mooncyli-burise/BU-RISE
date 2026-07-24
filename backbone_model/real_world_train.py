@@ -8,6 +8,7 @@ from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, 
 import numpy as np
 from backbone_model.simple_model_modified.training import train_one_epoch
 from backbone_model.simple_model_modified.eval import eval
+from backbone_model.simple_model_modified.val_accuracy import calculate_val_accuracy
 
 def train_simple():
     model = GridNet().to(device)
@@ -26,7 +27,7 @@ def train_simple():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=1e-4,
+        lr=1e-3,
     )
 
     #adjusts learning rate,
@@ -85,29 +86,12 @@ def train_simple():
         all_orientation_error += orientation_error
     
         # calculate avg validation loss and avg loss for each detection head (class, center, orientation)
-        total_val_loss = 0.0
-        total_ce_loss = 0.0
-        total_center_loss = 0.0
-        total_orientation_loss = 0.0
-        total_class_loss = 0.0
-        with torch.no_grad():
-            for images, targets in data_loader_test:
-                logits = model(images.to(device))
-                # TODO: testing putting orientation stuff through ce loss instead of class
-                total_ce_loss += CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
-                total_center_loss += CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
-                total_orientation_loss += ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
-                total_class_loss += class_criterion(logits["class"], targets["class"])
-                total_val_loss += total_center_loss + total_orientation_loss + total_ce_loss + total_class_loss
-        val_loss = total_val_loss / len(data_loader_test)
+        val_loss, ce_loss, center_loss, orientation_loss, class_loss = calculate_val_accuracy(model, device, data_loader_test, class_criterion, center_criterion, orientation_criterion)
+
         val_losses.append(val_loss)
-        ce_loss = total_ce_loss / len(data_loader_test)
         ce_losses.append(ce_loss)
-        center_loss = total_center_loss / len(data_loader_test)
         center_losses.append(center_loss)
-        orientation_loss = total_orientation_loss / len(data_loader_test)
         orientation_losses.append(orientation_loss)
-        class_loss = total_class_loss / len(data_loader_test)
         class_losses.append(class_loss)
 
         # print all the data

@@ -26,40 +26,58 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
 
         logits = model(images)
 
-        #TODO: only calculate center and orientation loss if robot detected
-        # putting orientation stuff through ce loss instead of class
-        center_loss = CENTER_LOSS_WEIGHT * center_criterion(logits["center"], targets["center"])
-        orientation_loss = ORIENTATION_LOSS_WEIGHT * orientation_criterion(logits["orientation"], targets["orientation"])
-        ce_loss = CE_LOSS_WEIGHT * class_criterion(logits["orientation"], targets["orientation"])
+        robot_mask = targets["class"] == 1
+
         class_loss = class_criterion(logits["class"], targets["class"])
-        loss = center_loss + orientation_loss + ce_loss + class_loss
+
+        center_loss = torch.tensor(0.0, device=device)
+        orientation_loss = torch.tensor(0.0, device=device)
+        ce_loss = torch.tensor(0.0, device=device)
+
+        if robot_mask.any():
+            center_loss = CENTER_LOSS_WEIGHT * center_criterion(
+                logits["center"][robot_mask],
+                targets["center"][robot_mask]
+            )
+
+            orientation_loss = ORIENTATION_LOSS_WEIGHT * orientation_criterion(
+                logits["orientation"][robot_mask],
+                targets["orientation"][robot_mask]
+            )
+
+            ce_loss = CE_LOSS_WEIGHT * class_criterion(
+                logits["orientation"][robot_mask],
+                targets["orientation"][robot_mask]
+            )
+
+        loss = class_loss + center_loss + orientation_loss + ce_loss
 
         loss.backward()
         optimizer.step()
 
-        pred_center = logits["center"]
-        gt_center = targets["center"]
+        if robot_mask.any():
+            pred_center = logits["center"][robot_mask]
+            gt_center = targets["center"][robot_mask]
 
-        pred_orientation = logits["orientation"].argmax(dim=1)
-        gt_orientation = targets["orientation"]
+            pred_orientation = logits["orientation"][robot_mask].argmax(dim=1)
+            gt_orientation = targets["orientation"][robot_mask]
 
-        scale = torch.tensor([WIDTH, HEIGHT], device=device)
+            scale = torch.tensor([WIDTH, HEIGHT], device=device)
 
-        center_error = torch.norm(
-            (pred_center - gt_center) * scale,
-            dim=1
-        )
+            center_error = torch.norm(
+                (pred_center - gt_center) * scale,
+                dim=1
+            )
 
-        # change range for center correct here
-        center_is_correct = center_error <= CENTER_CORRECT_RANGE
-        orientation_is_correct = pred_orientation == gt_orientation
-        combined_is_correct = center_is_correct & orientation_is_correct
+            # change range for center correct here
+            center_is_correct = center_error <= CENTER_CORRECT_RANGE
+            orientation_is_correct = pred_orientation == gt_orientation
+            combined_is_correct = center_is_correct & orientation_is_correct
 
-        batch_size = images.size(0)
-        total += batch_size
-        pose_correct += int(center_is_correct.sum().item())
-        orientation_correct += int(orientation_is_correct.sum().item())
-        combined_correct += int(combined_is_correct.sum().item())
+            total += robot_mask.sum().item()
+            pose_correct += int(center_is_correct.sum().item())
+            orientation_correct += int(orientation_is_correct.sum().item())
+            combined_correct += int(combined_is_correct.sum().item())
 
         total_train_loss += loss.item()
         total_center_loss += center_loss.item()
@@ -68,7 +86,7 @@ def train_one_epoch(model, optimizer, data_loader, device, class_criterion, cent
         total_class_loss += class_loss.item()
 
     train_loss = total_train_loss / len(data_loader)
-    train_accuracy = combined_correct / total
+    train_accuracy = combined_correct / total if total > 0 else 0.0
 
     return (
         train_loss, 

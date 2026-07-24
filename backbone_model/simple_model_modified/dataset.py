@@ -39,7 +39,7 @@ class Dataset(torch.utils.data.Dataset):
         target = {}
         target["center"] = torch.tensor(center, dtype=torch.float32)
         target["orientation"] = torch.tensor(orientation_bin, dtype=torch.long)
-        target["class"] = 1 #TODO: temporary because there will always be a robot in the picture
+        target["class"] = self.ground_truth[idx].get("class", 1)
 
         if self.transform:
             image = self.transform(image)
