@@ -6,7 +6,7 @@ ORIENTATION_LOSS_WEIGHT = 2.0
 CE_LOSS_WEIGHT = 0.5
 
 CENTER_CORRECT_RANGE = 8 #in px
-TEST_SIZE = 50
+TEST_SIZE = 150
 
 HEIGHT = 120 #px
 WIDTH = 160 #px
@@ -36,6 +36,7 @@ CAMERA_PARAMS = (
 
 K_inverse = np.linalg.inv(K)
 TAG_SIZE = 0.15 #tag size in meters
+TAG_SIZE_LIMO = 0.092
 
 POSE_WEIGHT = 2.0
 X_CLASSES = 8

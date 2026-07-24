@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from pupil_apriltags import Detector
-from config import CAMERA_PARAMS, TAG_SIZE
+from config import CAMERA_PARAMS, TAG_SIZE, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import math
 
 detector = Detector(families='tag36h11',
@@ -25,7 +25,7 @@ def get_apriltag_video(image):
 
     return tags
 
-def get_apriltag_images(sequence_folder):
+def get_apriltag_images(sequence_folder, tag_size = TAG_SIZE):
     image_files = []
 
     for file_name in os.listdir(sequence_folder):
@@ -39,10 +39,15 @@ def get_apriltag_images(sequence_folder):
 
     for file in image_files:
         image = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
-        tags = detector.detect(image, True, CAMERA_PARAMS, TAG_SIZE)
+        downscaled = cv2.resize(image, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
+        tags = detector.detect(downscaled, True, CAMERA_PARAMS, tag_size)
+
+        for i, tag in enumerate(tags):
+            print(f"Tag {i} detected in {file}")
+
         # print(tags)
 
-        # show_image_tags(tags, image)
+        show_image_tags(tags, downscaled)
 
         all_tags.append(tags)
  

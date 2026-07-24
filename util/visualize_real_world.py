@@ -3,7 +3,7 @@ import torch
 import cv2
 import numpy as np
 from backbone_model.simple_model_modified.model import GridNet
-from backbone_model.real_world_objects import device, dataset_real_world
+from backbone_model.real_world_objects import device, dataset_test, dataset_real_world
 from config import WIDTH, HEIGHT
 
 def visualize(model_path):
@@ -28,9 +28,10 @@ def visualize(model_path):
         pred_center *= scale
         pred_orientation = logits["orientation"][0].argmax()
 
-        gt_center = target["center"]
-        gt_center *= scale
-        gt_orientation = target["orientation"]
+        if target:
+            gt_center = target["center"]
+            gt_center *= scale
+            gt_orientation = target["orientation"]
 
 
     # Convert image for plotting
@@ -66,8 +67,14 @@ def visualize(model_path):
         print("Orientations (bins):", pred_orientation)
         print("Orientations (angle):", pred_orientation*5)
 
-    print()
-    print("Center Error:", torch.norm(pred_center-gt_center))
+    
+    if target:
+        orientation_error = torch.abs(pred_orientation - gt_orientation)
+        orientation_error = torch.minimum(orientation_error, 360 - orientation_error)
+
+        print()
+        print("Center Error:", torch.norm(pred_center-gt_center))
+        print("Orientation Error:", orientation_error*5)
 
     cx, cy = pred_center.cpu().tolist()
 
@@ -89,17 +96,18 @@ def visualize(model_path):
                 (0,0,255),
                 2)
 
-    # show actual center point (green)
-    cx, cy = gt_center.cpu().tolist()
+    if target:
+        # show actual center point (green)
+        cx, cy = gt_center.cpu().tolist()
 
-    cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 255, 0), thickness=-1)
-    cv2.putText(img,
-                f"({cx}, {cy}",
-                (int(cx), int(cy-10)),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.6,
-                (0,255,0),
-                2)
+        cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 255, 0), thickness=-1)
+        cv2.putText(img,
+                    f"({cx}, {cy}",
+                    (int(cx), int(cy-10)),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6,
+                    (0,255,0),
+                    2)
 
 
     # Display image

@@ -1,8 +1,9 @@
 import torch
 from backbone_model.simple_model_modified.dataset import Dataset
 import os
-from config import TEST_SIZE
+from config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import json
+import cv2
 from simplified_dataset.simple_model.transforms import get_transforms
 from april_tags.get_data import get_apriltag_images
 from april_tags.create_ground_truth import create_ground_truth
@@ -16,7 +17,8 @@ device = torch.device('cpu')
 ground_truth = []
 with open("backbone_model/real_world_dataset/ground_truth.json", "r") as file:
     ground_truth = json.load(file)
-ground_truth_real_world = create_ground_truth(get_apriltag_images('backbone_model/real_world_dataset/limo'))
+
+ground_truth_real_world = create_ground_truth(get_apriltag_images('backbone_model/real_world_dataset/limo', TAG_SIZE_LIMO))
 
 # GridNet uses fixed-size images and scalar class targets, so the default
 # DataLoader collation produces image batches [B, C, H, W] and targets [B].

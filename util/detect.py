@@ -9,19 +9,17 @@ from april_tags.get_data import get_apriltag_video
 from april_tags.create_ground_truth import create_ground_truth_vid
 from april_tags.world_frame_transformations import get_world_coords
 
-from config import WIDTH, HEIGHT
+from config import WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
 
-def detect_predict(model_path):
+def detect_predict(model_path, homography = False):
     #load trained model
     eval_model = GridNet().to(device)
     eval_model.load_state_dict(torch.load(model_path, map_location=device))
     eval_model.eval()
 
-    images = []
-
     cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, APRILTAG_WIDTH)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, APRILTAG_HEIGHT)
 
     #init cam
     if not cap.isOpened():
@@ -31,10 +29,13 @@ def detect_predict(model_path):
     while True:
         ret, frame = cap.read()
 
+        frame_model = cv2.resize(frame, (WIDTH, HEIGHT), interpolation=cv2.INTER_AREA)
+
         #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_model_rgb = cv2.cvtColor(frame_model, cv2.COLOR_BGR2RGB)
 
-        image = torch.from_numpy(frame_rgb)
+        image = torch.from_numpy(frame_model_rgb)
         image = image.permute(2,0,1)
         image = image.float() / 255.0
         image = image.to(device)

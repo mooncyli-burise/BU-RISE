@@ -11,6 +11,7 @@ from backbone_model.simple_model_modified.eval import eval
 from backbone_model.simple_model_modified.val_accuracy import calculate_val_accuracy
 
 def train_real_world():
+    print("training model with real world data")
     model = GridNet().to(device)
 
     state_dict = torch.load(

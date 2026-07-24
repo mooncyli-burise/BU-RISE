@@ -6,6 +6,7 @@ from util.detect import detect_predict
 from backbone_model.real_world_dataset.generate_synthetic_data import generate_synthetic_dataset
 from backbone_model.real_world_train import train_real_world
 from april_tags.test_detection import test_video_detection
+from util.visualize_real_world import visualize
 
 def main():    
     # test_world_transformations()
@@ -17,7 +18,8 @@ def main():
     # visualize('backbone_model/best_model_5000imgs.pth')
     # detect_predict('backbone_model/best_model_5000imgs.pth')
 
-    train_real_world()
+    # train_real_world()
+    visualize('backbone_model/best_finetuning_model_lr1e-3.pth')
 
     print("done!")
 
