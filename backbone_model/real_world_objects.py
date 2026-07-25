@@ -18,19 +18,24 @@ ground_truth = []
 with open("backbone_model/real_world_dataset/ground_truth.json", "r") as file:
     ground_truth = json.load(file)
 
-ground_truth_real_world = create_ground_truth(get_apriltag_images('backbone_model/real_world_dataset/limo', TAG_SIZE_LIMO))
+# TODO: make it save into a json file
+ground_truth_real_world = create_ground_truth(get_apriltag_images('backbone_model/real_world_dataset/video', TAG_SIZE_LIMO))
+print(ground_truth_real_world)
 
 # GridNet uses fixed-size images and scalar class targets, so the default
 # DataLoader collation produces image batches [B, C, H, W] and targets [B].
 dataset = Dataset('backbone_model/real_world_dataset/images', ground_truth, get_transforms())
 dataset_test = Dataset('backbone_model/real_world_dataset/images', ground_truth, get_transforms())
-dataset_real_world = Dataset('backbone_model/real_world_dataset/limo', ground_truth_real_world, get_transforms())
+dataset_real_world = Dataset('backbone_model/real_world_dataset/video', ground_truth_real_world, get_transforms())
 
 #make list of same size as dataset and randomize order
 indices = torch.randperm(len(dataset)).tolist()
 dataset = torch.utils.data.Subset(dataset, indices[:-TEST_SIZE]) 
 #assign subset of last 50 of list for test
 dataset_test = torch.utils.data.Subset(dataset_test, indices[-TEST_SIZE:])
+
+real_world_indices = torch.randperm(len(dataset_real_world)).tolist()
+dataset_real_world = torch.utils.data.Subset(dataset_real_world, real_world_indices[:]) 
 
 # dataset = torch.utils.data.Subset(dataset, indices[:50])
 # dataset_test = torch.utils.data.Subset(dataset_test, indices[-50:])

@@ -32,7 +32,7 @@ def train_real_world():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=1e-3,
+        lr=1e-4,
     )
 
     #adjusts learning rate,
@@ -44,7 +44,7 @@ def train_real_world():
     )
 
     #number of epochs
-    num_epochs = 50 # try 45
+    num_epochs = 100 # try 45
     start_epoch = 0
 
     best_val_loss = float("inf")

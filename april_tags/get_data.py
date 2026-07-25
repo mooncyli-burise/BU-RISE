@@ -1,6 +1,7 @@
 import cv2
 import os
 import sys
+import re
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from pupil_apriltags import Detector
@@ -15,10 +16,11 @@ detector = Detector(families='tag36h11',
                         decode_sharpening=0.25,
                         debug=0)
 
-def get_apriltag_video(image):
+def get_apriltag_video(image, tag_size = TAG_SIZE):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    downscaled = cv2.resize(image, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
 
-    tags = detector.detect(image, True, CAMERA_PARAMS, TAG_SIZE)
+    tags = detector.detect(downscaled, True, CAMERA_PARAMS, tag_size)
     # print(tags)
 
     # show_video_tags(tags, image)
@@ -35,11 +37,28 @@ def get_apriltag_images(sequence_folder, tag_size = TAG_SIZE):
         print("No images with valid EXIF timestamps were found.")
         return []
 
+    image_files = sorted(
+        image_files,
+        key=lambda filename: int(
+            re.search(r"(\d+)(?=\.[^.]+$)", filename).group(1)
+        ),
+    )
+
     all_tags = []
 
     for file in image_files:
         image = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
-        downscaled = cv2.resize(image, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
+
+        height, width = image.shape[:2]   # 720, 1280
+
+        # TODO: turn this into a function
+        crop_width = 960
+        x_start = (width - crop_width) // 2   # 160
+        x_end = x_start + crop_width          # 1120
+
+        cropped = image[:, x_start:x_end]
+
+        downscaled = cv2.resize(cropped, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
         tags = detector.detect(downscaled, True, CAMERA_PARAMS, tag_size)
 
         for i, tag in enumerate(tags):
@@ -47,12 +66,14 @@ def get_apriltag_images(sequence_folder, tag_size = TAG_SIZE):
 
         # print(tags)
 
-        show_image_tags(tags, downscaled)
+        # show_image_tags(tags, downscaled)
 
         all_tags.append(tags)
  
     # When everything done, release the capture
     cv2.destroyAllWindows()
+
+    # TODO: make it save to a json file
     return all_tags
 
 def show_image_tags(tags, image):

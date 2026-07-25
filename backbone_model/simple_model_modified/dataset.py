@@ -28,6 +28,13 @@ class Dataset(torch.utils.data.Dataset):
             raise FileNotFoundError(f"Could not read image: {image_path}")
 
         if image.shape[:2] != (HEIGHT, WIDTH):  # (height, width)
+            # TODO: turn this into a function
+            height, width = image.shape[:2]
+            crop_width = width * 3 // 4
+            x_start = (width - crop_width) // 2   # 160
+            x_end = x_start + crop_width          # 1120
+    
+            cropped = image[:, x_start:x_end]
             image = cv2.resize(image, (WIDTH, HEIGHT), interpolation=cv2.INTER_AREA)
         
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

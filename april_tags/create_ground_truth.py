@@ -7,7 +7,7 @@ def create_ground_truth(all_tags):
 
     for tags in all_tags:
         if(len(tags)>0):
-            cx, cy = tags[0].center.astype(int)
+            cx, cy = tags[0].center
             cx, cy = normalize_coords(cx, cy, False, APRILTAG_WIDTH, APRILTAG_HEIGHT)
             print("cx:", cx, "cy:", cy)
             rotation_matrix = tags[0].pose_R
@@ -21,6 +21,10 @@ def create_ground_truth(all_tags):
         else:
             print("No tag")
             print()
+            ground_truth.append({
+                "center": (0, 0),
+                "orientation": 0
+            })
     return ground_truth
 
 def create_ground_truth_vid(tags):
