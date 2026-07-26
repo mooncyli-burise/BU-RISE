@@ -1,8 +1,8 @@
 import torch
 
 from simple_testing.og.simple_model_objects import data_loader, device
-from simplified_dataset.simple_model.model import GridNet
-from simplified_dataset.simple_model.pose_loss import PoseLossFunction
+from old_models.simplified_dataset.simple_model.model import GridNet
+from old_models.simplified_dataset.simple_model.pose_loss import PoseLossFunction
 
 def test():
     torch.manual_seed(0)

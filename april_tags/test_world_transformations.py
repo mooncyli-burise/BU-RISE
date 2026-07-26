@@ -1,10 +1,10 @@
-from april_tags.get_data import get_apriltag_images
+from april_tags.get_data import get_apriltag_by_folders
 from april_tags.world_frame_transformations import get_world_coords, plot_camera_frame, plot_world_frame, plot_coords
 import numpy as np
 import matplotlib.pyplot as plt
 
 def test_world_transformations():
-    all_tags = get_apriltag_images('april_tags/test')
+    all_tags = get_apriltag_by_folders('april_tags/test')
         
     for image_tags in all_tags:
         for tag in image_tags:
@@ -22,7 +22,7 @@ def test_world_transformations():
     plt.show()
 
 def test_multiple_tags():
-    tags = get_apriltag_images('april_tags/test')
+    tags = get_apriltag_by_folders('april_tags/test')
 
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111, projection="3d")

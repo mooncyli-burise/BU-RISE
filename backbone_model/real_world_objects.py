@@ -4,8 +4,8 @@ import os
 from config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import json
 import cv2
-from simplified_dataset.simple_model.transforms import get_transforms
-from april_tags.get_data import get_apriltag_images
+from old_models.simplified_dataset.simple_model.transforms import get_transforms
+from april_tags.get_data import get_apriltag_by_folders
 from april_tags.create_ground_truth import create_ground_truth
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
@@ -18,9 +18,9 @@ ground_truth = []
 with open("backbone_model/real_world_dataset/ground_truth.json", "r") as file:
     ground_truth = json.load(file)
 
-# TODO: make it save into a json file
-ground_truth_real_world = create_ground_truth(get_apriltag_images('backbone_model/real_world_dataset/video', TAG_SIZE_LIMO))
-print(ground_truth_real_world)
+ground_truth_real_world = []
+with open("backbone_model/real_world_dataset/video/ground_truth.json", "r") as file:
+    ground_truth_real_world = json.load(file)
 
 # GridNet uses fixed-size images and scalar class targets, so the default
 # DataLoader collation produces image batches [B, C, H, W] and targets [B].

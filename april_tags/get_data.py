@@ -7,6 +7,7 @@ import numpy as np
 from pupil_apriltags import Detector
 from config import CAMERA_PARAMS, TAG_SIZE, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import math
+from util.files import get_sorted_files, crop_to_ratio
 
 detector = Detector(families='tag36h11',
                         nthreads=1,
@@ -16,7 +17,7 @@ detector = Detector(families='tag36h11',
                         decode_sharpening=0.25,
                         debug=0)
 
-def get_apriltag_video(image, tag_size = TAG_SIZE):
+def get_apriltag_by_image(image, tag_size = TAG_SIZE):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     downscaled = cv2.resize(image, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
 
@@ -27,22 +28,8 @@ def get_apriltag_video(image, tag_size = TAG_SIZE):
 
     return tags
 
-def get_apriltag_images(sequence_folder, tag_size = TAG_SIZE):
-    image_files = []
-
-    for file_name in os.listdir(sequence_folder):
-        if file_name.lower().endswith(('.jpg', '.jpeg', '.png')):
-            image_files.append(os.path.join(sequence_folder, file_name))
-    if not image_files:
-        print("No images with valid EXIF timestamps were found.")
-        return []
-
-    image_files = sorted(
-        image_files,
-        key=lambda filename: int(
-            re.search(r"(\d+)(?=\.[^.]+$)", filename).group(1)
-        ),
-    )
+def get_apriltag_by_folders(sequence_folder, tag_size = TAG_SIZE):
+    image_files = get_sorted_files(sequence_folder)
 
     all_tags = []
 
@@ -51,12 +38,7 @@ def get_apriltag_images(sequence_folder, tag_size = TAG_SIZE):
 
         height, width = image.shape[:2]   # 720, 1280
 
-        # TODO: turn this into a function
-        crop_width = 960
-        x_start = (width - crop_width) // 2   # 160
-        x_end = x_start + crop_width          # 1120
-
-        cropped = image[:, x_start:x_end]
+        cropped = crop_to_ratio(image)
 
         downscaled = cv2.resize(cropped, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
         tags = detector.detect(downscaled, True, CAMERA_PARAMS, tag_size)

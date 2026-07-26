@@ -1,17 +1,45 @@
 import numpy as np
-from april_tags.get_data import get_apriltag_images
-from config import TAG_SIZE, WIDTH, HEIGHT
+from april_tags.get_data import get_apriltag_by_image
+from config import TAG_SIZE, WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import cv2
 
-def get_homography():
-    all_tags = get_apriltag_images('april_tags/init') # input initialization april tag image here
-    return all_tags[0][0].homography
+image = cv2.imread('april_tags/init/initialization_apriltag.jpg')
+all_tags = get_apriltag_by_image(image) # input initialization april tag image here
+H = all_tags[0].homography
+
+def show_homography_grid(image):
+    spacing = 0.25      # meters
+    extent = 2.0        # draw from -2m to 2m
+
+    for X in np.arange(-extent, extent + spacing, spacing):
+        for Y in np.arange(-extent, extent + spacing, spacing):
+
+            p_world = np.array([X, Y, 1.0])
+
+            p_img = H @ p_world
+            p_img /= p_img[2]
+            p_img /= TAG_SIZE/2
+
+            u = int(p_img[0])
+            v = int(p_img[1])
+
+            #downscale for 160x120 TODO: CHANGE IF USED FOR 640x480 IMAGES
+            u //= 4
+            v //= 4
+
+            print("homography point:", (u,v))
+
+            if 0 <= u < image.shape[1] and 0 <= v < image.shape[0]:
+                cv2.circle(image, (u, v), 2, (0,255,0), -1)
+
+    return image
 
 def get_world_coords(x,y):
-    H = get_homography()
-
+    if 0<=x<=1 and 0<=y<=1:
+        x *= APRILTAG_WIDTH
+        y *= APRILTAG_HEIGHT
     p = np.array([x, y, 1.0])
 
     world = np.linalg.inv(H) @ p
@@ -153,7 +181,8 @@ def print_transformations(pixel_coords, world_coords):
     plt.show()
 
 def get_rotation_and_translation_matrix():
-    all_tags = get_apriltag_images('april_tags/init') # input initialization april tag image here
+    image = cv2.imread('april_tags/init/initialization_apriltag.jpg')
+    all_tags = get_apriltag_by_image(image) # input initialization april tag image here
     return all_tags[0][0].pose_R, all_tags[0][0].pose_t
 
 def show_homography_view(frame, H):
