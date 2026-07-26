@@ -21,6 +21,9 @@ def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finet
         )
         model.load_state_dict(state_dict)
         model.to(device)
+        save_file_name = "finetuning_model"
+    else:
+        save_file_name = "initial_training_model"
 
     center_criterion = CenterLossFunction().to(device)
     orientation_criterion = OrientationLossFunction().to(device)
@@ -65,7 +68,7 @@ def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finet
 
     if checkpoint:
         #train from checkpoint
-        checkpoint = torch.load("backbone_model/finetuning_checkpoint.pth", map_location=device)
+        checkpoint = torch.load("backbone_model/"+save_file_name+"_checkpoint.pth", map_location=device)
 
         model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -123,7 +126,7 @@ def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finet
         #save best weights of model based on validation loss
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), "backbone_model/best_finetuning_model.pth")
+            torch.save(model.state_dict(), "backbone_model/best_"+save_file_name+".pth")
             print(f"Saved best model (val loss = {val_loss:.4f})")
 
         #save checkpoint of model, optimizer, and lr scheduler states
@@ -135,7 +138,7 @@ def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finet
             "best_val_loss": best_val_loss,
             "train_losses": train_losses,
             "val_losses": val_losses,
-        }, "backbone_model/finetuning_checkpoint.pth")
+        }, "backbone_model/"+save_file_name+"_checkpoint.pth")
 
     epochs = range(1, len(train_losses) + 1)
 
