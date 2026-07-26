@@ -5,7 +5,7 @@ import math
 from backbone_model.simple_model_objects_modified import device
 from backbone_model.simple_model_modified.model import GridNet
 
-from april_tags.get_data import get_apriltag_video
+from april_tags.get_data import get_apriltag_by_image
 from april_tags.create_ground_truth import create_ground_truth_vid
 
 from pure_pursuit import pure_pursuit
@@ -42,7 +42,7 @@ def update(path, lookahead, model_path):
         image = image.to(device)
         image = image.unsqueeze(0)
 
-        gt = create_ground_truth_vid(get_apriltag_video(frame_rgb))
+        gt = create_ground_truth_vid(get_apriltag_by_image(frame_rgb))
 
         # print("center:", gt[0]["center"])
         # print("angle:", gt[0]["orientation"])

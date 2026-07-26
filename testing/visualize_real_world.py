@@ -5,6 +5,7 @@ import numpy as np
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.real_world_objects import device, dataset_test, dataset_real_world
 from config import WIDTH, HEIGHT
+from april_tags.world_frame_transformations import get_world_coords, show_homography_grid
 
 def visualize(model_path):
     # idx = 0  # choose any sample
@@ -15,7 +16,7 @@ def visualize(model_path):
     model.to(device)
     model.eval()
 
-    for idx in range(10):
+    for idx in range(20):
         # Get sample
         image, target = dataset_real_world[idx]
 
@@ -84,7 +85,10 @@ def visualize(model_path):
             print("Center Error:", torch.norm(pred_center-gt_center))
             print("Orientation Error:", orientation_error*5)
 
+        #TODO: make function for displaying center points
         cx, cy = pred_center.cpu().tolist()
+        pred_world = get_world_coords(cx, cy)
+        print("Predicted World Coords:", pred_world)
 
         # cv2.putText(img,
         #             f"{pred_orientation*5} deg",
@@ -108,6 +112,9 @@ def visualize(model_path):
             # show actual center point (green)
             cx, cy = gt_center.cpu().tolist()
 
+            gt_world = get_world_coords(cx, cy)
+            print("Actual World Coords:", gt_world)
+
             cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 255, 0), thickness=-1)
             cv2.putText(img,
                         f"({cx}, {cy}",
@@ -120,8 +127,44 @@ def visualize(model_path):
 
         # Display image
         #cv2.imshow("Robot Detection", img_bgr)
+        
+        # adds grid to image
+        # img = show_homography_grid(img)
 
-        plt.figure()
+        plt.figure("Image")
         plt.imshow(img, aspect="equal")
         plt.axis("off")
+        # plt.show()
+
+        # #show world coords
+        # plt.figure("World Coordinates")
+
+        # # Predicted robot
+        # plt.scatter(
+        #     pred_world[0],
+        #     pred_world[1],
+        #     color="red",
+        #     s=80,
+        #     label="Prediction",
+        # )
+
+        # # Ground truth robot
+        # plt.scatter(
+        #     gt_world[0],
+        #     gt_world[1],
+        #     color="green",
+        #     s=80,
+        #     label="Ground Truth",
+        # )
+
+        # plt.xlabel("X (m)")
+        # plt.ylabel("Y (m)")
+        # plt.title("Robot Position in World Frame")
+        # plt.grid(True)
+        # plt.axis("equal")
+        # plt.legend()
+
+        # plt.xlim(-5, 5)
+        # plt.ylim(-5, 5)
+
         plt.show()

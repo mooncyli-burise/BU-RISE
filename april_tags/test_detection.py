@@ -1,6 +1,6 @@
 import torch
 import cv2
-from april_tags.get_data import get_apriltag_video, get_apriltag_images
+from april_tags.get_data import get_apriltag_by_image, get_apriltag_by_folders
 from april_tags.create_ground_truth import create_ground_truth
 
 def test_video_detection():
@@ -22,7 +22,7 @@ def test_video_detection():
         image = image.float() / 255.0
         # images = [image]
 
-        tags = get_apriltag_video(frame)
+        tags = get_apriltag_by_image(frame)
         if tags:
             print("Translation:")
             print(tags[0].pose_t)
@@ -42,7 +42,7 @@ def test_video_detection():
     
 
 def test_image_detection(folder_path):
-    all_tags = get_apriltag_images(folder_path)
+    all_tags = get_apriltag_by_folders(folder_path)
     print(len(all_tags))
     print("tee es pose: ", all_tags[0][0].pose_t, "\n")
     print("rut ruh:", all_tags[0][0].pose_R, "\n")

@@ -5,9 +5,9 @@ import math
 from backbone_model.simple_model_objects_modified import device, data_loader, data_loader_test
 from backbone_model.simple_model_modified.model import GridNet
 
-from april_tags.get_data import get_apriltag_video
+from april_tags.get_data import get_apriltag_by_image
 from april_tags.create_ground_truth import create_ground_truth_vid
-from april_tags.world_frame_transformations import get_world_coords
+from april_tags.world_frame_transformations import get_world_coords, show_homography_grid
 
 from config import WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
 
@@ -20,6 +20,10 @@ def detect_predict(model_path, homography = False):
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, APRILTAG_WIDTH)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, APRILTAG_HEIGHT)
+
+    #TODO: make sure it isnt squishing the frame
+    print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))   
 
     #init cam
     if not cap.isOpened():
@@ -41,7 +45,7 @@ def detect_predict(model_path, homography = False):
         image = image.to(device)
         image = image.unsqueeze(0)
 
-        gt = create_ground_truth_vid(get_apriltag_video(frame_rgb))
+        gt = create_ground_truth_vid(get_apriltag_by_image(frame_rgb))
 
         # print("center:", gt[0]["center"])
         # print("angle:", gt[0]["orientation"])
@@ -156,6 +160,14 @@ def detect_predict(model_path, homography = False):
                         0.6,
                         (0,255,0),
                         2)
+
+        if homography:
+            pred_world = get_world_coords(pred_center[0], pred_center[1])
+            gt_world = get_world_coords(gt_center[0], gt_center[1])
+            print("Predicted World Coordinates:", pred_world)
+            print("Actual World Coordinates", gt_world)
+
+            frame = show_homography_grid(frame)
         
         cv2.imshow("Robot Detection", frame)
 
