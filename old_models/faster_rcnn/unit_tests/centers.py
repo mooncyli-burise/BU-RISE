@@ -1,6 +1,6 @@
 import torch
 import torch.nn.functional as F
-from faster_rcnn.model.robot_pred import RobotPredictor
+from old_models.faster_rcnn.model.robot_pred import RobotPredictor
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 
 def test_center_head_can_learn_two_centers():

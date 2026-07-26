@@ -4,7 +4,7 @@ import os
 from config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import json
 import cv2
-from simplified_dataset.simple_model.transforms import get_transforms
+from old_models.simplified_dataset.simple_model.transforms import get_transforms
 from april_tags.get_data import get_apriltag_by_folders
 from april_tags.create_ground_truth import create_ground_truth
 

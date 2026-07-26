@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 import numpy as np
 import pycocotools.mask as mask_util
 import torch
-from faster_rcnn.model.library_model_functions import utils
+from old_models.faster_rcnn.model.library_model_functions import utils
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 

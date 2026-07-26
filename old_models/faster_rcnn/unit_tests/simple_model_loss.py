@@ -1,6 +1,6 @@
 import torch
 
-from simplified_dataset.simple_model.pose_loss import PoseLossFunction
+from old_models.simplified_dataset.simple_model.pose_loss import PoseLossFunction
 
 
 def test_pose_loss_is_zero_for_perfect_prediction():

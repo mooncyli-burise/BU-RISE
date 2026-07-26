@@ -1,6 +1,6 @@
 import torch
 import matplotlib.pyplot as plt
-from backbone_model.simple_model_objects_modified import device, data_loader, data_loader_test
+from backbone_model.real_world_objects import device
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
@@ -8,9 +8,19 @@ from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, 
 import numpy as np
 from backbone_model.simple_model_modified.training import train_one_epoch
 from backbone_model.simple_model_modified.eval import eval
+from backbone_model.simple_model_modified.val_accuracy import calculate_val_accuracy
 
-def train_simple():
+def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finetuning = False, checkpoint = False):
+    print("training model with real world data")
     model = GridNet().to(device)
+
+    if finetuning:
+        state_dict = torch.load(
+            "backbone_model/best_model_5000imgs.pth",
+            map_location=device,   # or "cpu"
+        )
+        model.load_state_dict(state_dict)
+        model.to(device)
 
     center_criterion = CenterLossFunction().to(device)
     orientation_criterion = OrientationLossFunction().to(device)
@@ -23,7 +33,7 @@ def train_simple():
     #weight decay is multiplier for penalty term added to loss, prevents from overfitting by favoring lower weights->simpler models
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=1e-3,
+        lr=lr,
     )
 
     #adjusts learning rate,
@@ -35,7 +45,7 @@ def train_simple():
     )
 
     #number of epochs
-    num_epochs = 50 # try 45
+    # num_epochs = 50 # try 45
     start_epoch = 0
 
     best_val_loss = float("inf")
@@ -53,19 +63,20 @@ def train_simple():
     orientation_train_losses = []
     class_train_losses = []
 
-    # #train from checkpoint
-    # checkpoint = torch.load("backbone_model/simple_checkpoint.pth", map_location=device)
+    if checkpoint:
+        #train from checkpoint
+        checkpoint = torch.load("backbone_model/finetuning_checkpoint.pth", map_location=device)
 
-    # model.load_state_dict(checkpoint["model_state_dict"])
-    # optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    # lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
-    # best_val_loss = checkpoint.get("best_val_loss", float("inf"))
-    # train_losses = checkpoint.get("train_losses", [])
-    # val_losses = checkpoint.get("val_losses", [])
+        model.load_state_dict(checkpoint["model_state_dict"])
+        optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+        lr_scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+        best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+        train_losses = checkpoint.get("train_losses", [])
+        val_losses = checkpoint.get("val_losses", [])
 
-    # start_epoch = checkpoint["epoch"] + 1
+        start_epoch = checkpoint["epoch"] + 1
 
-    # model.to(device)
+        model.to(device)
 
     # GridNet predicts one of 64 joint classes: 16 grid cells * 4 orientations.
     for epoch in range(start_epoch, num_epochs):
@@ -77,11 +88,10 @@ def train_simple():
         orientation_train_losses.append(orientation_loss)
         class_train_losses.append(class_loss)
 
-        accuracy, pose_accuracy, orientation_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
+        accuracy, pose_accuracy, orientation_accuracy, class_accuracy, center_error, orientation_error = eval(model, data_loader_test, device)
         all_center_error += center_error
-        all_orientation_error += orientation_error
+        all_orientation_error += orientation_error * 5
     
-        # calculate avg validation loss and avg loss for each detection head (class, center, orientation)
         # calculate avg validation loss and avg loss for each detection head (class, center, orientation)
         val_loss, ce_loss, center_loss, orientation_loss, class_loss = calculate_val_accuracy(model, device, data_loader_test, class_criterion, center_criterion, orientation_criterion)
 
@@ -99,7 +109,8 @@ def train_simple():
             f"val loss {val_loss:.4f}, "
             f"val accuracy {accuracy:.3f}, "
             f"Pose accuracy: {pose_accuracy:.3f}, "
-            f"Orientation accuracy: {orientation_accuracy:.3f}"
+            f"Orientation accuracy: {orientation_accuracy:.3f}, "
+            f"Class accuracy: {class_accuracy:.3f}"
         )
 
         print(
@@ -112,7 +123,7 @@ def train_simple():
         #save best weights of model based on validation loss
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), "backbone_model/simple_best_robot_detector.pth")
+            torch.save(model.state_dict(), "backbone_model/best_finetuning_model.pth")
             print(f"Saved best model (val loss = {val_loss:.4f})")
 
         #save checkpoint of model, optimizer, and lr scheduler states
@@ -124,7 +135,7 @@ def train_simple():
             "best_val_loss": best_val_loss,
             "train_losses": train_losses,
             "val_losses": val_losses,
-        }, "backbone_model/simple_checkpoint.pth")
+        }, "backbone_model/finetuning_checkpoint.pth")
 
     epochs = range(1, len(train_losses) + 1)
 
