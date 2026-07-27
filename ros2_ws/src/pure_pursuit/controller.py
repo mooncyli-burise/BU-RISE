@@ -1,6 +1,6 @@
 import math
 
-from ros2_ws.src.pure_pursuit.utils import pt_to_pt_distance, sgn
+from pure_pursuit.utils import pt_to_pt_distance, sgn
 
 """
 credit to purdue sigbots for pure pursuit function

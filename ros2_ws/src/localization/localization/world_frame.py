@@ -33,17 +33,7 @@ class WorldFrame:
         pixel = self.H @ p
         pixel /= pixel[2]
     
-        return pixel[:2] / (config.TAG_SIZE/2)
-
-    def round_trip_test(self):
-        pixel = np.array([350, 200])
-
-        world = self.pixel_to_world(pixel)
-
-        pixel2 = self.world_to_pixel(world)
-
-        print(pixel)
-        print(pixel2)
+        return pixel[:2] / (config.TAG_SIZE/2)        
 
     def plot_homography_grid(self):
         return
