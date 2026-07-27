@@ -17,6 +17,7 @@ detector = Detector(families='tag36h11',
                         decode_sharpening=0.25,
                         debug=0)
 
+# returns list of tags in image
 def get_apriltag_by_image(image, tag_size = TAG_SIZE):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     downscaled = cv2.resize(image, (APRILTAG_WIDTH, APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)

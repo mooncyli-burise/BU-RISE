@@ -1,8 +1,9 @@
+# TODO: possibly delete
+
 import numpy as np
 from april_tags.get_data import get_apriltag_by_image
 from config import TAG_SIZE, WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 import cv2
 
 image = cv2.imread('april_tags/init/initialization_apriltag.jpg')

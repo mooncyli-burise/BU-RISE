@@ -59,6 +59,7 @@ def create_ground_truth_vid(tags):
         orientation = math.atan2(rotation_matrix[1,0], rotation_matrix[0,0]) * 180 / math.pi
         ground_truth.append({
             "center": (cx, cy),
-            "orientation": orientation
+            "orientation": orientation,
+            "class": 1
         })
     return ground_truth
