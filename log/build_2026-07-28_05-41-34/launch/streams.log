@@ -1,0 +1,21 @@
+[18.630s] Invoking command in '/workspace/ros2_ws/src/launch': PYTHONPATH=/workspace/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/launch build --build-base /workspace/build/launch/build install --record /workspace/build/launch/install.log --install-scripts $base/lib/launch --single-version-externally-managed install_data
+[22.841s] running egg_info
+[22.846s] writing ../../../build/launch/launch.egg-info/PKG-INFO
+[22.853s] writing dependency_links to ../../../build/launch/launch.egg-info/dependency_links.txt
+[22.861s] writing entry points to ../../../build/launch/launch.egg-info/entry_points.txt
+[22.866s] writing requirements to ../../../build/launch/launch.egg-info/requires.txt
+[22.870s] writing top-level names to ../../../build/launch/launch.egg-info/top_level.txt
+[22.896s] reading manifest file '../../../build/launch/launch.egg-info/SOURCES.txt'
+[22.907s] adding license file 'LICENSE'
+[22.908s] writing manifest file '../../../build/launch/launch.egg-info/SOURCES.txt'
+[22.914s] running build
+[22.917s] running build_py
+[22.923s] running install
+[22.926s] running install_lib
+[22.946s] running install_data
+[22.968s] running install_egg_info
+[22.988s] removing '/workspace/install/launch/lib/python3.10/site-packages/launch-0.0.0-py3.10.egg-info' (and everything under it)
+[23.012s] Copying ../../../build/launch/launch.egg-info to /workspace/install/launch/lib/python3.10/site-packages/launch-0.0.0-py3.10.egg-info
+[23.182s] running install_scripts
+[23.283s] writing list of installed files to '/workspace/build/launch/install.log'
+[23.534s] Invoked command in '/workspace/ros2_ws/src/launch' returned '0': PYTHONPATH=/workspace/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/launch build --build-base /workspace/build/launch/build install --record /workspace/build/launch/install.log --install-scripts $base/lib/launch --single-version-externally-managed install_data

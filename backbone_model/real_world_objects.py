@@ -1,7 +1,7 @@
 import torch
 from backbone_model.simple_model_modified.dataset import Dataset
 import os
-from config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
+from ros2_ws.src.localization.localization.config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import json
 import cv2
 from old_models.simplified_dataset.simple_model.transforms import get_transforms

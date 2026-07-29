@@ -1,0 +1,53 @@
+[0.000000] (-) TimerEvent: {}
+[0.010522] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.013267] (pure_pursuit) JobQueued: {'identifier': 'pure_pursuit', 'dependencies': OrderedDict()}
+[0.026313] (robot_sim) JobQueued: {'identifier': 'robot_sim', 'dependencies': OrderedDict()}
+[0.028737] (localization) JobStarted: {'identifier': 'localization'}
+[0.106574] (-) TimerEvent: {}
+[0.209188] (-) TimerEvent: {}
+[0.217528] (pure_pursuit) JobStarted: {'identifier': 'pure_pursuit'}
+[0.320360] (-) TimerEvent: {}
+[0.377089] (robot_sim) JobStarted: {'identifier': 'robot_sim'}
+[0.425060] (-) TimerEvent: {}
+[0.538007] (-) TimerEvent: {}
+[0.641613] (-) TimerEvent: {}
+[0.744168] (-) TimerEvent: {}
+[0.847226] (-) TimerEvent: {}
+[0.949111] (-) TimerEvent: {}
+[1.051143] (-) TimerEvent: {}
+[1.162655] (-) TimerEvent: {}
+[1.264693] (-) TimerEvent: {}
+[1.372412] (-) TimerEvent: {}
+[1.486228] (-) TimerEvent: {}
+[1.599494] (-) TimerEvent: {}
+[1.721292] (-) TimerEvent: {}
+[1.833282] (-) TimerEvent: {}
+[1.935150] (-) TimerEvent: {}
+[2.053737] (-) TimerEvent: {}
+[2.188135] (-) TimerEvent: {}
+[2.299026] (-) TimerEvent: {}
+[2.401988] (-) TimerEvent: {}
+[2.549449] (-) TimerEvent: {}
+[2.561344] (localization) StderrLine: {'line': b'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/colcon_core/executor/__init__.py", line 91, in __call__\n    rc = await self.task(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/__init__.py", line 120, in __call__\n    return await task_method(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_ros/task/ament_python/build.py", line 51, in build\n    setup_py_data = get_setup_data(self.context.pkg, env)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/python/__init__.py", line 20, in get_setup_data\n    return dict(pkg.metadata[key](env))\n  File "/usr/lib/python3/dist-packages/colcon_ros/package_augmentation/ros_ament_python.py", line 57, in getter\n    return get_setup_information(\n  File "/usr/lib/python3/dist-packages/colcon_python_setup_py/package_identification/python_setup_py.py", line 249, in get_setup_information\n    _setup_information_cache[hashable_env] = _get_setup_information(\n  File "/usr/lib/python3/dist-packages/colcon_python_setup_py/package_identification/python_setup_py.py", line 296, in _get_setup_information\n    result = subprocess.run(\n  File "/usr/lib/python3.10/subprocess.py", line 526, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command \'[\'/usr/bin/python3\', \'-c\', \'import sys;from contextlib import suppress;exec("with suppress(ImportError):    from setuptools.extern.packaging.specifiers    import SpecifierSet");exec("with suppress(ImportError):    from packaging.specifiers import SpecifierSet");from distutils.core import run_setup;dist = run_setup(    \\\'setup.py\\\', script_args=(\\\'--dry-run\\\',), stop_after=\\\'config\\\');skip_keys = (\\\'cmdclass\\\', \\\'distclass\\\', \\\'ext_modules\\\', \\\'metadata\\\');data = {    key: value for key, value in dist.__dict__.items()     if (        not key.startswith(\\\'_\\\') and         not callable(value) and         key not in skip_keys and         key not in dist.display_option_names    )};data[\\\'metadata\\\'] = {    k: v for k, v in dist.metadata.__dict__.items()     if k not in (\\\'license_files\\\', \\\'provides_extras\\\')};sys.stdout.buffer.write(repr(data).encode(\\\'utf-8\\\'))\']\' returned non-zero exit status 1.\n'}
+[2.579321] (localization) JobEnded: {'identifier': 'localization', 'rc': 1}
+[2.657355] (-) TimerEvent: {}
+[2.762040] (-) TimerEvent: {}
+[2.876378] (-) TimerEvent: {}
+[2.984531] (-) TimerEvent: {}
+[3.106602] (-) TimerEvent: {}
+[3.210001] (-) TimerEvent: {}
+[3.311109] (-) TimerEvent: {}
+[3.416638] (-) TimerEvent: {}
+[3.523023] (-) TimerEvent: {}
+[3.625532] (-) TimerEvent: {}
+[3.728061] (-) TimerEvent: {}
+[3.830565] (-) TimerEvent: {}
+[3.931958] (-) TimerEvent: {}
+[4.035978] (-) TimerEvent: {}
+[4.138007] (-) TimerEvent: {}
+[4.243941] (-) TimerEvent: {}
+[4.345179] (-) TimerEvent: {}
+[4.447807] (-) TimerEvent: {}
+[4.455370] (pure_pursuit) JobEnded: {'identifier': 'pure_pursuit', 'rc': 'SIGINT'}
+[4.460202] (robot_sim) JobEnded: {'identifier': 'robot_sim', 'rc': 'SIGINT'}
+[4.470429] (-) EventReactorShutdown: {}

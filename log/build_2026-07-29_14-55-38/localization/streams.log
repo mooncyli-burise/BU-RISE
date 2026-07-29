@@ -1,0 +1,35 @@
+[6.320s] Invoking command in '/workspace/ros2_ws/src/localization': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data
+[7.286s] running egg_info
+[7.289s] writing ../../../build/localization/localization.egg-info/PKG-INFO
+[7.291s] writing dependency_links to ../../../build/localization/localization.egg-info/dependency_links.txt
+[7.297s] writing entry points to ../../../build/localization/localization.egg-info/entry_points.txt
+[7.298s] writing requirements to ../../../build/localization/localization.egg-info/requires.txt
+[7.305s] writing top-level names to ../../../build/localization/localization.egg-info/top_level.txt
+[7.351s] reading manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[7.355s] adding license file 'LICENSE'
+[7.361s] writing manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[7.363s] running build
+[7.371s] running build_py
+[7.385s] running install
+[7.390s] running install_lib
+[7.409s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py to apriltag_node.cpython-310.pyc
+[7.441s]   File "/workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py", line 30
+[7.445s]     pred_center = 0, pred_orientation = 0, pred_class = 0
+[7.448s]     ^^^^^^^^^^^^^^^
+[7.451s] SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+[7.455s] 
+[7.458s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py to localization_node.cpython-310.pyc
+[7.474s]   File "/workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py", line 37
+[7.479s]     gt_center = 0, gt_orientation = 0, gt_class = 0
+[7.481s]     ^^^^^^^^^^^^^
+[7.483s] SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+[7.484s] 
+[7.487s] running install_data
+[7.495s] running install_egg_info
+[7.506s] removing '/workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)
+[7.515s] Copying ../../../build/localization/localization.egg-info to /workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info
+[7.562s] running install_scripts
+[7.623s] Installing apriltag_node script to /workspace/install/localization/lib/localization
+[7.626s] Installing localization_node script to /workspace/install/localization/lib/localization
+[7.642s] writing list of installed files to '/workspace/build/localization/install.log'
+[7.725s] Invoked command in '/workspace/ros2_ws/src/localization' returned '0': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data

@@ -1,7 +1,7 @@
 import torch
 from backbone_model.simple_model_modified.dataset import Dataset
 import os
-from config import DATA_DIR, TEST_SIZE
+from ros2_ws.src.localization.localization.config import DATA_DIR, TEST_SIZE
 import json
 from old_models.simplified_dataset.simple_model.transforms import get_transforms
 

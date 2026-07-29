@@ -1,0 +1,264 @@
+[0.000000] (-) TimerEvent: {}
+[0.005756] (launch) JobQueued: {'identifier': 'launch', 'dependencies': OrderedDict()}
+[0.006871] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.009408] (pure_pursuit) JobQueued: {'identifier': 'pure_pursuit', 'dependencies': OrderedDict()}
+[0.010610] (launch) JobStarted: {'identifier': 'launch'}
+[0.087629] (-) TimerEvent: {}
+[0.194401] (-) TimerEvent: {}
+[0.301305] (-) TimerEvent: {}
+[0.569208] (localization) JobStarted: {'identifier': 'localization'}
+[0.570231] (-) TimerEvent: {}
+[0.636857] (pure_pursuit) JobStarted: {'identifier': 'pure_pursuit'}
+[0.671607] (-) TimerEvent: {}
+[0.773298] (-) TimerEvent: {}
+[0.875300] (-) TimerEvent: {}
+[0.977295] (-) TimerEvent: {}
+[1.078930] (-) TimerEvent: {}
+[1.185992] (-) TimerEvent: {}
+[1.295396] (-) TimerEvent: {}
+[1.401438] (-) TimerEvent: {}
+[1.509356] (-) TimerEvent: {}
+[1.611420] (-) TimerEvent: {}
+[1.713311] (-) TimerEvent: {}
+[1.821232] (-) TimerEvent: {}
+[1.932957] (-) TimerEvent: {}
+[2.041412] (-) TimerEvent: {}
+[2.174697] (-) TimerEvent: {}
+[2.286498] (-) TimerEvent: {}
+[2.389354] (-) TimerEvent: {}
+[2.491550] (-) TimerEvent: {}
+[2.593429] (-) TimerEvent: {}
+[2.698194] (-) TimerEvent: {}
+[2.799357] (-) TimerEvent: {}
+[2.963902] (-) TimerEvent: {}
+[3.067405] (-) TimerEvent: {}
+[3.169560] (-) TimerEvent: {}
+[3.272487] (-) TimerEvent: {}
+[3.374493] (-) TimerEvent: {}
+[3.476704] (-) TimerEvent: {}
+[3.578458] (-) TimerEvent: {}
+[3.689517] (-) TimerEvent: {}
+[3.791342] (-) TimerEvent: {}
+[3.892401] (-) TimerEvent: {}
+[3.994372] (-) TimerEvent: {}
+[4.097095] (-) TimerEvent: {}
+[4.199286] (-) TimerEvent: {}
+[4.300745] (-) TimerEvent: {}
+[4.402969] (-) TimerEvent: {}
+[4.505641] (-) TimerEvent: {}
+[4.607446] (-) TimerEvent: {}
+[4.710200] (-) TimerEvent: {}
+[4.812359] (-) TimerEvent: {}
+[4.916076] (-) TimerEvent: {}
+[5.021357] (-) TimerEvent: {}
+[5.123317] (-) TimerEvent: {}
+[5.224558] (-) TimerEvent: {}
+[5.326477] (-) TimerEvent: {}
+[5.428276] (-) TimerEvent: {}
+[5.530323] (-) TimerEvent: {}
+[5.631258] (-) TimerEvent: {}
+[5.733327] (-) TimerEvent: {}
+[5.836349] (-) TimerEvent: {}
+[5.940478] (-) TimerEvent: {}
+[6.042336] (-) TimerEvent: {}
+[6.144448] (-) TimerEvent: {}
+[6.246638] (-) TimerEvent: {}
+[6.348284] (-) TimerEvent: {}
+[6.450408] (-) TimerEvent: {}
+[6.552580] (-) TimerEvent: {}
+[6.654254] (-) TimerEvent: {}
+[6.756226] (-) TimerEvent: {}
+[6.858790] (-) TimerEvent: {}
+[6.960235] (-) TimerEvent: {}
+[7.061344] (-) TimerEvent: {}
+[7.164420] (-) TimerEvent: {}
+[7.265310] (-) TimerEvent: {}
+[7.366524] (-) TimerEvent: {}
+[7.468295] (-) TimerEvent: {}
+[7.570392] (-) TimerEvent: {}
+[7.672469] (-) TimerEvent: {}
+[7.774547] (-) TimerEvent: {}
+[7.876589] (-) TimerEvent: {}
+[7.980232] (-) TimerEvent: {}
+[8.082012] (-) TimerEvent: {}
+[8.184725] (-) TimerEvent: {}
+[8.308186] (-) TimerEvent: {}
+[8.443109] (-) TimerEvent: {}
+[8.549867] (-) TimerEvent: {}
+[8.679797] (-) TimerEvent: {}
+[8.830773] (-) TimerEvent: {}
+[8.936093] (-) TimerEvent: {}
+[9.040309] (-) TimerEvent: {}
+[9.149480] (-) TimerEvent: {}
+[9.297883] (-) TimerEvent: {}
+[9.425278] (-) TimerEvent: {}
+[9.551593] (-) TimerEvent: {}
+[9.680875] (-) TimerEvent: {}
+[9.812662] (-) TimerEvent: {}
+[9.934571] (-) TimerEvent: {}
+[10.058600] (-) TimerEvent: {}
+[10.194341] (-) TimerEvent: {}
+[10.295687] (-) TimerEvent: {}
+[10.454480] (-) TimerEvent: {}
+[10.556875] (-) TimerEvent: {}
+[10.660539] (-) TimerEvent: {}
+[10.773025] (-) TimerEvent: {}
+[10.874871] (-) TimerEvent: {}
+[10.981434] (-) TimerEvent: {}
+[11.101349] (-) TimerEvent: {}
+[11.220509] (-) TimerEvent: {}
+[11.350860] (-) TimerEvent: {}
+[11.481605] (-) TimerEvent: {}
+[11.591699] (-) TimerEvent: {}
+[11.693686] (-) TimerEvent: {}
+[11.822300] (-) TimerEvent: {}
+[11.946977] (-) TimerEvent: {}
+[12.050911] (-) TimerEvent: {}
+[12.156668] (-) TimerEvent: {}
+[12.269529] (-) TimerEvent: {}
+[12.405012] (-) TimerEvent: {}
+[12.576591] (-) TimerEvent: {}
+[12.680453] (-) TimerEvent: {}
+[12.783996] (-) TimerEvent: {}
+[12.946230] (-) TimerEvent: {}
+[13.048336] (-) TimerEvent: {}
+[13.164758] (-) TimerEvent: {}
+[13.290971] (-) TimerEvent: {}
+[13.455672] (-) TimerEvent: {}
+[13.591486] (-) TimerEvent: {}
+[13.717465] (-) TimerEvent: {}
+[13.823473] (-) TimerEvent: {}
+[13.930096] (-) TimerEvent: {}
+[14.044449] (-) TimerEvent: {}
+[14.146346] (-) TimerEvent: {}
+[14.168726] (launch) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/launch', 'build', '--build-base', '/workspace/build/launch/build', 'install', '--record', '/workspace/build/launch/install.log', '--install-scripts', '$base/lib/launch', '--single-version-externally-managed', 'install_data'], 'cwd': '/workspace/ros2_ws/src/launch', 'env': {'PYTHON_BASIC_REPL': '1', 'HOSTNAME': 'a6d9d71eff99', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/helpers/browser.sh', 'HOME': '/root', 'TERM_PROGRAM_VERSION': '1.129.1', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-ee462f74-b39b-4a81-9f12-43a4b3975451.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'COLORTERM': 'truecolor', 'REMOTE_CONTAINERS': 'true', 'COLCON_PREFIX_PATH': '/workspace/install', 'ROS_DISTRO': 'humble', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-8b7fd247-ae3f-476c-923e-253f13dac492.sock', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-f8a1523726d80fb5.txt', 'LANG': 'C.UTF-8', 'PYTHONSTARTUP': '/root/.vscode-server/data/User/workspaceStorage/01cb09c21d1cd54756446af4140b33e0/ms-python.python/pythonrc.py', 'RMW_IMPLEMENTATION': 'rmw_cyclonedds_cpp', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/tmp/vscode-git-0a2606e695.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/vscode-ssh-auth-8b7fd247-ae3f-476c-923e-253f13dac492.sock', 'ROS_DOMAIN_ID': '0', 'AMENT_PREFIX_PATH': '/workspace/install/pure_pursuit:/workspace/install/localization:/workspace/install/launch:/opt/ros/humble', 'SHELL': '/bin/bash', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/workspace/build/launch', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/workspace/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/launch/lib/python3.10/site-packages:/workspace/install/pure_pursuit/lib/python3.10/site-packages:/workspace/install/localization/lib/python3.10/site-packages:/workspace/install/launch/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[14.326375] (-) TimerEvent: {}
+[14.331356] (localization) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/localization', 'build', '--build-base', '/workspace/build/localization/build', 'install', '--record', '/workspace/build/localization/install.log', '--install-scripts', '$base/lib/localization', '--single-version-externally-managed', 'install_data'], 'cwd': '/workspace/ros2_ws/src/localization', 'env': {'PYTHON_BASIC_REPL': '1', 'HOSTNAME': 'a6d9d71eff99', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/helpers/browser.sh', 'HOME': '/root', 'TERM_PROGRAM_VERSION': '1.129.1', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-ee462f74-b39b-4a81-9f12-43a4b3975451.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'COLORTERM': 'truecolor', 'REMOTE_CONTAINERS': 'true', 'COLCON_PREFIX_PATH': '/workspace/install', 'ROS_DISTRO': 'humble', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-8b7fd247-ae3f-476c-923e-253f13dac492.sock', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-f8a1523726d80fb5.txt', 'LANG': 'C.UTF-8', 'PYTHONSTARTUP': '/root/.vscode-server/data/User/workspaceStorage/01cb09c21d1cd54756446af4140b33e0/ms-python.python/pythonrc.py', 'RMW_IMPLEMENTATION': 'rmw_cyclonedds_cpp', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/tmp/vscode-git-0a2606e695.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/vscode-ssh-auth-8b7fd247-ae3f-476c-923e-253f13dac492.sock', 'ROS_DOMAIN_ID': '0', 'AMENT_PREFIX_PATH': '/workspace/install/pure_pursuit:/workspace/install/localization:/workspace/install/launch:/opt/ros/humble', 'SHELL': '/bin/bash', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/workspace/build/localization', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:/workspace/install/pure_pursuit/lib/python3.10/site-packages:/workspace/install/localization/lib/python3.10/site-packages:/workspace/install/launch/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[14.379200] (pure_pursuit) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/pure_pursuit', 'build', '--build-base', '/workspace/build/pure_pursuit/build', 'install', '--record', '/workspace/build/pure_pursuit/install.log', '--install-scripts', '$base/lib/pure_pursuit', '--single-version-externally-managed', 'install_data'], 'cwd': '/workspace/ros2_ws/src/pure_pursuit', 'env': {'PYTHON_BASIC_REPL': '1', 'HOSTNAME': 'a6d9d71eff99', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/helpers/browser.sh', 'HOME': '/root', 'TERM_PROGRAM_VERSION': '1.129.1', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-ee462f74-b39b-4a81-9f12-43a4b3975451.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'COLORTERM': 'truecolor', 'REMOTE_CONTAINERS': 'true', 'COLCON_PREFIX_PATH': '/workspace/install', 'ROS_DISTRO': 'humble', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-8b7fd247-ae3f-476c-923e-253f13dac492.sock', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/vscode/vscode-server/bin/linux-x64/8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/root/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-f8a1523726d80fb5.txt', 'LANG': 'C.UTF-8', 'PYTHONSTARTUP': '/root/.vscode-server/data/User/workspaceStorage/01cb09c21d1cd54756446af4140b33e0/ms-python.python/pythonrc.py', 'RMW_IMPLEMENTATION': 'rmw_cyclonedds_cpp', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/tmp/vscode-git-0a2606e695.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/vscode-ssh-auth-8b7fd247-ae3f-476c-923e-253f13dac492.sock', 'ROS_DOMAIN_ID': '0', 'AMENT_PREFIX_PATH': '/workspace/install/pure_pursuit:/workspace/install/localization:/workspace/install/launch:/opt/ros/humble', 'SHELL': '/bin/bash', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/workspace/build/pure_pursuit', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/workspace/build/pure_pursuit/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/pure_pursuit/lib/python3.10/site-packages:/workspace/install/pure_pursuit/lib/python3.10/site-packages:/workspace/install/localization/lib/python3.10/site-packages:/workspace/install/launch/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[14.427327] (-) TimerEvent: {}
+[14.528368] (-) TimerEvent: {}
+[14.630615] (-) TimerEvent: {}
+[14.755267] (-) TimerEvent: {}
+[14.861483] (-) TimerEvent: {}
+[14.974041] (-) TimerEvent: {}
+[15.076946] (-) TimerEvent: {}
+[15.178230] (-) TimerEvent: {}
+[15.281263] (-) TimerEvent: {}
+[15.382348] (-) TimerEvent: {}
+[15.484328] (-) TimerEvent: {}
+[15.588638] (-) TimerEvent: {}
+[15.693249] (-) TimerEvent: {}
+[15.796326] (-) TimerEvent: {}
+[15.898293] (-) TimerEvent: {}
+[15.999377] (-) TimerEvent: {}
+[16.101878] (-) TimerEvent: {}
+[16.115008] (pure_pursuit) StdoutLine: {'line': b'running egg_info\n'}
+[16.119458] (localization) StdoutLine: {'line': b'running egg_info\n'}
+[16.121921] (pure_pursuit) StdoutLine: {'line': b'writing ../../../build/pure_pursuit/pure_pursuit.egg-info/PKG-INFO\n'}
+[16.125279] (launch) StdoutLine: {'line': b'running egg_info\n'}
+[16.128904] (localization) StdoutLine: {'line': b'writing ../../../build/localization/localization.egg-info/PKG-INFO\n'}
+[16.131827] (launch) StdoutLine: {'line': b'writing ../../../build/launch/launch.egg-info/PKG-INFO\n'}
+[16.136288] (localization) StdoutLine: {'line': b'writing dependency_links to ../../../build/localization/localization.egg-info/dependency_links.txt\n'}
+[16.140769] (pure_pursuit) StdoutLine: {'line': b'writing dependency_links to ../../../build/pure_pursuit/pure_pursuit.egg-info/dependency_links.txt\n'}
+[16.145629] (launch) StdoutLine: {'line': b'writing dependency_links to ../../../build/launch/launch.egg-info/dependency_links.txt\n'}
+[16.151545] (pure_pursuit) StdoutLine: {'line': b'writing entry points to ../../../build/pure_pursuit/pure_pursuit.egg-info/entry_points.txt\n'}
+[16.157283] (localization) StdoutLine: {'line': b'writing entry points to ../../../build/localization/localization.egg-info/entry_points.txt\n'}
+[16.160348] (localization) StdoutLine: {'line': b'writing requirements to ../../../build/localization/localization.egg-info/requires.txt\n'}
+[16.163505] (launch) StdoutLine: {'line': b'writing entry points to ../../../build/launch/launch.egg-info/entry_points.txt\n'}
+[16.167072] (pure_pursuit) StdoutLine: {'line': b'writing requirements to ../../../build/pure_pursuit/pure_pursuit.egg-info/requires.txt\n'}
+[16.172328] (localization) StdoutLine: {'line': b'writing top-level names to ../../../build/localization/localization.egg-info/top_level.txt\n'}
+[16.175717] (pure_pursuit) StdoutLine: {'line': b'writing top-level names to ../../../build/pure_pursuit/pure_pursuit.egg-info/top_level.txt\n'}
+[16.178560] (launch) StdoutLine: {'line': b'writing requirements to ../../../build/launch/launch.egg-info/requires.txt\n'}
+[16.182710] (launch) StdoutLine: {'line': b'writing top-level names to ../../../build/launch/launch.egg-info/top_level.txt\n'}
+[16.187482] (pure_pursuit) StdoutLine: {'line': b"reading manifest file '../../../build/pure_pursuit/pure_pursuit.egg-info/SOURCES.txt'\n"}
+[16.190596] (launch) StdoutLine: {'line': b"reading manifest file '../../../build/launch/launch.egg-info/SOURCES.txt'\n"}
+[16.194768] (pure_pursuit) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[16.199828] (pure_pursuit) StdoutLine: {'line': b"writing manifest file '../../../build/pure_pursuit/pure_pursuit.egg-info/SOURCES.txt'\n"}
+[16.202297] (-) TimerEvent: {}
+[16.203567] (localization) StdoutLine: {'line': b"reading manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[16.206067] (launch) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[16.210318] (launch) StdoutLine: {'line': b"writing manifest file '../../../build/launch/launch.egg-info/SOURCES.txt'\n"}
+[16.215745] (pure_pursuit) StdoutLine: {'line': b'running build\n'}
+[16.218892] (pure_pursuit) StdoutLine: {'line': b'running build_py\n'}
+[16.227578] (launch) StdoutLine: {'line': b'running build\n'}
+[16.232536] (launch) StdoutLine: {'line': b'running build_py\n'}
+[16.239633] (localization) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[16.246077] (localization) StdoutLine: {'line': b"writing manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[16.274415] (launch) StdoutLine: {'line': b'running install\n'}
+[16.288962] (pure_pursuit) StdoutLine: {'line': b'running install\n'}
+[16.296265] (localization) StdoutLine: {'line': b'running build\n'}
+[16.307357] (-) TimerEvent: {}
+[16.313409] (localization) StdoutLine: {'line': b'running build_py\n'}
+[16.326231] (launch) StdoutLine: {'line': b'running install_lib\n'}
+[16.353368] (pure_pursuit) StdoutLine: {'line': b'running install_lib\n'}
+[16.394010] (localization) StdoutLine: {'line': b'copying localization/detector.py -> /workspace/build/localization/build/lib/localization\n'}
+[16.406010] (launch) StdoutLine: {'line': b'running install_data\n'}
+[16.434453] (-) TimerEvent: {}
+[16.436560] (pure_pursuit) StdoutLine: {'line': b'running install_data\n'}
+[16.445157] (localization) StdoutLine: {'line': b'copying localization/localization_node.py -> /workspace/build/localization/build/lib/localization\n'}
+[16.451815] (pure_pursuit) StdoutLine: {'line': b'running install_egg_info\n'}
+[16.456216] (launch) StdoutLine: {'line': b'running install_egg_info\n'}
+[16.463825] (launch) StdoutLine: {'line': b"removing '/workspace/install/launch/lib/python3.10/site-packages/launch-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[16.475440] (launch) StdoutLine: {'line': b'Copying ../../../build/launch/launch.egg-info to /workspace/install/launch/lib/python3.10/site-packages/launch-0.0.0-py3.10.egg-info\n'}
+[16.478524] (pure_pursuit) StdoutLine: {'line': b"removing '/workspace/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[16.480865] (localization) StdoutLine: {'line': b'copying localization/apriltag.py -> /workspace/build/localization/build/lib/localization\n'}
+[16.485271] (localization) StdoutLine: {'line': b'copying localization/model.py -> /workspace/build/localization/build/lib/localization\n'}
+[16.490676] (pure_pursuit) StdoutLine: {'line': b'Copying ../../../build/pure_pursuit/pure_pursuit.egg-info to /workspace/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit-0.0.0-py3.10.egg-info\n'}
+[16.493958] (localization) StdoutLine: {'line': b'copying localization/utils.py -> /workspace/build/localization/build/lib/localization\n'}
+[16.505478] (localization) StdoutLine: {'line': b'copying localization/robot_detector_model/val_accuracy.py -> /workspace/build/localization/build/lib/localization/robot_detector_model\n'}
+[16.509237] (localization) StdoutLine: {'line': b'copying localization/robot_detector_model/dataset.py -> /workspace/build/localization/build/lib/localization/robot_detector_model\n'}
+[16.535459] (-) TimerEvent: {}
+[16.539739] (localization) StdoutLine: {'line': b'copying localization/robot_detector_model/eval.py -> /workspace/build/localization/build/lib/localization/robot_detector_model\n'}
+[16.556064] (localization) StdoutLine: {'line': b'copying localization/robot_detector_model/training.py -> /workspace/build/localization/build/lib/localization/robot_detector_model\n'}
+[16.563972] (launch) StdoutLine: {'line': b'running install_scripts\n'}
+[16.611771] (localization) StdoutLine: {'line': b'running install\n'}
+[16.625991] (localization) StdoutLine: {'line': b'running install_lib\n'}
+[16.640975] (-) TimerEvent: {}
+[16.654736] (pure_pursuit) StdoutLine: {'line': b'running install_scripts\n'}
+[16.668278] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/detector.py -> /workspace/install/localization/lib/python3.10/site-packages/localization\n'}
+[16.682339] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/localization_node.py -> /workspace/install/localization/lib/python3.10/site-packages/localization\n'}
+[16.710100] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/apriltag.py -> /workspace/install/localization/lib/python3.10/site-packages/localization\n'}
+[16.719980] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/model.py -> /workspace/install/localization/lib/python3.10/site-packages/localization\n'}
+[16.735827] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/robot_detector_model/val_accuracy.py -> /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model\n'}
+[16.741329] (-) TimerEvent: {}
+[16.745880] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/robot_detector_model/dataset.py -> /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model\n'}
+[16.761378] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/robot_detector_model/eval.py -> /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model\n'}
+[16.779316] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/robot_detector_model/training.py -> /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model\n'}
+[16.790345] (localization) StdoutLine: {'line': b'copying /workspace/build/localization/build/lib/localization/utils.py -> /workspace/install/localization/lib/python3.10/site-packages/localization\n'}
+[16.811290] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/detector.py to detector.cpython-310.pyc\n'}
+[16.814066] (pure_pursuit) StdoutLine: {'line': b"writing list of installed files to '/workspace/build/pure_pursuit/install.log'\n"}
+[16.842771] (-) TimerEvent: {}
+[16.845956] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py to localization_node.cpython-310.pyc\n'}
+[16.851086] (launch) StdoutLine: {'line': b"writing list of installed files to '/workspace/build/launch/install.log'\n"}
+[16.881561] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/apriltag.py to apriltag.cpython-310.pyc\n'}
+[16.939203] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/model.py to model.cpython-310.pyc\n'}
+[16.946695] (-) TimerEvent: {}
+[17.093947] (-) TimerEvent: {}
+[17.100363] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model/val_accuracy.py to val_accuracy.cpython-310.pyc\n'}
+[17.122664] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model/dataset.py to dataset.cpython-310.pyc\n'}
+[17.129626] (pure_pursuit) CommandEnded: {'returncode': 0}
+[17.134688] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model/eval.py to eval.cpython-310.pyc\n'}
+[17.146923] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/robot_detector_model/training.py to training.cpython-310.pyc\n'}
+[17.158325] (localization) StdoutLine: {'line': b'byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/utils.py to utils.cpython-310.pyc\n'}
+[17.172611] (localization) StdoutLine: {'line': b'running install_data\n'}
+[17.179184] (-) TimerEvent: {}
+[17.183119] (localization) StdoutLine: {'line': b'running install_egg_info\n'}
+[17.193875] (localization) StdoutLine: {'line': b"removing '/workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[17.204861] (localization) StdoutLine: {'line': b'Copying ../../../build/localization/localization.egg-info to /workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info\n'}
+[17.279913] (-) TimerEvent: {}
+[17.355040] (localization) StdoutLine: {'line': b'running install_scripts\n'}
+[17.380279] (-) TimerEvent: {}
+[17.442752] (pure_pursuit) JobEnded: {'identifier': 'pure_pursuit', 'rc': 0}
+[17.458876] (launch) CommandEnded: {'returncode': 0}
+[17.511181] (-) TimerEvent: {}
+[17.538898] (localization) StdoutLine: {'line': b'Installing localization_node script to /workspace/install/localization/lib/localization\n'}
+[17.578413] (localization) StdoutLine: {'line': b"writing list of installed files to '/workspace/build/localization/install.log'\n"}
+[17.612553] (-) TimerEvent: {}
+[17.734537] (-) TimerEvent: {}
+[17.809174] (launch) JobEnded: {'identifier': 'launch', 'rc': 0}
+[17.875805] (-) TimerEvent: {}
+[17.879876] (localization) CommandEnded: {'returncode': 0}
+[17.976283] (-) TimerEvent: {}
+[18.072206] (localization) JobEnded: {'identifier': 'localization', 'rc': 0}
+[18.086680] (-) TimerEvent: {}
+[18.087228] (-) EventReactorShutdown: {}

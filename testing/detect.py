@@ -9,7 +9,7 @@ from april_tags.get_data import get_apriltag_by_image
 from april_tags.create_ground_truth import create_ground_truth_vid
 from april_tags.world_frame_transformations import get_world_coords, show_homography_grid
 
-from config import WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
+from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT, APRILTAG_HEIGHT, APRILTAG_WIDTH
 
 def detect_predict(model_path, homography = False):
     #load trained model

@@ -1,0 +1,95 @@
+[0.000000] (-) TimerEvent: {}
+[0.027766] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.057009] (pure_pursuit) JobQueued: {'identifier': 'pure_pursuit', 'dependencies': OrderedDict()}
+[0.057878] (robot_sim) JobQueued: {'identifier': 'robot_sim', 'dependencies': OrderedDict()}
+[0.060561] (localization) JobStarted: {'identifier': 'localization'}
+[0.128476] (-) TimerEvent: {}
+[0.231502] (-) TimerEvent: {}
+[0.350857] (-) TimerEvent: {}
+[0.462465] (-) TimerEvent: {}
+[0.565603] (-) TimerEvent: {}
+[0.686148] (-) TimerEvent: {}
+[0.730697] (pure_pursuit) JobStarted: {'identifier': 'pure_pursuit'}
+[0.794112] (-) TimerEvent: {}
+[0.905880] (-) TimerEvent: {}
+[1.042170] (-) TimerEvent: {}
+[1.057806] (robot_sim) JobStarted: {'identifier': 'robot_sim'}
+[1.143092] (-) TimerEvent: {}
+[1.250730] (-) TimerEvent: {}
+[1.400782] (-) TimerEvent: {}
+[1.505216] (-) TimerEvent: {}
+[1.609068] (-) TimerEvent: {}
+[1.713540] (-) TimerEvent: {}
+[1.816556] (-) TimerEvent: {}
+[1.921557] (-) TimerEvent: {}
+[2.043350] (-) TimerEvent: {}
+[2.153364] (-) TimerEvent: {}
+[2.267034] (-) TimerEvent: {}
+[2.572245] (-) TimerEvent: {}
+[2.737367] (-) TimerEvent: {}
+[2.855888] (-) TimerEvent: {}
+[2.963640] (-) TimerEvent: {}
+[3.066913] (-) TimerEvent: {}
+[3.179508] (-) TimerEvent: {}
+[3.285923] (-) TimerEvent: {}
+[3.420479] (-) TimerEvent: {}
+[3.527226] (-) TimerEvent: {}
+[3.660124] (-) TimerEvent: {}
+[3.804039] (-) TimerEvent: {}
+[3.927706] (-) TimerEvent: {}
+[4.050766] (-) TimerEvent: {}
+[4.188989] (-) TimerEvent: {}
+[4.301550] (-) TimerEvent: {}
+[4.405358] (-) TimerEvent: {}
+[4.517608] (-) TimerEvent: {}
+[4.624220] (-) TimerEvent: {}
+[4.824252] (-) TimerEvent: {}
+[4.942168] (-) TimerEvent: {}
+[5.049918] (-) TimerEvent: {}
+[5.152288] (-) TimerEvent: {}
+[5.256635] (-) TimerEvent: {}
+[5.367820] (-) TimerEvent: {}
+[5.476657] (-) TimerEvent: {}
+[5.580185] (-) TimerEvent: {}
+[5.737590] (-) TimerEvent: {}
+[5.956891] (-) TimerEvent: {}
+[6.065210] (-) TimerEvent: {}
+[6.167528] (-) TimerEvent: {}
+[6.277287] (-) TimerEvent: {}
+[6.409204] (-) TimerEvent: {}
+[6.512836] (-) TimerEvent: {}
+[6.633111] (-) TimerEvent: {}
+[6.651180] (localization) JobEnded: {'identifier': 'localization', 'rc': 0}
+[6.734944] (-) TimerEvent: {}
+[6.837580] (-) TimerEvent: {}
+[6.939913] (-) TimerEvent: {}
+[7.042013] (-) TimerEvent: {}
+[7.143926] (-) TimerEvent: {}
+[7.246048] (-) TimerEvent: {}
+[7.348507] (-) TimerEvent: {}
+[7.451542] (-) TimerEvent: {}
+[7.554973] (-) TimerEvent: {}
+[7.663208] (-) TimerEvent: {}
+[7.796150] (-) TimerEvent: {}
+[7.943717] (-) TimerEvent: {}
+[8.061096] (-) TimerEvent: {}
+[8.164189] (-) TimerEvent: {}
+[8.288200] (-) TimerEvent: {}
+[8.421385] (-) TimerEvent: {}
+[8.525890] (-) TimerEvent: {}
+[8.626947] (-) TimerEvent: {}
+[8.736156] (-) TimerEvent: {}
+[8.840076] (-) TimerEvent: {}
+[8.945618] (-) TimerEvent: {}
+[9.049997] (-) TimerEvent: {}
+[9.151923] (-) TimerEvent: {}
+[9.257096] (-) TimerEvent: {}
+[9.359256] (-) TimerEvent: {}
+[9.462990] (-) TimerEvent: {}
+[9.582849] (-) TimerEvent: {}
+[9.787100] (-) TimerEvent: {}
+[9.930072] (-) TimerEvent: {}
+[10.032832] (robot_sim) JobEnded: {'identifier': 'robot_sim', 'rc': 'SIGINT'}
+[10.045462] (-) TimerEvent: {}
+[10.053194] (pure_pursuit) JobEnded: {'identifier': 'pure_pursuit', 'rc': 'SIGINT'}
+[10.065270] (-) EventReactorShutdown: {}

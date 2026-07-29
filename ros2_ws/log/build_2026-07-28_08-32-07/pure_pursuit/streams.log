@@ -1,0 +1,28 @@
+[8.031s] Invoking command in '/workspace/ros2_ws/src/pure_pursuit': PYTHONPATH=/workspace/ros2_ws/build/pure_pursuit/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pure_pursuit build --build-base /workspace/ros2_ws/build/pure_pursuit/build install --record /workspace/ros2_ws/build/pure_pursuit/install.log --install-scripts $base/lib/pure_pursuit --single-version-externally-managed install_data
+[9.861s] running egg_info
+[9.872s] writing ../../build/pure_pursuit/pure_pursuit.egg-info/PKG-INFO
+[9.886s] writing dependency_links to ../../build/pure_pursuit/pure_pursuit.egg-info/dependency_links.txt
+[9.898s] writing entry points to ../../build/pure_pursuit/pure_pursuit.egg-info/entry_points.txt
+[9.909s] writing requirements to ../../build/pure_pursuit/pure_pursuit.egg-info/requires.txt
+[9.919s] writing top-level names to ../../build/pure_pursuit/pure_pursuit.egg-info/top_level.txt
+[9.925s] reading manifest file '../../build/pure_pursuit/pure_pursuit.egg-info/SOURCES.txt'
+[9.949s] adding license file 'LICENSE'
+[9.956s] writing manifest file '../../build/pure_pursuit/pure_pursuit.egg-info/SOURCES.txt'
+[9.964s] running build
+[9.970s] running build_py
+[9.981s] copying pure_pursuit/pure_pursuit_node.py -> /workspace/ros2_ws/build/pure_pursuit/build/lib/pure_pursuit
+[9.988s] copying pure_pursuit/controller.py -> /workspace/ros2_ws/build/pure_pursuit/build/lib/pure_pursuit
+[9.994s] running install
+[9.997s] running install_lib
+[10.008s] copying /workspace/ros2_ws/build/pure_pursuit/build/lib/pure_pursuit/pure_pursuit_node.py -> /workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit
+[10.026s] copying /workspace/ros2_ws/build/pure_pursuit/build/lib/pure_pursuit/controller.py -> /workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit
+[10.033s] byte-compiling /workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit/pure_pursuit_node.py to pure_pursuit_node.cpython-310.pyc
+[10.039s] byte-compiling /workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit/controller.py to controller.cpython-310.pyc
+[10.042s] running install_data
+[10.048s] running install_egg_info
+[10.056s] removing '/workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit-0.0.0-py3.10.egg-info' (and everything under it)
+[10.070s] Copying ../../build/pure_pursuit/pure_pursuit.egg-info to /workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages/pure_pursuit-0.0.0-py3.10.egg-info
+[10.138s] running install_scripts
+[10.219s] Installing pure_pursuit_node script to /workspace/ros2_ws/install/pure_pursuit/lib/pure_pursuit
+[10.240s] writing list of installed files to '/workspace/ros2_ws/build/pure_pursuit/install.log'
+[10.523s] Invoked command in '/workspace/ros2_ws/src/pure_pursuit' returned '0': PYTHONPATH=/workspace/ros2_ws/build/pure_pursuit/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/pure_pursuit/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pure_pursuit build --build-base /workspace/ros2_ws/build/pure_pursuit/build install --record /workspace/ros2_ws/build/pure_pursuit/install.log --install-scripts $base/lib/pure_pursuit --single-version-externally-managed install_data

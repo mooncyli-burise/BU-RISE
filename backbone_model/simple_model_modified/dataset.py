@@ -2,7 +2,7 @@ import os
 import torch
 import cv2
 import re
-from config import WIDTH, HEIGHT
+from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT
 from util.files import crop_to_ratio
 
 class Dataset(torch.utils.data.Dataset):

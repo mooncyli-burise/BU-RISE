@@ -1,0 +1,71 @@
+[0.000000] (-) TimerEvent: {}
+[0.005726] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.007818] (pure_pursuit) JobQueued: {'identifier': 'pure_pursuit', 'dependencies': OrderedDict()}
+[0.011336] (robot_sim) JobQueued: {'identifier': 'robot_sim', 'dependencies': OrderedDict()}
+[0.012469] (localization) JobStarted: {'identifier': 'localization'}
+[0.103556] (-) TimerEvent: {}
+[0.217733] (-) TimerEvent: {}
+[0.281489] (pure_pursuit) JobStarted: {'identifier': 'pure_pursuit'}
+[0.319585] (-) TimerEvent: {}
+[0.390893] (robot_sim) JobStarted: {'identifier': 'robot_sim'}
+[0.421072] (-) TimerEvent: {}
+[0.527644] (-) TimerEvent: {}
+[0.633326] (-) TimerEvent: {}
+[0.735063] (-) TimerEvent: {}
+[0.839699] (-) TimerEvent: {}
+[0.943259] (-) TimerEvent: {}
+[1.045237] (-) TimerEvent: {}
+[1.147047] (-) TimerEvent: {}
+[1.253456] (-) TimerEvent: {}
+[1.356105] (-) TimerEvent: {}
+[1.458427] (-) TimerEvent: {}
+[1.587208] (-) TimerEvent: {}
+[1.689738] (-) TimerEvent: {}
+[1.792969] (-) TimerEvent: {}
+[1.895070] (-) TimerEvent: {}
+[2.000753] (-) TimerEvent: {}
+[2.112291] (-) TimerEvent: {}
+[2.215964] (-) TimerEvent: {}
+[2.322422] (-) TimerEvent: {}
+[2.455246] (-) TimerEvent: {}
+[2.581753] (-) TimerEvent: {}
+[2.707377] (-) TimerEvent: {}
+[2.812115] (-) TimerEvent: {}
+[3.009257] (-) TimerEvent: {}
+[3.111651] (-) TimerEvent: {}
+[3.218011] (-) TimerEvent: {}
+[3.320684] (-) TimerEvent: {}
+[3.424965] (-) TimerEvent: {}
+[3.527504] (-) TimerEvent: {}
+[3.631221] (-) TimerEvent: {}
+[3.738989] (-) TimerEvent: {}
+[3.847318] (-) TimerEvent: {}
+[3.951760] (-) TimerEvent: {}
+[4.073526] (-) TimerEvent: {}
+[4.135119] (localization) StderrLine: {'line': b'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/colcon_core/executor/__init__.py", line 91, in __call__\n    rc = await self.task(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/__init__.py", line 120, in __call__\n    return await task_method(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_ros/task/ament_python/build.py", line 51, in build\n    setup_py_data = get_setup_data(self.context.pkg, env)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/python/__init__.py", line 20, in get_setup_data\n    return dict(pkg.metadata[key](env))\n  File "/usr/lib/python3/dist-packages/colcon_ros/package_augmentation/ros_ament_python.py", line 57, in getter\n    return get_setup_information(\n  File "/usr/lib/python3/dist-packages/colcon_python_setup_py/package_identification/python_setup_py.py", line 249, in get_setup_information\n    _setup_information_cache[hashable_env] = _get_setup_information(\n  File "/usr/lib/python3/dist-packages/colcon_python_setup_py/package_identification/python_setup_py.py", line 296, in _get_setup_information\n    result = subprocess.run(\n  File "/usr/lib/python3.10/subprocess.py", line 526, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command \'[\'/usr/bin/python3\', \'-c\', \'import sys;from contextlib import suppress;exec("with suppress(ImportError):    from setuptools.extern.packaging.specifiers    import SpecifierSet");exec("with suppress(ImportError):    from packaging.specifiers import SpecifierSet");from distutils.core import run_setup;dist = run_setup(    \\\'setup.py\\\', script_args=(\\\'--dry-run\\\',), stop_after=\\\'config\\\');skip_keys = (\\\'cmdclass\\\', \\\'distclass\\\', \\\'ext_modules\\\', \\\'metadata\\\');data = {    key: value for key, value in dist.__dict__.items()     if (        not key.startswith(\\\'_\\\') and         not callable(value) and         key not in skip_keys and         key not in dist.display_option_names    )};data[\\\'metadata\\\'] = {    k: v for k, v in dist.metadata.__dict__.items()     if k not in (\\\'license_files\\\', \\\'provides_extras\\\')};sys.stdout.buffer.write(repr(data).encode(\\\'utf-8\\\'))\']\' returned non-zero exit status 1.\n'}
+[4.167457] (-) TimerEvent: {}
+[4.170555] (localization) JobEnded: {'identifier': 'localization', 'rc': 1}
+[4.281501] (-) TimerEvent: {}
+[4.396673] (-) TimerEvent: {}
+[4.506155] (-) TimerEvent: {}
+[4.608056] (-) TimerEvent: {}
+[4.712465] (-) TimerEvent: {}
+[4.816447] (-) TimerEvent: {}
+[4.918997] (-) TimerEvent: {}
+[5.037216] (-) TimerEvent: {}
+[5.141969] (-) TimerEvent: {}
+[5.250682] (-) TimerEvent: {}
+[5.352014] (-) TimerEvent: {}
+[5.461661] (-) TimerEvent: {}
+[5.590673] (-) TimerEvent: {}
+[5.693250] (-) TimerEvent: {}
+[5.795054] (-) TimerEvent: {}
+[5.897109] (-) TimerEvent: {}
+[6.003299] (-) TimerEvent: {}
+[6.107351] (-) TimerEvent: {}
+[6.209176] (-) TimerEvent: {}
+[6.311902] (-) TimerEvent: {}
+[6.412993] (-) TimerEvent: {}
+[6.432531] (robot_sim) JobEnded: {'identifier': 'robot_sim', 'rc': 'SIGINT'}
+[6.437910] (pure_pursuit) JobEnded: {'identifier': 'pure_pursuit', 'rc': 'SIGINT'}
+[6.449371] (-) EventReactorShutdown: {}

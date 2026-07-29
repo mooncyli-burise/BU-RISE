@@ -4,7 +4,7 @@ from backbone_model.real_world_objects import device
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
-from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, CENTER_CORRECT_RANGE
+from ros2_ws.src.localization.localization.config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, CENTER_CORRECT_RANGE
 import numpy as np
 from backbone_model.simple_model_modified.training import train_one_epoch
 from backbone_model.simple_model_modified.eval import eval

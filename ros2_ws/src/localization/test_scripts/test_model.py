@@ -1,15 +1,14 @@
+import cv2
 from localization.camera import Camera
 from localization.model import Model
 
-weights = "backbone_model/best_finetuning_model_lr1e-3.pth"
+weights = "localization/saved_models/best_finetuning_model_lr1e-3.pth"
 
-camera = Camera()
 model = Model(weights)
 
-while True:
-    frame = camera.get_frame()
+frame = cv2.imread("test_scripts/limo1.jpg")
 
-    center, heading = model.predict(frame)
+center, heading = model.predict(frame)
 
-    print(center)
-    print(heading)
+print(center)
+print(heading)

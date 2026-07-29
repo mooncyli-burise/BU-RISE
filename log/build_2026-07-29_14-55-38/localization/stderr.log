@@ -1,0 +1,10 @@
+  File "/workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py", line 30
+    pred_center = 0, pred_orientation = 0, pred_class = 0
+    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+
+  File "/workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py", line 37
+    gt_center = 0, gt_orientation = 0, gt_class = 0
+    ^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+

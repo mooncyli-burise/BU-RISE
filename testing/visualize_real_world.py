@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from backbone_model.simple_model_modified.model import GridNet
 from backbone_model.real_world_objects import device, dataset_test, dataset_real_world
-from config import WIDTH, HEIGHT
+from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT
 from april_tags.world_frame_transformations import get_world_coords, show_homography_grid
 
 def visualize(model_path):

@@ -1,0 +1,33 @@
+[7.531s] Invoking command in '/workspace/ros2_ws/build/launch': PYTHONPATH=/workspace/ros2_ws/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /workspace/ros2_ws/build/launch/build
+[8.890s] running develop
+[9.647s] Removing /workspace/ros2_ws/install/launch/lib/python3.10/site-packages/launch.egg-link (link to .)
+[9.706s] Invoked command in '/workspace/ros2_ws/build/launch' returned '0': PYTHONPATH=/workspace/ros2_ws/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /workspace/ros2_ws/build/launch/build
+[9.728s] Invoking command in '/workspace/ros2_ws/src/launch': PYTHONPATH=/workspace/ros2_ws/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/launch build --build-base /workspace/ros2_ws/build/launch/build install --record /workspace/ros2_ws/build/launch/install.log --install-scripts $base/lib/launch --single-version-externally-managed install_data --force
+[11.427s] running egg_info
+[11.431s] writing ../../build/launch/launch.egg-info/PKG-INFO
+[11.439s] writing dependency_links to ../../build/launch/launch.egg-info/dependency_links.txt
+[11.446s] writing entry points to ../../build/launch/launch.egg-info/entry_points.txt
+[11.456s] writing requirements to ../../build/launch/launch.egg-info/requires.txt
+[11.466s] writing top-level names to ../../build/launch/launch.egg-info/top_level.txt
+[11.517s] reading manifest file '../../build/launch/launch.egg-info/SOURCES.txt'
+[11.538s] adding license file 'LICENSE'
+[11.544s] writing manifest file '../../build/launch/launch.egg-info/SOURCES.txt'
+[11.558s] running build
+[11.562s] running build_py
+[11.566s] creating /workspace/ros2_ws/build/launch/build
+[11.571s] creating /workspace/ros2_ws/build/launch/build/lib
+[11.578s] creating /workspace/ros2_ws/build/launch/build/lib/launch
+[11.585s] copying launch/__init__.py -> /workspace/ros2_ws/build/launch/build/lib/launch
+[11.589s] running install
+[11.593s] running install_lib
+[11.597s] creating /workspace/ros2_ws/install/launch/lib/python3.10/site-packages/launch
+[11.602s] copying /workspace/ros2_ws/build/launch/build/lib/launch/__init__.py -> /workspace/ros2_ws/install/launch/lib/python3.10/site-packages/launch
+[11.609s] byte-compiling /workspace/ros2_ws/install/launch/lib/python3.10/site-packages/launch/__init__.py to __init__.cpython-310.pyc
+[11.643s] running install_data
+[11.669s] copying resource/launch -> /workspace/ros2_ws/install/launch/share/ament_index/resource_index/packages
+[11.702s] copying package.xml -> /workspace/ros2_ws/install/launch/share/launch
+[11.713s] running install_egg_info
+[11.727s] Copying ../../build/launch/launch.egg-info to /workspace/ros2_ws/install/launch/lib/python3.10/site-packages/launch-0.0.0-py3.10.egg-info
+[11.841s] running install_scripts
+[11.971s] writing list of installed files to '/workspace/ros2_ws/build/launch/install.log'
+[12.095s] Invoked command in '/workspace/ros2_ws/src/launch' returned '0': PYTHONPATH=/workspace/ros2_ws/build/launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2_ws/install/launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/launch build --build-base /workspace/ros2_ws/build/launch/build install --record /workspace/ros2_ws/build/launch/install.log --install-scripts $base/lib/launch --single-version-externally-managed install_data --force

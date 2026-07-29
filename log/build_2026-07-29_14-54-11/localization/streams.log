@@ -1,0 +1,38 @@
+[6.846s] Invoking command in '/workspace/ros2_ws/src/localization': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data
+[8.382s] running egg_info
+[8.387s] writing ../../../build/localization/localization.egg-info/PKG-INFO
+[8.390s] writing dependency_links to ../../../build/localization/localization.egg-info/dependency_links.txt
+[8.394s] writing entry points to ../../../build/localization/localization.egg-info/entry_points.txt
+[8.405s] writing requirements to ../../../build/localization/localization.egg-info/requires.txt
+[8.413s] writing top-level names to ../../../build/localization/localization.egg-info/top_level.txt
+[8.468s] reading manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[8.486s] adding license file 'LICENSE'
+[8.494s] writing manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[8.498s] running build
+[8.501s] running build_py
+[8.507s] copying localization/apriltag_node.py -> /workspace/build/localization/build/lib/localization
+[8.513s] copying localization/localization_node.py -> /workspace/build/localization/build/lib/localization
+[8.552s] running install
+[8.558s] running install_lib
+[8.562s] copying /workspace/build/localization/build/lib/localization/apriltag_node.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[8.572s] copying /workspace/build/localization/build/lib/localization/localization_node.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[8.621s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py to apriltag_node.cpython-310.pyc
+[8.634s]   File "/workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py", line 30
+[8.637s]     pred_center = 0, pred_orientation = 0, pred_class = 0
+[8.644s]     ^^^^^^^^^^^^^^^
+[8.648s] SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+[8.654s] 
+[8.656s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py to localization_node.cpython-310.pyc
+[8.662s]   File "/workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py", line 37
+[8.670s]     gt_center = 0, gt_orientation = 0, gt_class = 0
+[8.672s]     ^^^^^^^^^^^^^
+[8.680s] SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+[8.690s] 
+[8.692s] running install_data
+[8.695s] running install_egg_info
+[8.705s] removing '/workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)
+[8.711s] Copying ../../../build/localization/localization.egg-info to /workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info
+[8.800s] running install_scripts
+[8.877s] Installing localization_node script to /workspace/install/localization/lib/localization
+[8.895s] writing list of installed files to '/workspace/build/localization/install.log'
+[9.008s] Invoked command in '/workspace/ros2_ws/src/localization' returned '0': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data

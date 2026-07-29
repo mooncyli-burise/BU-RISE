@@ -3,7 +3,7 @@ import numpy as np
 import random
 import json
 from util.normalize_pixel_coords import normalize_coords
-from config import WIDTH, HEIGHT
+from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT
 
 def add_gaussian_noise(image, mean=0, sigma=25):
     """

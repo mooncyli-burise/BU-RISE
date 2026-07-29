@@ -1,0 +1,34 @@
+[18.191s] Invoking command in '/workspace/ros2_ws/src/localization': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data
+[22.626s] running egg_info
+[22.638s] writing ../../../build/localization/localization.egg-info/PKG-INFO
+[22.686s] writing dependency_links to ../../../build/localization/localization.egg-info/dependency_links.txt
+[22.700s] writing entry points to ../../../build/localization/localization.egg-info/entry_points.txt
+[22.704s] writing requirements to ../../../build/localization/localization.egg-info/requires.txt
+[22.709s] writing top-level names to ../../../build/localization/localization.egg-info/top_level.txt
+[22.758s] reading manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[22.762s] adding license file 'LICENSE'
+[22.772s] writing manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[22.784s] running build
+[22.790s] running build_py
+[22.803s] copying localization/detector.py -> /workspace/build/localization/build/lib/localization
+[22.823s] copying localization/localization_node.py -> /workspace/build/localization/build/lib/localization
+[22.886s] copying localization/model.py -> /workspace/build/localization/build/lib/localization
+[22.892s] copying localization/utils.py -> /workspace/build/localization/build/lib/localization
+[22.935s] running install
+[22.940s] running install_lib
+[22.944s] copying /workspace/build/localization/build/lib/localization/detector.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[22.960s] copying /workspace/build/localization/build/lib/localization/localization_node.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[22.973s] copying /workspace/build/localization/build/lib/localization/model.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[23.016s] copying /workspace/build/localization/build/lib/localization/utils.py -> /workspace/install/localization/lib/python3.10/site-packages/localization
+[23.055s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/detector.py to detector.cpython-310.pyc
+[23.070s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py to localization_node.cpython-310.pyc
+[23.125s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/model.py to model.cpython-310.pyc
+[23.185s] byte-compiling /workspace/install/localization/lib/python3.10/site-packages/localization/utils.py to utils.cpython-310.pyc
+[23.208s] running install_data
+[23.215s] running install_egg_info
+[23.226s] removing '/workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)
+[23.248s] Copying ../../../build/localization/localization.egg-info to /workspace/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info
+[23.382s] running install_scripts
+[23.630s] Installing localization_node script to /workspace/install/localization/lib/localization
+[23.702s] writing list of installed files to '/workspace/build/localization/install.log'
+[23.919s] Invoked command in '/workspace/ros2_ws/src/localization' returned '0': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data
