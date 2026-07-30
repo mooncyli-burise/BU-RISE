@@ -61,6 +61,13 @@ class RobotSimulator(Node):
 
         msg.pose.position.x = self.x
         msg.pose.position.y = self.y
+        msg.pose.position.z = 0.0
+
+        # Convert yaw (theta) to quaternion
+        msg.pose.orientation.x = 0.0
+        msg.pose.orientation.y = 0.0
+        msg.pose.orientation.z = math.sin(self.theta / 2.0)
+        msg.pose.orientation.w = math.cos(self.theta / 2.0)
 
 
         self.pose_pub.publish(msg)

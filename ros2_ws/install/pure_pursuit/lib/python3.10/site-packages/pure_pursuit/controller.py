@@ -23,23 +23,26 @@ class PurePursuit:
         self.lookAheadDis = lookAheadDis
         self.stats = load_stats()
         self.stats["runs"] += 1
+
         self.reached_target = False
-        self.prev_reached_target = False
+        self.exit = False
+
+        self.success_radius = 0.15      # 5 cm
+        self.stall_radius = 0.30        # 30 cm
+        self.stall_time = 15.0           # seconds
+        self.stall_counter = 0
+        self.dt = 0.05                  # controller period
 
     def compute_control(self, path, currentPos, currentHeading):
         # initialize proportional controller constant
         Kp_lin = 0.1
-        Kp_turn = 0.001
+        Kp_turn = 0.5
 
         # limo max speed 
         max_linear = 0.1
-        max_angular = 0.25
+        max_angular = 0.5
 
-        if self.reached_target:
-            if not self.prev_reached_target:
-                self.stats["successes"] += 1
-                save_stats(self.stats)
-                self.prev_reached_target = True
+        if self.reached_target or self.exit:
             return 0, 0
         else:
             # for path length 1
@@ -130,27 +133,57 @@ class PurePursuit:
 
             # obtained goal point, now compute turn vel
             # calculate absTargetAngle with the atan2 function
-            absTargetAngle = math.atan2 (goalPt[1]-currentPos[1], goalPt[0]-currentPos[0]) *180/math.pi
+            absTargetAngle = math.atan2(
+                goalPt[0]-currentPos[0],
+                goalPt[1]-currentPos[1]
+            ) *180/math.pi 
             if absTargetAngle < 0: absTargetAngle += 360
 
             # compute turn error by finding the minimum angle
             turnError = absTargetAngle - currentHeading
             if turnError > 180 or turnError < -180 :
                 turnError = -1 * sgn(turnError) * (360 - abs(turnError))
-            
+
+            turnError_rad = math.radians(turnError)
             # apply proportional controller
             # TODO: WAYYY too high for a limo
-            turnVel = Kp_turn*turnError
+            turnVel = -Kp_turn*turnError_rad
             turnVel = clamp(turnVel, -max_angular, max_angular)
 
+            print("Current position:", currentPos)
+            print("Goal:", goalPt)
+            print("Target angle:", absTargetAngle)
+            print("Current heading:", currentHeading)
+
+            print("linear error:", linearError)
+            print("turn error:", turnError)
+
             # calculate speed - slow down in sharp turns
-            linearVel = Kp_lin * linearError
-            linearVel = linearVel / (1 + abs(turnVel))
-            linearVel = clamp(linearVel, 0, max_linear)
+            if abs(turnError) > 90:
+                linearVel = 0
+            else:
+                linearVel = Kp_lin * linearError
+                linearVel = linearVel / (1 + abs(turnVel))
+                linearVel = clamp(linearVel, 0, max_linear)
 
             # TODO: if more than one point in the path, add condition that checks if it is last point in path
-            if(linearError<0.1):
+            # Reached target normally
+            if(linearError<self.success_radius):
+                self.stats["successes"] += 1
+                save_stats(self.stats)
                 self.reached_target = True
+
+            # Within larger "good enough" region
+            elif linearError < self.stall_radius:
+                self.stall_counter += 1
+
+                if self.stall_counter * self.dt >= self.stall_time:
+                    print("Goal timeout reached.")
+                    self.exit = True
+
+            # Left the region, reset timer
+            else:
+                self.stall_counter = 0
 
 
         return linearVel, turnVel

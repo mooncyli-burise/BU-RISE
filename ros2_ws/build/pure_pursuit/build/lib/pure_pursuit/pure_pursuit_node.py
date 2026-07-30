@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist, PoseStamped
 import math
 import numpy as np
+from rclpy.time import Time
 
 from pure_pursuit.controller import PurePursuit
 
@@ -11,7 +12,7 @@ def ask_limo_number():
     return limo_topic
 
 class PurePursuitNode(Node):
-    def __init__(self, point, lookAheadDis, limo_topic):
+    def __init__(self, lookAheadDis, limo_topic):
         super().__init__("pure_pursuit")
         self.controller = PurePursuit(lookAheadDis)
 
@@ -47,11 +48,14 @@ class PurePursuitNode(Node):
         self.get_logger().info(f"Using pose source: {topic}")
 
         # single point for now
-        self.path = point
+        self.path = None
 
         # pure pursuit inputs
         self.current_pose = None
         self.current_heading = None
+        self.speed = 0
+        self.steering = 0
+        self.measurement_time = None
 
         # timer 
         self.timer = self.create_timer(
@@ -64,40 +68,97 @@ class PurePursuitNode(Node):
             print("No pose or heading")
             return
 
-        speed, steering = self.controller.compute_control(
+        if self.path is None:
+            print("No path")
+            self.get_new_goal()
+            return
+
+        if self.controller.reached_target or self.controller.exit:
+            if self.controller.reached_target:
+                print("\nTarget reached!")
+            elif self.controller.exit:
+                print("\nTarget not reached, exited early")
+
+            # Stop the robot
+            stop = Twist()
+            self.cmd_publisher.publish(stop)
+
+            self.get_new_goal()
+            return
+
+        if self.measurement_time is None:
+            return
+        
+        current_time = self.get_clock().now()
+        dt = (current_time - self.measurement_time).nanoseconds * 1e-9
+        dt = min(dt, 0.5)   # or 0.25
+
+        pred_pose, pred_heading = PurePursuitNode.predict_pose(self.current_pose, self.current_heading, self.speed, self.steering, dt)
+
+        self.speed, self.steering = self.controller.compute_control(
             self.path, 
-            self.current_pose,
-            self.current_heading
+            pred_pose,
+            pred_heading
         )
 
         cmd = Twist()
 
-        cmd.linear.x = speed
-        cmd.angular.z = steering
+        cmd.linear.x = float(self.speed)
+        cmd.angular.z = float(self.steering)
 
         self.cmd_publisher.publish(cmd)
 
         print("\nPure Pursuit")
         print("----------------")
-        print("pose:", self.current_pose)
-        print("heading:", self.current_heading)
-        print("linear vel:", speed)
-        print("angular vel:", steering)
+        print("pose:", pred_pose)
+        print("heading:", pred_heading)
+        print("linear vel:", self.speed)
+        print("angular vel:", self.steering)
+        print(f"Measurement age: {dt:.3f} s")
         print()
 
     def pose_callback(self, msg):
-        self.current_pose = (
+        self.measurement_time = Time.from_msg(msg.header.stamp)
+
+        self.current_pose = np.array([
             msg.pose.position.x,
             msg.pose.position.y
-        )
+        ])
 
         q = msg.pose.orientation
 
-        self.current_heading = math.atan2(
-            2.0 * (q.w * q.z + q.x * q.y),
-            1.0 - 2.0 * (q.y * q.y + q.z * q.z)
-        ) * 180 / math.pi
+        #convert to y+ being 0 degrees
+        yaw = math.atan2(
+            2.0 * (q.w*q.z + q.x*q.y),
+            1.0 - 2.0*(q.y*q.y + q.z*q.z)
+        )
 
+        yaw_deg = math.degrees(yaw)
+
+        # Convert ROS yaw (+X zero) -> controller heading (+Y zero)
+        self.current_heading = (90 - yaw_deg) % 360
+
+        # # Convert ROS yaw (+X zero) to your +Y zero
+        # self.current_heading = (90 - yaw_deg) % 360
+
+    @staticmethod
+    def predict_pose(pose, theta, v, omega, dt):
+        # 0 degrees is pos y axis
+        x_pred = pose[0] + v * math.sin(theta / 180 * math.pi) * dt
+        y_pred = pose[1] + v * math.cos(theta / 180 * math.pi) * dt
+        theta_pred = (theta - omega * 180 / math.pi * dt) % 360
+
+        return np.array([x_pred, y_pred]), theta_pred
+
+    def get_new_goal(self):
+        x = float(input("Goal x (m): "))
+        y = float(input("Goal y (m): "))
+
+        self.path = [[x, y]]
+
+        # Reset controller
+        self.controller.reached_target = False
+        self.controller.exit = False
 
 def main():
     import rclpy
@@ -105,11 +166,10 @@ def main():
     topic = ask_limo_number()
 
     try:
-        point = [[1, 0.5]] # in meters
         lookAheadDis = 1
 
         rclpy.init()
-        node = PurePursuitNode(point, lookAheadDis, topic)
+        node = PurePursuitNode(lookAheadDis, topic)
         rclpy.spin(node)
         node.destroy_node()
         rclpy.shutdown()

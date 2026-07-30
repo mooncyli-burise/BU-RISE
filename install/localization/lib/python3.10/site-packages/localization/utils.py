@@ -18,7 +18,7 @@ def normalize_coords(pose, start_width, start_height, end_width, end_height, neg
         x += start_width/2
         y += start_height/2
 
-    new_pose = np.array([x/start_width*end_width, y/start_height*end_height])
+    new_pose = [x/start_width*end_width, y/start_height*end_height]
     return new_pose
 
 def normalized_to_model(pose):

@@ -14,6 +14,8 @@ model's predicted poses + homography to return real world coords
 """
 
 class Detector:
+    prev_ground_truth = {}
+
     def __init__(self, model_path, init_image_path = None):
         self.model = Model(model_path)
         self.apriltag = AprilTag()
@@ -41,11 +43,16 @@ class Detector:
     def ground_truth_pose(self, frame):
         ground_truth = self.apriltag.get_ground_truth(frame)
 
+        # if ground_truth["class"] == 0:
+        #     ground_truth = Detector.prev_ground_truth
+
         gt_center = np.array(ground_truth["center"]).flatten()
         gt_orientation = ground_truth["orientation"]
         gt_class = ground_truth["class"]
 
         gt_center_world = self.worldframe.pixel_to_world(gt_center)
+
+        Detector.prev_ground_truth = ground_truth
 
         return gt_center_world, gt_orientation, gt_class
     
@@ -58,6 +65,7 @@ class Detector:
 
         return center_error, orientation_error
 
+    #TODO: modify so it can be used for gt and predictions independently
     @staticmethod
     def print_all(pred_center, pred_orientation, pred_class, gt_center, gt_orientation, gt_class):
         center_error, orientation_error = Detector.calculate_errors(pred_center, pred_orientation, gt_center, gt_orientation)
@@ -93,7 +101,7 @@ class Detector:
         center_world = normalize_coords(center_world, config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT, config.WIDTH, config.HEIGHT)
 
         #predicted center coords
-        cx, cy = center_world.tolist()
+        cx, cy = center_world
 
         # draw line in direction of angle
         length = 20  # length of the arrow in pixels
@@ -114,6 +122,13 @@ class Detector:
 
         # show center point (red)
         cv2.circle(frame, (int(cx), int(cy)), radius=3, color=color, thickness=-1)
+
+        pose = self.worldframe.world_to_pixel(np.array([0,0]))
+        pose = normalize_coords(pose, config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT, config.WIDTH, config.HEIGHT)
+        x = pose[0]
+        y = pose[1]
+        cv2.circle(frame, (int(x), int(y)), radius=3, color=(255,0,0), thickness=-1)
+
         cv2.putText(frame,
                     f"({cx}, {cy}",
                     (int(cx), int(cy-10)),

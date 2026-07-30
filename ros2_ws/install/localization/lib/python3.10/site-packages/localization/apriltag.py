@@ -10,14 +10,14 @@ class AprilTag:
     detector = Detector(families='tag36h11',
                     nthreads=1,
                     quad_decimate=1.0,
-                    quad_sigma=0.0,
+                    quad_sigma=0.8,
                     refine_edges=1,
-                    decode_sharpening=0.25,
+                    decode_sharpening=0.5,
                     debug=0)
 
     @staticmethod
     def get_ground_truth(frame):
-        frame = Camera.apriltag_resize(frame)
+        # frame = Camera.apriltag_resize(frame)
         tags = AprilTag.get_apriltags(frame, config.TAG_SIZE_LIMO)
         
         if(len(tags)>0):
@@ -43,7 +43,6 @@ class AprilTag:
     def get_apriltags(frame, tag_size = config.TAG_SIZE):
         frame = Camera.apriltag_resize(frame)
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        # print(image.shape)
         # downscaled = Camera.apriltag_resize(image)
         # print(downscaled.shape)
     

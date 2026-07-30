@@ -27,4 +27,4 @@ CAMERA_PARAMS = (
 
 K_inverse = np.linalg.inv(K)
 TAG_SIZE = 0.15 #tag size in meters
-TAG_SIZE_LIMO = 0.092
+TAG_SIZE_LIMO = 0.15 #0.092

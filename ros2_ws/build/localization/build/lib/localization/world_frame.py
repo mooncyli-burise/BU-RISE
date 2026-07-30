@@ -64,6 +64,7 @@ class WorldFrame:
         s = -camera_center[2, 0] / ray_world[2, 0]
 
         world = camera_center + s * ray_world
+        world[1] *= -1
 
         return world[:2].flatten()
 

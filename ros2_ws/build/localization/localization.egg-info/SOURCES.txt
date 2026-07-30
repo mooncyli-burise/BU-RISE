@@ -12,6 +12,7 @@ setup.py
 launch/localization_bringup.launch.py
 localization/__init__.py
 localization/apriltag.py
+localization/apriltag_node.py
 localization/camera.py
 localization/config.py
 localization/detector.py
@@ -25,6 +26,7 @@ localization/robot_detector_model/eval.py
 localization/robot_detector_model/loss_function.py
 localization/robot_detector_model/model.py
 localization/robot_detector_model/training.py
+localization/robot_detector_model/transforms.py
 localization/robot_detector_model/val_accuracy.py
 resource/localization
 test/test_copyright.py

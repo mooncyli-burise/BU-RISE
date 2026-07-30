@@ -4,13 +4,23 @@ import requests
 
 from . import config
 from localization.utils import crop_to_ratio
+from localization.robot_detector_model.transforms import get_transforms
 
 class Camera:
     def __init__(self):
-        self.cap = cv2.VideoCapture("http://host.docker.internal:8080/video")
+        url = "http://host.docker.internal:8080/video"
+
+        self.cap = cv2.VideoCapture(url)
+
+        print("Camera opened:", self.cap.isOpened())
+
         if not self.cap.isOpened():
-            print("Failed to open camera")
-            exit()
+            raise RuntimeError("Failed to open camera stream")
+
+        # self.cap = cv2.VideoCapture("http://host.docker.internal:8080/video")
+        # if not self.cap.isOpened():
+        #     print("Failed to open camera")
+        #     # exit()
 
     def get_frame(self):
         ret, frame = self.cap.read()
@@ -27,7 +37,7 @@ class Camera:
         # undistorted = cv2.undistort(frame, config.K, config.D)
         # reseize to 640x480
         cropped = crop_to_ratio(frame)
-        resized = cv2.resize(cropped, (config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT), interpolation=cv2.INTER_AREA)
+        resized = cv2.resize(cropped, (config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT), interpolation=cv2.INTER_CUBIC)
         return resized
 
     @staticmethod
@@ -35,18 +45,20 @@ class Camera:
         # undistorted = cv2.undistort(frame, config.K, config.D)
         # resize to 160x120
         cropped = crop_to_ratio(frame)
-        resized = cv2.resize(cropped, (config.WIDTH, config.HEIGHT), interpolation=cv2.INTER_AREA)
+        resized = cv2.resize(cropped, (config.WIDTH, config.HEIGHT), interpolation=cv2.INTER_CUBIC)
         return resized
 
     @staticmethod
     # prep for model
     def model_prep(frame, device):
         resized = Camera.model_resize(frame)
+        
+        # image = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
 
-        # change format for pytorch
-        image = torch.from_numpy(resized)
-        image = image.permute(2,0,1)
-        image = image.float() / 255.0
+        # apply transformations
+        transforms = get_transforms()
+        image = transforms(resized)
+
         image = image.to(device)
         image = image.unsqueeze(0)
 
