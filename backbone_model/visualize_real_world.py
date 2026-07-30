@@ -2,12 +2,15 @@ import matplotlib.pyplot as plt
 import torch
 import cv2
 import numpy as np
-from backbone_model.simple_model_modified.model import GridNet
-from backbone_model.real_world_objects import device, dataset_test, dataset_real_world
-from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT
-from april_tags.world_frame_transformations import get_world_coords
+from simple_model_modified.model import GridNet
+from video_data_objects import device, dataset_test
+from config import WIDTH, HEIGHT
+from world_frame import WorldFrame
 
 def visualize(model_path):
+    image = cv2.imread("/home/mooncyli/BU-RISE/backbone_model/initialization_apriltag.jpg")
+    worldframe = WorldFrame(image)
+
     # idx = 0  # choose any sample
     model = GridNet().to(device)
 
@@ -18,7 +21,7 @@ def visualize(model_path):
 
     for idx in range(20):
         # Get sample
-        image, target = dataset_real_world[idx]
+        image, target = dataset_test[idx]
 
         # Skip samples with no valid ground truth
         if (
@@ -87,7 +90,7 @@ def visualize(model_path):
 
         #TODO: make function for displaying center points
         cx, cy = pred_center.cpu().tolist()
-        pred_world = get_world_coords(cx, cy)
+        pred_world = worldframe.pixel_to_world([cx, cy])
         print("Predicted World Coords:", pred_world)
 
         # cv2.putText(img,
@@ -112,7 +115,7 @@ def visualize(model_path):
             # show actual center point (green)
             cx, cy = gt_center.cpu().tolist()
 
-            gt_world = get_world_coords(cx, cy)
+            gt_world = worldframe.pixel_to_world([cx, cy])
             print("Actual World Coords:", gt_world)
 
             cv2.circle(img, (int(cx), int(cy)), radius=2, color=(0, 255, 0), thickness=-1)
