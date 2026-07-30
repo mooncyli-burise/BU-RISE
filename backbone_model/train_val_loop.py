@@ -1,14 +1,15 @@
 import torch
 import matplotlib.pyplot as plt
-from backbone_model.real_world_objects import device
-from backbone_model.simple_model_modified.model import GridNet
-from backbone_model.simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
+from simple_model_modified.model import GridNet
+from simple_model_modified.loss_function import CenterLossFunction, OrientationLossFunction
 import torch.nn as nn
-from ros2_ws.src.localization.localization.config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, CENTER_CORRECT_RANGE
+from config import ORIENTATION_LOSS_WEIGHT, CENTER_LOSS_WEIGHT, CE_LOSS_WEIGHT, CENTER_CORRECT_RANGE
 import numpy as np
-from backbone_model.simple_model_modified.training import train_one_epoch
-from backbone_model.simple_model_modified.eval import eval
-from backbone_model.simple_model_modified.val_accuracy import calculate_val_accuracy
+from simple_model_modified.training import train_one_epoch
+from simple_model_modified.eval import eval
+from simple_model_modified.val_accuracy import calculate_val_accuracy
+
+device = torch.device('cpu')
 
 def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finetuning = False, checkpoint = False):
     print("training model with real world data")

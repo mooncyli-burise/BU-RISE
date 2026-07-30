@@ -14,18 +14,18 @@ class GridNet(nn.Module):
 
         self.shared = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(1280, 512),
+            nn.Linear(1280, 256),
             nn.ReLU(),
             nn.Dropout(0.2),
         )
 
-        self.class_head = nn.Linear(512, 2)
+        self.class_head = nn.Linear(256, 2)
 
         # Predict normalized (x, y) center
-        self.center_head = nn.Linear(512, 2)
+        self.center_head = nn.Linear(256, 2)
 
         # Predict orientation class
-        self.orientation_head = nn.Linear(512, 72)
+        self.orientation_head = nn.Linear(256, 72)
 
     def forward(self, x):
         x = self.backbone(x)

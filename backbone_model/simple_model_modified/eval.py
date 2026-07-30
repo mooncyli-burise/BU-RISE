@@ -1,5 +1,5 @@
 import torch
-from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT, CENTER_CORRECT_RANGE
+from config import WIDTH, HEIGHT, CENTER_CORRECT_RANGE
 
 def eval(model, data_loader_test, device):
     # evaluation loop

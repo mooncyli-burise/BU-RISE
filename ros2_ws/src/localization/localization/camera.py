@@ -4,6 +4,7 @@ import requests
 
 from . import config
 from localization.utils import crop_to_ratio
+from localization.robot_detector_model.transforms import get_transforms
 
 class Camera:
     def __init__(self):
@@ -51,11 +52,13 @@ class Camera:
     # prep for model
     def model_prep(frame, device):
         resized = Camera.model_resize(frame)
+        
+        # image = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
 
-        # change format for pytorch
-        image = torch.from_numpy(resized)
-        image = image.permute(2,0,1)
-        image = image.float() / 255.0
+        # apply transformations
+        transforms = get_transforms()
+        image = transforms(resized)
+
         image = image.to(device)
         image = image.unsqueeze(0)
 
