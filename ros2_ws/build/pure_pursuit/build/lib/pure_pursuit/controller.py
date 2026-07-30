@@ -33,14 +33,38 @@ class PurePursuit:
         self.stall_counter = 0
         self.dt = 0.05                  # controller period
 
+        # stopping prediction
+        self.stop_prediction_time = 2.0   # seconds into future
+        self.last_speed = 0.0
+
+    def predict_stop_position(self, currentPos, currentHeading, velocity):
+        """
+        Predict where the robot will be after continuing for
+        stop_prediction_time seconds.
+        """
+
+        t = self.stop_prediction_time
+
+        x = (
+            currentPos[0]
+            + velocity * math.sin(math.radians(currentHeading)) * t
+        )
+
+        y = (
+            currentPos[1]
+            + velocity * math.cos(math.radians(currentHeading)) * t
+        )
+
+        return np.array([x, y])
+
     def compute_control(self, path, currentPos, currentHeading):
         # initialize proportional controller constant
         Kp_lin = 0.1
-        Kp_turn = 0.5
+        Kp_turn = 0.25
 
         # limo max speed 
         max_linear = 0.1
-        max_angular = 0.5
+        max_angular = 0.1 #0.5
 
         if self.reached_target or self.exit:
             return 0, 0
@@ -128,9 +152,26 @@ class PurePursuit:
             # # update last found index variable
             # self.last_found_index = lastFoundIndex
 
-            # compute linear error
-            linearError = np.sqrt((goalPt[1]-currentPos[1])**2 + (goalPt[0]-currentPos[0])**2)
+            # normal distance
+            linearError = np.sqrt(
+                (goalPt[1]-currentPos[1])**2 +
+                (goalPt[0]-currentPos[0])**2
+            )
 
+
+            # predict where robot will be before it stops
+            predicted_stop_pos = self.predict_stop_position(
+                currentPos,
+                currentHeading,
+                self.last_speed
+            )
+
+
+            stop_error = np.sqrt(
+                (goalPt[1]-predicted_stop_pos[1])**2 +
+                (goalPt[0]-predicted_stop_pos[0])**2
+            )
+            
             # obtained goal point, now compute turn vel
             # calculate absTargetAngle with the atan2 function
             absTargetAngle = math.atan2(
@@ -140,9 +181,7 @@ class PurePursuit:
             if absTargetAngle < 0: absTargetAngle += 360
 
             # compute turn error by finding the minimum angle
-            turnError = absTargetAngle - currentHeading
-            if turnError > 180 or turnError < -180 :
-                turnError = -1 * sgn(turnError) * (360 - abs(turnError))
+            turnError = (absTargetAngle - currentHeading + 180) % 360 - 180
 
             turnError_rad = math.radians(turnError)
             # apply proportional controller
@@ -150,16 +189,14 @@ class PurePursuit:
             turnVel = -Kp_turn*turnError_rad
             turnVel = clamp(turnVel, -max_angular, max_angular)
 
-            print("Current position:", currentPos)
-            print("Goal:", goalPt)
-            print("Target angle:", absTargetAngle)
-            print("Current heading:", currentHeading)
-
             print("linear error:", linearError)
+            print("stop error:", stop_error)
+
+            print("Target angle:", absTargetAngle)
             print("turn error:", turnError)
 
             # calculate speed - slow down in sharp turns
-            if abs(turnError) > 90:
+            if abs(turnError) > 70:
                 linearVel = 0
             else:
                 linearVel = Kp_lin * linearError
@@ -168,13 +205,13 @@ class PurePursuit:
 
             # TODO: if more than one point in the path, add condition that checks if it is last point in path
             # Reached target normally
-            if(linearError<self.success_radius):
+            if(stop_error<self.success_radius):
                 self.stats["successes"] += 1
                 save_stats(self.stats)
                 self.reached_target = True
 
             # Within larger "good enough" region
-            elif linearError < self.stall_radius:
+            elif stop_error < self.stall_radius:
                 self.stall_counter += 1
 
                 if self.stall_counter * self.dt >= self.stall_time:
@@ -185,5 +222,6 @@ class PurePursuit:
             else:
                 self.stall_counter = 0
 
+        self.last_speed = linearVel
 
         return linearVel, turnVel

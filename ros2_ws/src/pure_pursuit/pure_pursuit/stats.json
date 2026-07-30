@@ -1,6 +1,6 @@
 {
-    "runs": 10,
-    "successes": 12,
+    "runs": 23,
+    "successes": 32,
     "total_position_error": 0.0,
     "total_orientation_error": 0.0
 }

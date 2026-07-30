@@ -4,6 +4,7 @@ from geometry_msgs.msg import Twist, PoseStamped
 import math
 import numpy as np
 from rclpy.time import Time
+from std_srvs.srv import Trigger
 
 from pure_pursuit.controller import PurePursuit
 
@@ -45,6 +46,15 @@ class PurePursuitNode(Node):
             10
         )
 
+        self.gt_pose = None
+
+        self.gt_subscriber = self.create_subscription(
+            PoseStamped,
+            "/ground_truth_pose",
+            self.gt_callback,
+            10
+        )
+
         self.get_logger().info(f"Using pose source: {topic}")
 
         # single point for now
@@ -57,11 +67,43 @@ class PurePursuitNode(Node):
         self.steering = 0
         self.measurement_time = None
 
+        self.pred_pose = None
+        self.pred_heading = None
+        self.last_prediction_time = None
+
         # timer 
         self.timer = self.create_timer(
             0.05,
             self.control_loop
         )
+
+        self.pose_client = self.create_client(
+            Trigger,
+            "/get_current_pose"
+        )
+
+        while not self.pose_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for localization service...")
+
+        self.request_current_pose()
+
+    def request_current_pose(self):
+
+        request = Trigger.Request()
+
+        future = self.pose_client.call_async(request)
+
+        future.add_done_callback(self.pose_response)
+
+
+    def pose_response(self, future):
+
+        response = future.result()
+
+        if response.success:
+            print("Localization pose requested successfully")
+        else:
+            print("No localization pose available")
 
     def control_loop(self):
         if self.current_pose is None or self.current_heading is None:
@@ -76,6 +118,16 @@ class PurePursuitNode(Node):
         if self.controller.reached_target or self.controller.exit:
             if self.controller.reached_target:
                 print("\nTarget reached!")
+                if self.gt_pose is not None:
+                    target = np.array(self.path[0])
+
+                    real_error = np.linalg.norm(
+                        target - self.gt_pose
+                    )
+
+                    print("Target:", target)
+                    print("AprilTag position:", self.gt_pose)
+                    print("Actual final error:", real_error, "m")
             elif self.controller.exit:
                 print("\nTarget not reached, exited early")
 
@@ -88,17 +140,32 @@ class PurePursuitNode(Node):
 
         if self.measurement_time is None:
             return
+
+        print("actual position:", self.current_pose)
+        print("actual heading:", self.current_heading)
+        print()
         
         current_time = self.get_clock().now()
-        dt = (current_time - self.measurement_time).nanoseconds * 1e-9
-        dt = min(dt, 0.5)   # or 0.25
 
-        pred_pose, pred_heading = PurePursuitNode.predict_pose(self.current_pose, self.current_heading, self.speed, self.steering, dt)
+        dt = (
+            current_time - self.last_prediction_time
+        ).nanoseconds * 1e-9
+
+
+        self.pred_pose, self.pred_heading = PurePursuitNode.predict_pose(
+            self.pred_pose,
+            self.pred_heading,
+            self.speed,
+            self.steering,
+            dt
+        )
+
+        self.last_prediction_time = current_time
 
         self.speed, self.steering = self.controller.compute_control(
-            self.path, 
-            pred_pose,
-            pred_heading
+            self.path,
+            self.pred_pose,
+            self.pred_heading
         )
 
         cmd = Twist()
@@ -110,8 +177,8 @@ class PurePursuitNode(Node):
 
         print("\nPure Pursuit")
         print("----------------")
-        print("pose:", pred_pose)
-        print("heading:", pred_heading)
+        print("pose:", self.pred_pose)
+        print("heading:", self.pred_heading)
         print("linear vel:", self.speed)
         print("angular vel:", self.steering)
         print(f"Measurement age: {dt:.3f} s")
@@ -127,7 +194,6 @@ class PurePursuitNode(Node):
 
         q = msg.pose.orientation
 
-        #convert to y+ being 0 degrees
         yaw = math.atan2(
             2.0 * (q.w*q.z + q.x*q.y),
             1.0 - 2.0*(q.y*q.y + q.z*q.z)
@@ -135,18 +201,26 @@ class PurePursuitNode(Node):
 
         yaw_deg = math.degrees(yaw)
 
-        # Convert ROS yaw (+X zero) -> controller heading (+Y zero)
         self.current_heading = (90 - yaw_deg) % 360
 
-        # # Convert ROS yaw (+X zero) to your +Y zero
-        # self.current_heading = (90 - yaw_deg) % 360
+
+        # reset prediction whenever a new measurement arrives
+        self.pred_pose = self.current_pose.copy()
+        self.pred_heading = self.current_heading
+        self.last_prediction_time = self.get_clock().now()
+
+    def gt_callback(self, msg):
+        self.gt_pose = np.array([
+            msg.pose.position.x,
+            msg.pose.position.y
+        ])
 
     @staticmethod
     def predict_pose(pose, theta, v, omega, dt):
         # 0 degrees is pos y axis
         x_pred = pose[0] + v * math.sin(theta / 180 * math.pi) * dt
         y_pred = pose[1] + v * math.cos(theta / 180 * math.pi) * dt
-        theta_pred = (theta - omega * 180 / math.pi * dt) % 360
+        theta_pred = (theta + omega * 180 / math.pi * dt) % 360
 
         return np.array([x_pred, y_pred]), theta_pred
 

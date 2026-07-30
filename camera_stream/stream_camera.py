@@ -5,6 +5,7 @@ import atexit
 app = Flask(__name__)
 
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 # # Optional: set resolution
 # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -34,14 +35,7 @@ def generate():
             + b"\r\n"
         )
 
-        _, jpeg = cv2.imencode(".jpg", frame)
 
-        yield (
-            b"--frame\r\n"
-            b"Content-Type: image/jpeg\r\n\r\n"
-            + jpeg.tobytes()
-            + b"\r\n"
-        )
 
 import signal
 import sys

@@ -1,6 +1,8 @@
 import cv2
 import torch
 import requests
+import numpy as np
+import threading
 
 from . import config
 from localization.utils import crop_to_ratio
@@ -17,20 +19,41 @@ class Camera:
         if not self.cap.isOpened():
             raise RuntimeError("Failed to open camera stream")
 
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+
+        self.frame = None
+        self.running = True
+
+        self.thread = threading.Thread(
+            target=self.update_camera
+        )
+        self.thread.start()
+
         # self.cap = cv2.VideoCapture("http://host.docker.internal:8080/video")
         # if not self.cap.isOpened():
         #     print("Failed to open camera")
         #     # exit()
 
+    def update_camera(self):
+        while self.running:
+            ret, frame = self.cap.read()
+
+            if ret:
+                # overwrite old frame
+                self.frame = frame
+
+
     def get_frame(self):
-        ret, frame = self.cap.read()
-
-        if not ret:
-            return None
-
-        #convert frame to RGB and normalize pixel values to [0, 1] to match pytorch format
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_rgb = self.frame
+        if self.frame is not None:
+            frame_rgb = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
         return frame_rgb
+
+
+    def shutdown(self):
+        self.running = False
+        self.thread.join()
+        self.cap.release()
 
     @staticmethod
     def apriltag_resize(frame):

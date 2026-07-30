@@ -25,14 +25,35 @@ class Detector:
             init_image = None
         self.worldframe = WorldFrame(init_image)
 
+        self.last_orientation = 0
+
     def predict_pose(self, frame):
         logits = self.model.predict(frame)
 
         # center pred (normalized)
         pred_center = logits["center"].numpy().flatten()
+        print("normalized center:", pred_center)
 
         # orientation pred (degrees)
-        pred_orientation = logits["orientation"].argmax(dim=1).item() * 5
+        orientation_probs = torch.softmax(logits["orientation"], dim=1)
+
+        confidence, orientation_bin = torch.max(orientation_probs, dim=1)
+
+        pred_orientation = orientation_bin.item() * 5
+        orientation_confidence = confidence.item()
+
+        print(
+            "Orientation:",
+            pred_orientation,
+            "Confidence:",
+            orientation_confidence
+        )
+
+        if orientation_confidence < 0.4:
+            print("Low orientation confidence, ignoring")
+            pred_orientation = self.last_orientation
+        else:
+            self.last_orientation = pred_orientation
 
         pred_class = logits["class"].argmax(dim=1).item()
 
@@ -102,6 +123,7 @@ class Detector:
 
         #predicted center coords
         cx, cy = center_world
+        cy = config.HEIGHT - cy
 
         # draw line in direction of angle
         length = 20  # length of the arrow in pixels

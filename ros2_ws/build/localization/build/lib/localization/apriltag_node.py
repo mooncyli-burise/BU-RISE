@@ -91,7 +91,7 @@ class ApriltagNode(Node):
 def main():
     import rclpy
 
-    saved_model = "/workspace/ros2_ws/src/localization/localization/saved_models/best_finetuning_model_lr1e-3.pth"
+    saved_model = "/workspace/ros2_ws/src/localization/localization/saved_models/best_finetuning_model_video_data.pth"
     init_image_path = "/workspace/ros2_ws/src/localization/localization/init_image/initialization_apriltag.jpg"
 
     rclpy.init()

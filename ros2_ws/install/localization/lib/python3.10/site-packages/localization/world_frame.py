@@ -44,11 +44,13 @@ class WorldFrame:
 
         scale = np.array([config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT])
 
-        pose *= scale
+        pose = np.asarray(pose, dtype=float).copy()
+        pose[1] = 1.0 - pose[1]
+        pixel_xy = pose * scale
 
         # Pixel coordinates
-        pixel = np.array([[pose[0]],
-                        [pose[1]],
+        pixel = np.array([[pixel_xy[0]],
+                        [pixel_xy[1]],
                         [1.0]])
 
         # Ray in camera coordinates
@@ -64,7 +66,7 @@ class WorldFrame:
         s = -camera_center[2, 0] / ray_world[2, 0]
 
         world = camera_center + s * ray_world
-        world[1] *= -1
+        # world[1] *= -1
 
         return world[:2].flatten()
 
