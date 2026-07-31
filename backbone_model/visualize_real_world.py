@@ -22,7 +22,7 @@ def visualize(model_path):
 
     for idx in range(20):
         # Get sample
-        image, target = dataset_real_world[idx]
+        image, target = dataset_test[idx]
 
         # Skip samples with no valid ground truth
         if (

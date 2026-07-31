@@ -76,9 +76,7 @@ def random_background(sequence_folder):
 def generate_synthetic_dataset(size):
     ground_truth = []
 
-    robot_path = []
-    robot_path.append("backbone_model/real_world_dataset/real_limo1.png")
-    robot_path.append("backbone_model/real_world_dataset/real_limo2.png")
+    robot_path = "backbone_model/real_world_dataset/real_limo2.png"
     background_path = 'backbone_model/real_world_dataset/backgrounds'
 
     # 1. Gather all images and extract their physical creation timestamps
@@ -90,7 +88,7 @@ def generate_synthetic_dataset(size):
 
         if(robot_present()):
 
-            image = cv2.imread(robot_path[random.randint(0, len(robot_path)-1)])
+            image = cv2.imread(robot_path)
 
             if image is None:
                 raise FileNotFoundError(f"Could not load image: {robot_path}")

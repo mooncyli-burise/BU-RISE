@@ -11,15 +11,13 @@ from simple_model_modified.val_accuracy import calculate_val_accuracy
 
 device = torch.device('cpu')
 
-def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finetuning = False, checkpoint = False, str = ""):
+def train_real_world(loaded_model, data_loader, data_loader_test, num_epochs, lr = 1e-3, finetuning = False, checkpoint = False, str = ""):
     print("training model with real world data")
     model = GridNet().to(device)
 
     if finetuning:
         state_dict = torch.load(
-            # "backbone_model/best_model_5000imgs.pth", # for synthetic
-            # "backbone_model/best_finetuning_model_lr1e-3.pth", # for real world
-            "backbone_model/best_initial_training_model.pth",
+            loaded_model,
             map_location=device,   # or "cpu"
         )
         model.load_state_dict(state_dict)
