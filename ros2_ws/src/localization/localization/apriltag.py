@@ -27,7 +27,7 @@ class AprilTag:
             orientation = math.atan2(rotation_matrix[1,0], rotation_matrix[0,0]) * 180 / math.pi
             ground_truth = {
                 "center": pose,
-                "orientation": orientation,
+                "orientation": (orientation+360)%360,
                 "class": 1
             }
         else:

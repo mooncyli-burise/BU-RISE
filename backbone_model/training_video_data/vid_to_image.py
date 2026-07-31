@@ -2,7 +2,8 @@ import cv2
 import os
 import json
 
-from localization.apriltag import AprilTag
+from backbone_model.apriltag import AprilTag
+from backbone_model.real_world_dataset.generate_synthetic_data import random_background
 
 def extract_frames(video_path, output_folder):
     video = cv2.VideoCapture(video_path)
@@ -12,6 +13,8 @@ def extract_frames(video_path, output_folder):
         return
 
     frame_count = 0
+
+    prev_robot = False
 
     ground_truth = []
 
@@ -23,9 +26,26 @@ def extract_frames(video_path, output_folder):
         if not success:
             break
 
-        gt = AprilTag.get_ground_truth(frame)
-        if gt["class"]==1:
-            ground_truth.append(gt)
+        if not prev_robot:
+            gt = AprilTag.get_ground_truth(frame)
+            if gt["class"]==1:
+                ground_truth.append(gt)
+                
+                # Save the frame as a JPEG file
+                frame_name = f"frame_{frame_count:04d}.jpg"
+                frame_path = os.path.join(output_folder, frame_name)
+                cv2.imwrite(frame_path, frame)
+                
+                frame_count += 1
+                prev_robot = True
+        else:
+            ground_truth.append({
+                 "center": (0,0),
+                 "orientation": 0,
+                 "class:": 0
+            })
+
+            frame = random_background("/Users/mooncyli/Desktop/BU_RISE/BU-RISE/backbone_model/real_world_dataset/backgrounds")
             
             # Save the frame as a JPEG file
             frame_name = f"frame_{frame_count:04d}.jpg"
@@ -33,6 +53,7 @@ def extract_frames(video_path, output_folder):
             cv2.imwrite(frame_path, frame)
             
             frame_count += 1
+            prev_robot = False
 
     with open("/workspace/backbone_model/training_video_data/ground_truth.json", "w") as file:
             json.dump(ground_truth, file, indent = 4)
