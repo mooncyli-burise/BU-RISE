@@ -17,8 +17,8 @@ def train_real_world(data_loader, data_loader_test, num_epochs, lr = 1e-3, finet
 
     if finetuning:
         state_dict = torch.load(
-            #"backbone_model/best_model_5000imgs.pth",
-            "backbone_model/best_finetuning_model_lr1e-3.pth",
+            "backbone_model/best_model_5000imgs.pth", # for synthetic
+            # "backbone_model/best_finetuning_model_lr1e-3.pth", # for real world
             map_location=device,   # or "cpu"
         )
         model.load_state_dict(state_dict)

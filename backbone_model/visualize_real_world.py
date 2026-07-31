@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 from simple_model_modified.model import GridNet
 from video_data_objects import device, dataset_test
+from real_world_objects import dataset_real_world
 from config import WIDTH, HEIGHT
 from world_frame import WorldFrame
 
@@ -21,7 +22,7 @@ def visualize(model_path):
 
     for idx in range(20):
         # Get sample
-        image, target = dataset_test[idx]
+        image, target = dataset_real_world[idx]
 
         # Skip samples with no valid ground truth
         if (
