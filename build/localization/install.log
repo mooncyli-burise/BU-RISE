@@ -1,6 +1,7 @@
 /workspace/install/localization/lib/python3.10/site-packages/localization/detector.py
 /workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py
 /workspace/install/localization/lib/python3.10/site-packages/localization/config.py
+/workspace/install/localization/lib/python3.10/site-packages/localization/trajectory_plot.py
 /workspace/install/localization/lib/python3.10/site-packages/localization/localization_node.py
 /workspace/install/localization/lib/python3.10/site-packages/localization/__init__.py
 /workspace/install/localization/lib/python3.10/site-packages/localization/apriltag.py
@@ -19,6 +20,7 @@
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/detector.cpython-310.pyc
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/apriltag_node.cpython-310.pyc
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/config.cpython-310.pyc
+/workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/trajectory_plot.cpython-310.pyc
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/localization_node.cpython-310.pyc
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/__init__.cpython-310.pyc
 /workspace/install/localization/lib/python3.10/site-packages/localization/__pycache__/apriltag.cpython-310.pyc

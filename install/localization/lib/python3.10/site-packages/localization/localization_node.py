@@ -8,12 +8,14 @@ from std_srvs.srv import Trigger
 
 from localization.detector import Detector
 from localization.camera import Camera
+from localization.trajectory_plot import TrajectoryPlot
 
 class LocalizationNode(Node):
     def __init__(self, model_path, init_image_path):
         super().__init__("localization")
         self.detector = Detector(model_path, init_image_path)
         self.camera = Camera()
+        self.trajectory = TrajectoryPlot()
 
         self.last_center = None
         self.last_orientation = None
@@ -109,6 +111,8 @@ class LocalizationNode(Node):
                 self.model_pose_publisher
             )
 
+            self.trajectory.add_prediction(pred_center)
+
             self.last_center = pred_center.copy()
             self.last_orientation = pred_orientation
             self.last_capture_time = capture_time
@@ -124,6 +128,8 @@ class LocalizationNode(Node):
                 capture_time,
                 self.apriltag_pose_publisher
             )
+
+            self.trajectory.add_ground_truth(gt_center)
 
             # plot gt (green)
             frame = self.detector.plot(frame, gt_center, gt_orientation, (0,255,0))
@@ -198,6 +204,8 @@ def main():
     while rclpy.ok():
         node.localization_callback()
         rclpy.spin_once(node, timeout_sec=0)
+
+    node.trajectory.plot()
     node.destroy_node()
     rclpy.shutdown()
 

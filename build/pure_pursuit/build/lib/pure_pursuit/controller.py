@@ -34,7 +34,7 @@ class PurePursuit:
         self.dt = 0.05                  # controller period
 
         # stopping prediction
-        self.stop_prediction_time = 0.8   # seconds into future
+        self.stop_prediction_time = 2.0   # seconds into future
         self.last_speed = 0.0
 
     def predict_stop_position(self, currentPos, currentHeading, velocity):
@@ -64,7 +64,7 @@ class PurePursuit:
 
         # limo max speed 
         max_linear = 0.1
-        max_angular = 0.5
+        max_angular = 0.1 #0.5
 
         if self.reached_target or self.exit:
             return 0, 0
@@ -182,7 +182,7 @@ class PurePursuit:
 
             # compute turn error by finding the minimum angle
             turnError = (absTargetAngle - currentHeading + 180) % 360 - 180
-            
+
             turnError_rad = math.radians(turnError)
             # apply proportional controller
             # TODO: WAYYY too high for a limo

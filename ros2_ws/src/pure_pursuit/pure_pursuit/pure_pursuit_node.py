@@ -7,15 +7,18 @@ from rclpy.time import Time
 from std_srvs.srv import Trigger
 
 from pure_pursuit.controller import PurePursuit
+from pure_pursuit.test_path import NavigationTest
 
 def ask_limo_number():
     limo_topic = "/limo"+input("Enter the last 3 numbers on the front of your LIMO: ").strip()+"/cmd_vel"
     return limo_topic
 
 class PurePursuitNode(Node):
-    def __init__(self, lookAheadDis, limo_topic):
+    def __init__(self, lookAheadDis, limo_topic, testing):
         super().__init__("pure_pursuit")
         self.controller = PurePursuit(lookAheadDis)
+
+        self.testing = testing
 
         # for publishing outputs to limo
         self.cmd_publisher = self.create_publisher(
@@ -59,6 +62,8 @@ class PurePursuitNode(Node):
 
         # single point for now
         self.path = None
+
+        self.test = NavigationTest(self)
 
         # pure pursuit inputs
         self.current_pose = None
@@ -112,7 +117,10 @@ class PurePursuitNode(Node):
 
         if self.path is None:
             print("No path")
-            self.get_new_goal()
+            if self.testing:
+                self.test.goal_finished()
+            else:
+                self.get_new_goal()
             return
 
         if self.controller.reached_target or self.controller.exit:
@@ -135,7 +143,10 @@ class PurePursuitNode(Node):
             stop = Twist()
             self.cmd_publisher.publish(stop)
 
-            self.get_new_goal()
+            if self.testing:
+                self.test.start()
+            else:
+                self.get_new_goal()
             return
 
         if self.measurement_time is None:
@@ -243,7 +254,7 @@ def main():
         lookAheadDis = 1
 
         rclpy.init()
-        node = PurePursuitNode(lookAheadDis, topic)
+        node = PurePursuitNode(lookAheadDis, topic, testing=True)
         rclpy.spin(node)
         node.destroy_node()
         rclpy.shutdown()

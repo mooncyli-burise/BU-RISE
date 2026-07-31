@@ -18,6 +18,7 @@ localization/config.py
 localization/detector.py
 localization/localization_node.py
 localization/model.py
+localization/trajectory_plot.py
 localization/utils.py
 localization/world_frame.py
 localization/robot_detector_model/__init__.py
