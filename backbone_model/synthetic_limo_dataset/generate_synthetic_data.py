@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import random
 import json
-from util.normalize_pixel_coords import normalize_coords
-from ros2_ws.src.localization.localization.config import WIDTH, HEIGHT
+from utils import normalize_coords
+from config import WIDTH, HEIGHT
 
 def add_gaussian_noise(image, mean=0, sigma=25):
     """
@@ -58,7 +58,7 @@ def apply_random_augmentation(image):
 def generate_synthetic_dataset(size):
     ground_truth = []
 
-    file_path = 'backbone_model/synthetic_limo_dataset/real_limo.png'
+    file_path = 'backbone_model/real_world_dataset/real_limo2.png'
 
     # 1. Gather all images and extract their physical creation timestamps
     for i in range(size):
@@ -128,7 +128,7 @@ def generate_synthetic_dataset(size):
         noisy_image = apply_random_augmentation(translated_image)
 
         ground_truth.append({
-            "center": normalize_coords(tx, ty, True),
+            "center": normalize_coords((tx, ty), WIDTH, HEIGHT, 1, 1, True),
             "orientation": angle
         })
         

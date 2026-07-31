@@ -1,12 +1,9 @@
 import torch
-from backbone_model.simple_model_modified.dataset import Dataset
-import os
-from ros2_ws.src.localization.localization.config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
+from simple_model_modified.dataset import Dataset
+from config import TEST_SIZE, TAG_SIZE_LIMO, APRILTAG_HEIGHT, APRILTAG_WIDTH
 import json
-import cv2
-from old_models.simplified_dataset.simple_model.transforms import get_transforms
-from april_tags.get_data import get_apriltag_by_folders
-from april_tags.create_ground_truth import create_ground_truth
+from simple_model_modified.transforms import get_transforms
+
 
 #use accelerator (offloading operations to gpu) or cpu if accelerator not available
 # device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else torch.device('cpu')

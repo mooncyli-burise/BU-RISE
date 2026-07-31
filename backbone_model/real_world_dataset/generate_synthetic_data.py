@@ -3,7 +3,7 @@ import numpy as np
 import random
 import json
 import os
-from backbone_model.utils import normalize_coords
+from utils import normalize_coords
 from config import WIDTH, HEIGHT
 
 def add_gaussian_noise(image, mean=0, sigma=25):
@@ -76,7 +76,7 @@ def random_background(sequence_folder):
 def generate_synthetic_dataset(size):
     ground_truth = []
 
-    robot_path = 'backbone_model/real_world_dataset/real_limo.png'
+    robot_path = "backbone_model/real_world_dataset/real_limo2.png"
     background_path = 'backbone_model/real_world_dataset/backgrounds'
 
     # 1. Gather all images and extract their physical creation timestamps
@@ -87,6 +87,7 @@ def generate_synthetic_dataset(size):
         downscale_bg = cv2.resize(background, (WIDTH, HEIGHT), interpolation=cv2.INTER_AREA)
 
         if(robot_present()):
+
             image = cv2.imread(robot_path)
 
             if image is None:
@@ -149,7 +150,7 @@ def generate_synthetic_dataset(size):
             final_result = cv2.add(background_bg, foreground_fg)
 
             ground_truth.append({
-                "center": normalize_coords(tx, ty, True),
+                "center": normalize_coords((tx, ty), WIDTH, HEIGHT, 1, 1, True),
                 "orientation": angle,
                 "class": 1
             })
