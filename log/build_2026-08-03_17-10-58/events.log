@@ -1,0 +1,60 @@
+[0.000000] (-) TimerEvent: {}
+[0.000918] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.002150] (pure_pursuit) JobQueued: {'identifier': 'pure_pursuit', 'dependencies': OrderedDict()}
+[0.002689] (robot_sim) JobQueued: {'identifier': 'robot_sim', 'dependencies': OrderedDict()}
+[0.003060] (localization) JobStarted: {'identifier': 'localization'}
+[0.099298] (-) TimerEvent: {}
+[0.104481] (pure_pursuit) JobStarted: {'identifier': 'pure_pursuit'}
+[0.195917] (robot_sim) JobStarted: {'identifier': 'robot_sim'}
+[0.200072] (-) TimerEvent: {}
+[0.302933] (-) TimerEvent: {}
+[0.407798] (-) TimerEvent: {}
+[0.509483] (-) TimerEvent: {}
+[0.612778] (-) TimerEvent: {}
+[0.713852] (-) TimerEvent: {}
+[0.817211] (-) TimerEvent: {}
+[0.918826] (-) TimerEvent: {}
+[1.019849] (-) TimerEvent: {}
+[1.123931] (-) TimerEvent: {}
+[1.225106] (-) TimerEvent: {}
+[1.331685] (-) TimerEvent: {}
+[1.441926] (-) TimerEvent: {}
+[1.544247] (-) TimerEvent: {}
+[1.661476] (-) TimerEvent: {}
+[1.777128] (-) TimerEvent: {}
+[1.878764] (-) TimerEvent: {}
+[1.979790] (-) TimerEvent: {}
+[2.084476] (-) TimerEvent: {}
+[2.189018] (-) TimerEvent: {}
+[2.297994] (-) TimerEvent: {}
+[2.412075] (-) TimerEvent: {}
+[2.519146] (-) TimerEvent: {}
+[2.621858] (-) TimerEvent: {}
+[2.724926] (-) TimerEvent: {}
+[2.837651] (-) TimerEvent: {}
+[2.941052] (-) TimerEvent: {}
+[3.043853] (-) TimerEvent: {}
+[3.146276] (-) TimerEvent: {}
+[3.247878] (-) TimerEvent: {}
+[3.349861] (-) TimerEvent: {}
+[3.460048] (-) TimerEvent: {}
+[3.562988] (-) TimerEvent: {}
+[3.671703] (-) TimerEvent: {}
+[3.825516] (-) TimerEvent: {}
+[3.931493] (-) TimerEvent: {}
+[4.037432] (-) TimerEvent: {}
+[4.151041] (-) TimerEvent: {}
+[4.255809] (-) TimerEvent: {}
+[4.359814] (-) TimerEvent: {}
+[4.466827] (-) TimerEvent: {}
+[4.582362] (-) TimerEvent: {}
+[4.685754] (-) TimerEvent: {}
+[4.786770] (-) TimerEvent: {}
+[4.888023] (-) TimerEvent: {}
+[4.992169] (-) TimerEvent: {}
+[5.107410] (-) TimerEvent: {}
+[5.118355] (robot_sim) StderrLine: {'line': b'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/colcon_parallel_executor/executor/parallel.py", line 75, in execute\n    loop.run_until_complete(future)\n  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete\n    self.run_forever()\n  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever\n    self._run_once()\n  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once\n    event_list = self._selector.select(timeout)\n  File "/usr/lib/python3.10/selectors.py", line 469, in select\n    fd_event_list = self._selector.poll(timeout, max_ev)\nKeyboardInterrupt\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/colcon_core/executor/__init__.py", line 91, in __call__\n    rc = await self.task(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/__init__.py", line 120, in __call__\n    return await task_method(*args, **kwargs)\n  File "/usr/lib/python3/dist-packages/colcon_ros/task/ament_python/build.py", line 102, in build\n    return await extension.build(additional_hooks=additional_hooks)\n  File "/usr/lib/python3/dist-packages/colcon_core/task/python/build.py", line 100, in build\n    available_commands = await self._get_available_commands(\n  File "/usr/lib/python3/dist-packages/colcon_core/task/python/build.py", line 214, in _get_available_commands\n    output = await check_output(\n  File "/usr/lib/python3/dist-packages/colcon_core/subprocess.py", line 129, in check_output\n    assert not rc, f\'Expected {args} to pass: {stderr_data}\'\nAssertionError: Expected [\'/usr/bin/python3\', \'-W\', \'ignore:setup.py install is deprecated\', \'-W\', \'ignore:easy_install command is deprecated\', \'setup.py\', \'--help-commands\'] to pass: Traceback (most recent call last):\n  File "/workspace/ros2_ws/src/robot_sim/setup.py", line 1, in <module>\n    from setuptools import find_packages, setup\n  File "/usr/lib/python3/dist-packages/setuptools/__init__.py", line 10, in <module>\n    import distutils.core\n  File "/usr/lib/python3.10/distutils/core.py", line 13, in <module>\n    from distutils.errors import *\n  File "/usr/lib/python3.10/distutils/errors.py", line 56, in <module>\n    class DistutilsPlatformError (DistutilsError):\nKeyboardInterrupt\n\n'}
+[5.161117] (robot_sim) JobEnded: {'identifier': 'robot_sim', 'rc': 'SIGINT'}
+[5.174361] (localization) JobEnded: {'identifier': 'localization', 'rc': 'SIGINT'}
+[5.179140] (pure_pursuit) JobEnded: {'identifier': 'pure_pursuit', 'rc': 'SIGINT'}
+[5.193791] (-) EventReactorShutdown: {}

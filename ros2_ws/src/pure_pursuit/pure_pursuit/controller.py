@@ -27,15 +27,17 @@ class PurePursuit:
         self.reached_target = False
         self.exit = False
 
-        self.success_radius = 0.15      # 5 cm
+        self.success_radius = 0.15      # TODO: change back to 15 cm
         self.stall_radius = 0.20        # 30 cm
         self.stall_time = 15.0           # seconds
         self.stall_counter = 0
         self.dt = 0.05                  # controller period
 
         # stopping prediction
-        self.stop_prediction_time = 2.0   # seconds into future
+        self.stop_prediction_time = 6.0   # seconds into future
         self.last_speed = 0.0
+
+        self.last_turn_direction = 1
 
     def predict_stop_position(self, currentPos, currentHeading, velocity):
         """
@@ -184,6 +186,12 @@ class PurePursuit:
             # compute turn error by finding the minimum angle
             turnError = (absTargetAngle - currentHeading + 180) % 360 - 180
 
+            # # Prevent sign flip around 180°
+            # if abs(abs(turnError) - 180) < 10:
+            #     turnError = 180 * self.last_turn_direction
+            # else:
+            #     self.last_turn_direction = 1 if turnError > 0 else -1
+
             turnError_rad = math.radians(turnError)
             # apply proportional controller
             # TODO: WAYYY too high for a limo
@@ -197,7 +205,7 @@ class PurePursuit:
             # print("turn error:", turnError)
 
             # calculate speed - slow down in sharp turns
-            if abs(turnError) > 70:
+            if abs(turnError) > 45:
                 linearVel = 0
             else:
                 linearVel = Kp_lin * linearError

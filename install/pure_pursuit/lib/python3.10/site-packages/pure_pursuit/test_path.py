@@ -2,6 +2,27 @@ import csv
 import numpy as np
 from geometry_msgs.msg import Twist
 
+M = [
+        [-0.5, 0],
+        [-0.25, 0.5],
+        [0, 0.25],
+        [0.25, 0.50],
+        [0.5, 0],
+    ]
+
+circle = [
+        [-0.25, 0],
+        [0, 0.25],
+        [0.25, 0],
+        [0, -0.25],
+        [-0.25, 0],
+    ]
+
+idk = [
+        [0,0],
+        [0.25, -0.25],
+    ]
+
 
 class NavigationTest:
 
@@ -9,12 +30,7 @@ class NavigationTest:
         self.node = node
 
         # Add as many test points as you like
-        self.points = [
-            [0, 0],
-            [0.50, 0],
-            [0.50, 0.50],
-            [0, 0.50],
-        ]
+        self.points = idk
 
         self.current = -1
         self.results = []

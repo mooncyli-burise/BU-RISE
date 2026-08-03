@@ -5,6 +5,8 @@ import math
 import cv2
 import numpy as np
 from std_srvs.srv import Trigger
+import matplotlib.pyplot as plt
+import time
 
 from localization.detector import Detector
 from localization.camera import Camera
@@ -48,6 +50,16 @@ class LocalizationNode(Node):
             self.get_current_pose
         )
 
+        self.latency_history = []
+        self.frame_history = []
+        self.frame_count = 0
+
+        self.start_time = time.time()
+
+        self.position_error_history = []
+        self.orientation_error_history = []
+        self.time_history = []
+
     def request_current_pose(self):
 
         request = Trigger.Request()
@@ -71,7 +83,12 @@ class LocalizationNode(Node):
         gt_orientation = 0
         gt_class = 0
 
+        start = self.get_clock().now()
         frame = self.camera.get_frame()
+        end = self.get_clock().now()
+
+        camera_read_ms = (end - start).nanoseconds / 1e6
+        print(f"Camera read time: {camera_read_ms:.1f} ms")
 
         if frame is None:
             return
@@ -134,9 +151,25 @@ class LocalizationNode(Node):
             # plot gt (green)
             frame = self.detector.plot(frame, gt_center, gt_orientation, (0,255,0))
             
-        Detector.print_all(pred_center, pred_orientation, pred_class, gt_center, gt_orientation, gt_class)            
+        Detector.print_all(pred_center, pred_orientation, pred_class, gt_center, gt_orientation, gt_class) 
+
+        if pred_class == 1 and gt_class == 1:
+            position_error, orientation_error = Detector.calculate_errors(
+                pred_center,
+                pred_orientation,
+                gt_center,
+                gt_orientation
+            )
+
+            elapsed = time.time() - self.start_time
+
+            self.position_error_history.append(position_error)
+            self.orientation_error_history.append(orientation_error)
+            self.time_history.append(elapsed)           
 
         Camera.send_stream(frame)
+
+        self.record_latency(start)
 
         print()
 
@@ -193,6 +226,71 @@ class LocalizationNode(Node):
 
         return response
 
+    def record_latency(self, start_time):
+        """
+        Record end-to-end latency of one localization iteration and
+        continuously update a latency graph.
+        """
+        
+
+        end_time = self.get_clock().now()
+        latency_ms = (end_time - start_time).nanoseconds / 1e6
+
+        self.frame_count += 1
+        self.frame_history.append(self.frame_count)
+        self.latency_history.append(latency_ms)
+
+        # Keep only the latest 200 frames
+        if len(self.latency_history) > 200:
+            self.latency_history.pop(0)
+            self.frame_history.pop(0)
+
+        print(f"Total latency: {latency_ms:.1f} ms")
+
+    def plot_latency(self):
+        plt.figure(figsize=(8, 4))
+        plt.plot(self.frame_history, self.latency_history)
+        plt.xlabel("Frame")
+        plt.ylabel("Latency (ms)")
+        plt.title("Localization Pipeline Latency")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig("latency_graph.png")
+        plt.close()
+
+    def plot_error_vs_time(self):
+        if len(self.time_history) == 0:
+            print("No error data collected.")
+            return
+
+        plt.figure(figsize=(10, 6))
+
+        plt.plot(
+            self.time_history,
+            self.position_error_history,
+            label="Position Error (m)",
+            linewidth=2
+        )
+
+        plt.plot(
+            self.time_history,
+            self.orientation_error_history,
+            label="Orientation Error (deg)",
+            linewidth=2
+        )
+
+        plt.xlabel("Time (s)")
+        plt.ylabel("Error")
+        plt.title("Localization Error vs Time")
+        plt.grid(True)
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig("errors_graph.png")
+        plt.close()
+
+        print(f"Average position error: {np.mean(self.position_error_history):.3f} m")
+        print(f"Average orientation error: {np.mean(self.orientation_error_history):.2f}°")
+
 def main():
     import rclpy
 
@@ -201,13 +299,25 @@ def main():
 
     rclpy.init()
     node = LocalizationNode(saved_model, init_image_path)
-    while rclpy.ok():
-        node.localization_callback()
-        rclpy.spin_once(node, timeout_sec=0)
+    try:
+        while rclpy.ok():
+            node.localization_callback()
+            rclpy.spin_once(node, timeout_sec=0)
 
-    node.trajectory.plot()
-    node.destroy_node()
-    rclpy.shutdown()
+    except KeyboardInterrupt:
+        print("\nStopping...")
+
+    finally:
+        print("Saving graphs...")
+
+        node.plot_latency()
+        node.plot_error_vs_time()
+        node.trajectory.plot()
+
+        node.destroy_node()
+
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == "__main__":
     main()

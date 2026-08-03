@@ -30,6 +30,7 @@ class WorldFrame:
         self.R = tag[0].pose_R
         self.T = tag[0].pose_t
 
+
     # input NORMALIZED coords
     def pixel_to_world(self, pose):
         # x = pose[0]
@@ -217,9 +218,19 @@ class WorldFrame:
 
         camera_center = (-R_wc @ self.T).flatten()
 
+        # make world Z point upward
+        camera_center[2] = -camera_center[2]
+
+        print("Camera center:", camera_center)
+        print("camera x:", R_wc[:,0])
+        print("camera y:", R_wc[:,1])
+        print("camera z:", R_wc[:,2])
+        print("World Z in camera frame:", self.R[:,2])
+        print(self.T)
+
         cam_x = R_wc[:, 0] * axis_length
-        cam_y = R_wc[:, 1] * axis_length
-        cam_z = R_wc[:, 2] * axis_length
+        cam_y = -R_wc[:, 1] * axis_length
+        cam_z = -R_wc[:, 2] * axis_length
 
         ax.quiver(*camera_center, *cam_x,
                 color="r", linestyle="--")
@@ -299,4 +310,5 @@ class WorldFrame:
         ax.set_ylim(-scale, scale)
         ax.set_zlim(-0.2, scale)
 
-        plt.show()
+        plt.savefig("camera_frames.png", dpi=300, bbox_inches="tight")
+        plt.close(fig)

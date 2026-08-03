@@ -1,0 +1,16 @@
+[5.766s] Invoking command in '/workspace/ros2_ws/src/localization': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data
+[7.952s] running egg_info
+[7.970s] writing ../../../build/localization/localization.egg-info/PKG-INFO
+[8.010s] writing dependency_links to ../../../build/localization/localization.egg-info/dependency_links.txt
+[8.109s] writing entry points to ../../../build/localization/localization.egg-info/entry_points.txt
+[8.115s] writing requirements to ../../../build/localization/localization.egg-info/requires.txt
+[8.119s] writing top-level names to ../../../build/localization/localization.egg-info/top_level.txt
+[8.189s] reading manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[8.227s] adding license file 'LICENSE'
+[8.251s] writing manifest file '../../../build/localization/localization.egg-info/SOURCES.txt'
+[8.428s] running build
+[8.444s] running build_py
+[8.560s] copying localization/localization_node.py -> /workspace/build/localization/build/lib/localization
+[8.881s] copying localization/robot_detector_model/transforms.py -> /workspace/build/localization/build/lib/localization/robot_detector_model
+[8.890s] error: could not create '/workspace/build/localization/build/lib/localization/robot_detector_model/transforms.py': No such file or directory
+[9.164s] Invoked command in '/workspace/ros2_ws/src/localization' returned '1': PYTHONPATH=/workspace/build/localization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/localization build --build-base /workspace/build/localization/build install --record /workspace/build/localization/install.log --install-scripts $base/lib/localization --single-version-externally-managed install_data

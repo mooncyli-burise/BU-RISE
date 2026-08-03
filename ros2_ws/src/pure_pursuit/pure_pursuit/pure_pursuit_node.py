@@ -72,6 +72,15 @@ class PurePursuitNode(Node):
         self.steering = 0
         self.measurement_time = None
 
+        self.pred_pose = None
+        self.pred_heading = None
+        self.last_prediction_time = None
+
+        self.waiting_for_final_gt = False
+        self.gt_updates_after_stop = 0
+
+        self.gt_measurement_time = None
+
         # timer 
         self.timer = self.create_timer(
             0.05,
@@ -114,41 +123,40 @@ class PurePursuitNode(Node):
         if self.path is None:
             print("No path")
             if self.testing:
-                self.test.start()
+                self.test.goal_finished()
             else:
                 self.get_new_goal()
             return
 
         if self.controller.reached_target or self.controller.exit:
-
             if self.controller.reached_target:
                 print("\nTarget reached!")
+                # if self.gt_pose is not None:
+                #     target = np.array(self.path[0])
 
-                if self.gt_pose is not None:
-                    target = np.array(self.path[0])
+                #     real_error = np.linalg.norm(
+                #         target - self.gt_pose
+                #     )
 
-                    real_error = np.linalg.norm(
-                        target - self.gt_pose
-                    )
-
-                    print("Target:", target)
-                    print("AprilTag position:", self.gt_pose)
-                    print("Actual final error:", real_error, "m")
-
-            else:
+                #     print("Target:", target)
+                #     print("AprilTag position:", self.gt_pose)
+                #     print("Actual final error:", real_error, "m")
+            elif self.controller.exit:
                 print("\nTarget not reached, exited early")
 
             # Stop the robot
             stop = Twist()
             self.cmd_publisher.publish(stop)
 
+            self.stop_time = self.get_clock().now()
+            self.waiting_for_final_gt = True
+
             if self.testing:
                 self.test.goal_finished()
             else:
                 self.get_new_goal()
-
             return
-        
+
         if self.measurement_time is None:
             return
 
@@ -156,22 +164,27 @@ class PurePursuitNode(Node):
         print("actual heading:", self.current_heading)
         print()
         
+        current_time = self.get_clock().now()
 
-        dt = (self.get_clock().now() - self.measurement_time).nanoseconds * 1e-9
+        dt = (
+            current_time - self.last_prediction_time
+        ).nanoseconds * 1e-9
 
 
-        pred_pose, pred_heading = PurePursuitNode.predict_pose(
-            self.current_pose,
-            self.current_heading,
+        self.pred_pose, self.pred_heading = PurePursuitNode.predict_pose(
+            self.pred_pose,
+            self.pred_heading,
             self.speed,
             self.steering,
             dt
         )
 
+        self.last_prediction_time = current_time
+
         self.speed, self.steering = self.controller.compute_control(
             self.path,
-            pred_pose,
-            pred_heading
+            self.pred_pose,
+            self.pred_heading
         )
 
         cmd = Twist()
@@ -183,8 +196,8 @@ class PurePursuitNode(Node):
 
         print("\nPure Pursuit")
         print("----------------")
-        print("pose:", pred_pose)
-        print("heading:", pred_heading)
+        print("pose:", self.pred_pose)
+        print("heading:", self.pred_heading)
         print("linear vel:", self.speed)
         print("angular vel:", self.steering)
         print(f"Measurement age: {dt:.3f} s")
@@ -220,6 +233,30 @@ class PurePursuitNode(Node):
             msg.pose.position.x,
             msg.pose.position.y
         ])
+
+        self.gt_measurement_time = Time.from_msg(msg.header.stamp)
+
+        if self.waiting_for_final_gt:
+
+            # Ignore any image captured before stopping
+            if self.gt_measurement_time <= self.stop_time:
+                return
+
+            age = (
+                self.get_clock().now() - self.gt_measurement_time
+            ).nanoseconds * 1e-9
+            print("waiting...")
+
+            if age < 1.0:
+                target = np.array(self.path[0])
+
+                real_error = np.linalg.norm(target - self.gt_pose)
+
+                print("Target:", target)
+                print("Final AprilTag:", self.gt_pose)
+                print("Final error:", real_error)
+
+                self.waiting_for_final_gt = False
 
     @staticmethod
     def predict_pose(pose, theta, v, omega, dt):
