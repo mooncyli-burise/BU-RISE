@@ -71,29 +71,29 @@ class LocalizationNode(Node):
         gt_orientation = 0
         gt_class = 0
 
-        capture_time = self.get_clock().now()
-
         frame = self.camera.get_frame()
 
         if frame is None:
             return
+
+        capture_time = self.get_clock().now()
         
         pred_center, pred_orientation, pred_class = self.detector.predict_pose(frame)
 
-        position_changed = (
-            self.last_center is None or
-            np.linalg.norm(pred_center - self.last_center) > 0.02
-        )
+        # position_changed = (
+        #     self.last_center is None or
+        #     np.linalg.norm(pred_center - self.last_center) > 0.02
+        # )
 
-        heading_changed = (
-            self.last_orientation is None or
-            abs(((pred_orientation - self.last_orientation + 180) % 360) - 180) > 5
-        )
+        # heading_changed = (
+        #     self.last_orientation is None or
+        #     abs(((pred_orientation - self.last_orientation + 180) % 360) - 180) > 5
+        # )
 
-        if not (position_changed or heading_changed):
-            print("no change in position or heading\n")
-            return
-            capture_time = self.last_capture_time
+        # if not (position_changed or heading_changed):
+        #     print("no change in position or heading\n")
+        #     return
+        #     capture_time = self.last_capture_time
 
         gt_center, gt_orientation, gt_class = self.detector.ground_truth_pose(frame)
 
@@ -196,7 +196,7 @@ class LocalizationNode(Node):
 def main():
     import rclpy
 
-    saved_model = "/workspace/ros2_ws/src/localization/localization/saved_models/best_finetuning_model_lr1e-3.pth"
+    saved_model = "/workspace/ros2_ws/src/localization/localization/saved_models/best_finetuning_model_new_synthetic.pth"
     init_image_path = "/workspace/ros2_ws/src/localization/localization/init_image/initialization_apriltag.jpg"
 
     rclpy.init()

@@ -72,10 +72,6 @@ class PurePursuitNode(Node):
         self.steering = 0
         self.measurement_time = None
 
-        self.pred_pose = None
-        self.pred_heading = None
-        self.last_prediction_time = None
-
         # timer 
         self.timer = self.create_timer(
             0.05,
@@ -118,14 +114,16 @@ class PurePursuitNode(Node):
         if self.path is None:
             print("No path")
             if self.testing:
-                self.test.goal_finished()
+                self.test.start()
             else:
                 self.get_new_goal()
             return
 
         if self.controller.reached_target or self.controller.exit:
+
             if self.controller.reached_target:
                 print("\nTarget reached!")
+
                 if self.gt_pose is not None:
                     target = np.array(self.path[0])
 
@@ -136,7 +134,8 @@ class PurePursuitNode(Node):
                     print("Target:", target)
                     print("AprilTag position:", self.gt_pose)
                     print("Actual final error:", real_error, "m")
-            elif self.controller.exit:
+
+            else:
                 print("\nTarget not reached, exited early")
 
             # Stop the robot
@@ -144,11 +143,12 @@ class PurePursuitNode(Node):
             self.cmd_publisher.publish(stop)
 
             if self.testing:
-                self.test.start()
+                self.test.goal_finished()
             else:
                 self.get_new_goal()
-            return
 
+            return
+        
         if self.measurement_time is None:
             return
 
@@ -156,27 +156,22 @@ class PurePursuitNode(Node):
         print("actual heading:", self.current_heading)
         print()
         
-        current_time = self.get_clock().now()
 
-        dt = (
-            current_time - self.last_prediction_time
-        ).nanoseconds * 1e-9
+        dt = (self.get_clock().now() - self.measurement_time).nanoseconds * 1e-9
 
 
-        self.pred_pose, self.pred_heading = PurePursuitNode.predict_pose(
-            self.pred_pose,
-            self.pred_heading,
+        pred_pose, pred_heading = PurePursuitNode.predict_pose(
+            self.current_pose,
+            self.current_heading,
             self.speed,
             self.steering,
             dt
         )
 
-        self.last_prediction_time = current_time
-
         self.speed, self.steering = self.controller.compute_control(
             self.path,
-            self.pred_pose,
-            self.pred_heading
+            pred_pose,
+            pred_heading
         )
 
         cmd = Twist()
@@ -188,8 +183,8 @@ class PurePursuitNode(Node):
 
         print("\nPure Pursuit")
         print("----------------")
-        print("pose:", self.pred_pose)
-        print("heading:", self.pred_heading)
+        print("pose:", pred_pose)
+        print("heading:", pred_heading)
         print("linear vel:", self.speed)
         print("angular vel:", self.steering)
         print(f"Measurement age: {dt:.3f} s")

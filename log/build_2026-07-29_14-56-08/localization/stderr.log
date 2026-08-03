@@ -1,5 +1,0 @@
-  File "/workspace/install/localization/lib/python3.10/site-packages/localization/apriltag_node.py", line 30
-    pred_center = 0, pred_orientation = 0, pred_class = 0
-    ^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
-

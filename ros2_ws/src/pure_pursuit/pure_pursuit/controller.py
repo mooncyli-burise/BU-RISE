@@ -28,7 +28,7 @@ class PurePursuit:
         self.exit = False
 
         self.success_radius = 0.15      # 5 cm
-        self.stall_radius = 0.30        # 30 cm
+        self.stall_radius = 0.20        # 30 cm
         self.stall_time = 15.0           # seconds
         self.stall_counter = 0
         self.dt = 0.05                  # controller period
@@ -171,7 +171,7 @@ class PurePursuit:
                 (goalPt[1]-predicted_stop_pos[1])**2 +
                 (goalPt[0]-predicted_stop_pos[0])**2
             )
-            
+
             # obtained goal point, now compute turn vel
             # calculate absTargetAngle with the atan2 function
             absTargetAngle = math.atan2(
@@ -180,6 +180,7 @@ class PurePursuit:
             ) *180/math.pi 
             if absTargetAngle < 0: absTargetAngle += 360
 
+            #
             # compute turn error by finding the minimum angle
             turnError = (absTargetAngle - currentHeading + 180) % 360 - 180
 
@@ -189,11 +190,11 @@ class PurePursuit:
             turnVel = -Kp_turn*turnError_rad
             turnVel = clamp(turnVel, -max_angular, max_angular)
 
-            print("linear error:", linearError)
-            print("stop error:", stop_error)
+            # print("linear error:", linearError)
+            # print("stop error:", stop_error)
 
             print("Target angle:", absTargetAngle)
-            print("turn error:", turnError)
+            # print("turn error:", turnError)
 
             # calculate speed - slow down in sharp turns
             if abs(turnError) > 70:
@@ -205,13 +206,13 @@ class PurePursuit:
 
             # TODO: if more than one point in the path, add condition that checks if it is last point in path
             # Reached target normally
-            if(stop_error<self.success_radius):
+            if(linearError<self.success_radius):
                 self.stats["successes"] += 1
                 save_stats(self.stats)
                 self.reached_target = True
 
             # Within larger "good enough" region
-            elif stop_error < self.stall_radius:
+            elif linearError < self.stall_radius:
                 self.stall_counter += 1
 
                 if self.stall_counter * self.dt >= self.stall_time:
