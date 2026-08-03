@@ -10,10 +10,10 @@ class NavigationTest:
 
         # Add as many test points as you like
         self.points = [
-            [0.25, 0.25],
-            [0.50, 0.25],
+            [0, 0],
+            [0.50, 0],
             [0.50, 0.50],
-            [0.25, 0.50],
+            [0, 0.50],
         ]
 
         self.current = -1

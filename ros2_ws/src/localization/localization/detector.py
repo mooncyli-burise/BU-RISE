@@ -2,6 +2,7 @@ import cv2
 import torch
 import math
 import numpy as np
+import time
 
 from . import config
 from localization.model import Model
@@ -28,7 +29,12 @@ class Detector:
         self.last_orientation = 0
 
     def predict_pose(self, frame):
+        start = time.perf_counter()
+
         logits = self.model.predict(frame)
+
+        inference_time = time.perf_counter() - start
+        print(f"Model latency: {inference_time:.3f} s")
 
         # center pred (normalized)
         pred_center = logits["center"].numpy().flatten()

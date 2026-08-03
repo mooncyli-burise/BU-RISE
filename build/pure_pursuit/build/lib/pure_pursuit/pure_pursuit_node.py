@@ -118,14 +118,16 @@ class PurePursuitNode(Node):
         if self.path is None:
             print("No path")
             if self.testing:
-                self.test.goal_finished()
+                self.test.start()
             else:
                 self.get_new_goal()
             return
 
         if self.controller.reached_target or self.controller.exit:
+
             if self.controller.reached_target:
                 print("\nTarget reached!")
+
                 if self.gt_pose is not None:
                     target = np.array(self.path[0])
 
@@ -136,7 +138,8 @@ class PurePursuitNode(Node):
                     print("Target:", target)
                     print("AprilTag position:", self.gt_pose)
                     print("Actual final error:", real_error, "m")
-            elif self.controller.exit:
+
+            else:
                 print("\nTarget not reached, exited early")
 
             # Stop the robot
@@ -144,11 +147,12 @@ class PurePursuitNode(Node):
             self.cmd_publisher.publish(stop)
 
             if self.testing:
-                self.test.start()
+                self.test.goal_finished()
             else:
                 self.get_new_goal()
-            return
 
+            return
+        
         if self.measurement_time is None:
             return
 

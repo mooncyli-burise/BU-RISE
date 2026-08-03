@@ -5,6 +5,10 @@ from . import config
 from localization.camera import Camera
 from localization.apriltag import AprilTag
 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
 class WorldFrame:
     def __init__(self, init_image = None):
         if init_image is None:
@@ -179,3 +183,120 @@ class WorldFrame:
             )
 
         return image
+
+    def visualize_frames(self, axis_length=0.5, ground_extent=2.0):
+        """
+        Visualize the world frame and camera frame in 3D.
+        """
+
+        fig = plt.figure(figsize=(8, 8))
+        ax = fig.add_subplot(111, projection="3d")
+
+        # -------------------------------------------------
+        # World frame
+        # -------------------------------------------------
+
+        origin = np.zeros(3)
+
+        ax.quiver(*origin, axis_length, 0, 0,
+                color="r", linewidth=2)
+        ax.quiver(*origin, 0, axis_length, 0,
+                color="g", linewidth=2)
+        ax.quiver(*origin, 0, 0, axis_length,
+                color="b", linewidth=2)
+
+        ax.text(axis_length, 0, 0, "Xw")
+        ax.text(0, axis_length, 0, "Yw")
+        ax.text(0, 0, axis_length, "Zw")
+
+        # -------------------------------------------------
+        # Camera frame
+        # -------------------------------------------------
+
+        R_wc = self.R.T
+
+        camera_center = (-R_wc @ self.T).flatten()
+
+        cam_x = R_wc[:, 0] * axis_length
+        cam_y = R_wc[:, 1] * axis_length
+        cam_z = R_wc[:, 2] * axis_length
+
+        ax.quiver(*camera_center, *cam_x,
+                color="r", linestyle="--")
+
+        ax.quiver(*camera_center, *cam_y,
+                color="g", linestyle="--")
+
+        ax.quiver(*camera_center, *cam_z,
+                color="b", linestyle="--")
+
+        ax.text(*(camera_center + cam_x), "Xc")
+        ax.text(*(camera_center + cam_y), "Yc")
+        ax.text(*(camera_center + cam_z), "Zc")
+
+        # -------------------------------------------------
+        # Ground plane
+        # -------------------------------------------------
+
+        xx, yy = np.meshgrid(
+            np.linspace(-ground_extent, ground_extent, 2),
+            np.linspace(-ground_extent, ground_extent, 2)
+        )
+
+        zz = np.zeros_like(xx)
+
+        ax.plot_surface(
+            xx,
+            yy,
+            zz,
+            alpha=0.2
+        )
+
+        # -------------------------------------------------
+        # Ground grid
+        # -------------------------------------------------
+
+        spacing = 0.25
+
+        for x in np.arange(-ground_extent, ground_extent + spacing, spacing):
+            ax.plot(
+                [x, x],
+                [-ground_extent, ground_extent],
+                [0, 0],
+                color="gray",
+                linewidth=0.5
+            )
+
+        for y in np.arange(-ground_extent, ground_extent + spacing, spacing):
+            ax.plot(
+                [-ground_extent, ground_extent],
+                [y, y],
+                [0, 0],
+                color="gray",
+                linewidth=0.5
+            )
+
+        # -------------------------------------------------
+        # Camera center
+        # -------------------------------------------------
+
+        ax.scatter(*camera_center,
+                color="k",
+                s=40)
+
+        ax.text(*camera_center, "Camera")
+
+        # -------------------------------------------------
+
+        ax.set_xlabel("X (m)")
+        ax.set_ylabel("Y (m)")
+        ax.set_zlabel("Z (m)")
+
+        ax.set_box_aspect((1, 1, 1))
+
+        scale = ground_extent
+        ax.set_xlim(-scale, scale)
+        ax.set_ylim(-scale, scale)
+        ax.set_zlim(-0.2, scale)
+
+        plt.show()
