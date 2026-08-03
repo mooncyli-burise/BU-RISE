@@ -13,6 +13,7 @@ pure_pursuit/__init__.py
 pure_pursuit/controller.py
 pure_pursuit/pure_pursuit_node.py
 pure_pursuit/stats.py
+pure_pursuit/test_path.py
 pure_pursuit/utils.py
 resource/pure_pursuit
 test/test_copyright.py
