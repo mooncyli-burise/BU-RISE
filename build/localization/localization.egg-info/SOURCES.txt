@@ -1,14 +1,6 @@
-LICENSE
 package.xml
 setup.cfg
 setup.py
-../../../build/localization/localization.egg-info/PKG-INFO
-../../../build/localization/localization.egg-info/SOURCES.txt
-../../../build/localization/localization.egg-info/dependency_links.txt
-../../../build/localization/localization.egg-info/entry_points.txt
-../../../build/localization/localization.egg-info/requires.txt
-../../../build/localization/localization.egg-info/top_level.txt
-../../../build/localization/localization.egg-info/zip-safe
 launch/localization_bringup.launch.py
 localization/__init__.py
 localization/apriltag.py
@@ -21,6 +13,13 @@ localization/model.py
 localization/trajectory_plot.py
 localization/utils.py
 localization/world_frame.py
+localization.egg-info/PKG-INFO
+localization.egg-info/SOURCES.txt
+localization.egg-info/dependency_links.txt
+localization.egg-info/entry_points.txt
+localization.egg-info/requires.txt
+localization.egg-info/top_level.txt
+localization.egg-info/zip-safe
 localization/robot_detector_model/__init__.py
 localization/robot_detector_model/dataset.py
 localization/robot_detector_model/eval.py
@@ -30,6 +29,3 @@ localization/robot_detector_model/training.py
 localization/robot_detector_model/transforms.py
 localization/robot_detector_model/val_accuracy.py
 resource/localization
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

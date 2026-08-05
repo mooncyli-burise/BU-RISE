@@ -267,6 +267,7 @@ class PurePursuitNode(Node):
 
         return np.array([x_pred, y_pred]), theta_pred
 
+    # TODO: make it do this writes to the same file as the rest
     def get_new_goal(self):
         x = float(input("Goal x (m): "))
         y = float(input("Goal y (m): "))

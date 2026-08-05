@@ -33,8 +33,14 @@ class PurePursuit:
         self.stall_counter = 0
         self.dt = 0.05                  # controller period
 
+        self.Kp_lin = 0.1
+        self.Kp_turn = 0.25
+
+        self.max_linear = 0.25
+        self.max_angular = 0.25
+
         # stopping prediction
-        self.stop_prediction_time = 6.0   # seconds into future
+        self.stop_prediction_time = 3.0   # seconds into future
         self.last_speed = 0.0
 
         self.last_turn_direction = 1
@@ -60,14 +66,6 @@ class PurePursuit:
         return np.array([x, y])
 
     def compute_control(self, path, currentPos, currentHeading):
-        # initialize proportional controller constant
-        Kp_lin = 0.1
-        Kp_turn = 0.25
-
-        # limo max speed 
-        max_linear = 0.1
-        max_angular = 0.1 #0.5
-
         if self.reached_target or self.exit:
             return 0, 0
         else:
@@ -195,8 +193,8 @@ class PurePursuit:
             turnError_rad = math.radians(turnError)
             # apply proportional controller
             # TODO: WAYYY too high for a limo
-            turnVel = -Kp_turn*turnError_rad
-            turnVel = clamp(turnVel, -max_angular, max_angular)
+            turnVel = -self.Kp_turn*turnError_rad
+            turnVel = clamp(turnVel, -self.max_angular, self.max_angular)
 
             # print("linear error:", linearError)
             # print("stop error:", stop_error)
@@ -208,9 +206,9 @@ class PurePursuit:
             if abs(turnError) > 45:
                 linearVel = 0
             else:
-                linearVel = Kp_lin * linearError
+                linearVel = self.Kp_lin * linearError
                 linearVel = linearVel / (1 + abs(turnVel))
-                linearVel = clamp(linearVel, 0, max_linear)
+                linearVel = clamp(linearVel, 0, self.max_linear)
 
             # TODO: if more than one point in the path, add condition that checks if it is last point in path
             # Reached target normally

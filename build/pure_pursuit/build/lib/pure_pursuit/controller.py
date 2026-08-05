@@ -34,7 +34,7 @@ class PurePursuit:
         self.dt = 0.05                  # controller period
 
         # stopping prediction
-        self.stop_prediction_time = 6.0   # seconds into future
+        self.stop_prediction_time = 3.0   # seconds into future
         self.last_speed = 0.0
 
         self.last_turn_direction = 1
@@ -65,8 +65,8 @@ class PurePursuit:
         Kp_turn = 0.25
 
         # limo max speed 
-        max_linear = 0.1
-        max_angular = 0.1 #0.5
+        max_linear = 0.25
+        max_angular = 0.5 #0.5
 
         if self.reached_target or self.exit:
             return 0, 0

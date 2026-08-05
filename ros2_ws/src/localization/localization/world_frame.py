@@ -50,7 +50,7 @@ class WorldFrame:
         scale = np.array([config.APRILTAG_WIDTH, config.APRILTAG_HEIGHT])
 
         pose = np.asarray(pose, dtype=float).copy()
-        pose[1] = 1.0 - pose[1]
+        # pose[1] = 1.0 - pose[1]
         pixel_xy = pose * scale
 
         # Pixel coordinates
@@ -71,7 +71,7 @@ class WorldFrame:
         s = -camera_center[2, 0] / ray_world[2, 0]
 
         world = camera_center + s * ray_world
-        # world[1] *= -1
+        world[1] *= -1
 
         return world[:2].flatten()
 
@@ -90,7 +90,7 @@ class WorldFrame:
 
         # World point (z = 0 on the ground)
         world = np.array([[pose[0]],
-                        [pose[1]],
+                        [-pose[1]],
                         [0.0]])
 
         # Transform to camera coordinates
@@ -312,3 +312,42 @@ class WorldFrame:
 
         plt.savefig("camera_frames.png", dpi=300, bbox_inches="tight")
         plt.close(fig)
+
+
+
+    
+    def debug_origin_conversion(self):
+        print("\n========== Coordinate Debug ==========")
+
+        # World origin
+        world_origin = np.array([0.0, 0.0])
+
+        print("World coordinate:")
+        print(world_origin)
+
+        # World -> Pixel
+        pixel = self.world_to_pixel(world_origin)
+
+        print("\nPixel coordinate:")
+        print(pixel)
+
+        # Pixel -> World
+        # pixel_to_world expects normalized coordinates,
+        # so convert pixel back to normalized first
+        normalized = np.array([
+            pixel[0] / config.APRILTAG_WIDTH,
+            pixel[1] / config.APRILTAG_HEIGHT
+        ])
+
+        print("\nNormalized pixel coordinate:")
+        print(normalized)
+
+        world_back = self.pixel_to_world(normalized)
+
+        print("\nRecovered world coordinate:")
+        print(world_back)
+
+        print("\nError:")
+        print(world_back - world_origin)
+
+        print("=====================================\n")

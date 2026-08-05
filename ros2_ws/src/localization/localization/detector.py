@@ -129,7 +129,7 @@ class Detector:
 
         #predicted center coords
         cx, cy = center_world
-        cy = config.HEIGHT - cy
+        # cy = config.HEIGHT - cy
 
         # draw line in direction of angle
         length = 20  # length of the arrow in pixels
@@ -157,13 +157,46 @@ class Detector:
         y = pose[1]
         cv2.circle(frame, (int(x), int(y)), radius=3, color=(255,0,0), thickness=-1)
 
-        cv2.putText(frame,
-                    f"({cx}, {cy}",
-                    (int(cx), int(cy-10)),
+        # cv2.putText(frame,
+        #             f"({cx}, {cy}",
+        #             (int(cx), int(cy-10)),
+        #             cv2.FONT_HERSHEY_SIMPLEX,
+        #             0.6,
+        #             (0,0,255),
+        #             2)
+
+        from pure_pursuit.test_path import path
+
+        goal_points = path
+
+        # Draw goal points
+        if goal_points is not None:
+            for i, goal in enumerate(goal_points):
+                p = self.worldframe.world_to_pixel(np.array(goal))
+                print("unnormalized")
+                p = normalize_coords(
+                    p,
+                    config.APRILTAG_WIDTH,
+                    config.APRILTAG_HEIGHT,
+                    config.WIDTH,
+                    config.HEIGHT,
+                )
+
+                gx, gy = p
+                # gy = config.HEIGHT - gy
+
+                cv2.circle(frame, (int(gx), int(gy)), 2, (255, 0, 255), -1)
+
+                cv2.putText(
+                    frame,
+                    f"({gx}, {gy})",
+                    (int(gx) + 3, int(gy) - 3),
                     cv2.FONT_HERSHEY_SIMPLEX,
-                    0.6,
-                    (0,0,255),
-                    2)
+                    0.25,           # small for 160x120 images
+                    (255, 0, 255),
+                    1,
+                    cv2.LINE_AA,
+                )
 
 
         return frame

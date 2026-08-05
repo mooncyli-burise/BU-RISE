@@ -1,6 +1,8 @@
 import csv
 import numpy as np
 from geometry_msgs.msg import Twist
+import os
+from datetime import datetime
 
 M = [
         [-0.5, 0],
@@ -20,8 +22,10 @@ circle = [
 
 idk = [
         [0,0],
-        [0.25, -0.25],
+        [-0.5, -0.5],
     ]
+
+path = idk
 
 
 class NavigationTest:
@@ -30,7 +34,7 @@ class NavigationTest:
         self.node = node
 
         # Add as many test points as you like
-        self.points = idk
+        self.points = path
 
         self.current = -1
         self.results = []
@@ -107,27 +111,38 @@ class NavigationTest:
         print("Navigation Testing Complete")
         print("=" * 50)
 
-        with open("navigation_results.csv", "w", newline="") as f:
+        filename = "navigation_results.csv"
+
+        # Check if file already exists
+        file_exists = os.path.isfile(filename)
+
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        with open(filename, "a", newline="") as f:
 
             writer = csv.writer(f)
 
-            writer.writerow([
-                "goal_x",
-                "goal_y",
-                "success",
-                "error_m"
-            ])
+            # Only write header for a new file
+            if not file_exists:
+                writer.writerow([
+                    "timestamp",
+                    "goal_x",
+                    "goal_y",
+                    "success",
+                    "error_m"
+                ])
 
             for r in self.results:
 
                 writer.writerow([
+                    timestamp,
                     r["goal_x"],
                     r["goal_y"],
                     r["success"],
                     r["error"]
                 ])
 
-        print("Saved navigation_results.csv")
+        print(f"Appended results to {filename}")
 
         successes = sum(r["success"] for r in self.results)
 
